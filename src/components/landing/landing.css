@@ -1,0 +1,162 @@
+@font-face {
+    font-family: '_PDMS_Saleem_QuranFont\ Regular';
+    src: url('../../fonts/_PDMS_Saleem_QuranFont\ Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+.landing {
+    width: 100%;
+    height: 270px;
+    position: relative;
+    margin-top: 60px;
+}
+
+.landing p {
+    width: 888px;
+    font-size: 16px;
+    color: #e6e6e6;
+    font-weight: 100;
+    margin-bottom: 48px;
+    font-family: 'Font weights DTP Naskh';
+}
+
+.landing button {
+    border: none;
+    background-color: #62D0B6;
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 13px 26px;
+}
+
+/* img {
+    height: 683px;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #000000a6;
+    z-index: 100;
+    position: absolute;
+    color: #ed8a8a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+@media (max-width:556px) {
+    .overlay {
+        height: 103% !important;
+    }
+}
+
+button.none {
+    display: none;
+} */
+
+.landing-img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.landing-img img {
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.landingTitle {
+    font-family: "_PDMS_Saleem_QuranFont\ Regular";
+    margin-right: 20px;
+    font-size: 70px;
+    color: white;
+}
+
+.landing-img::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #a5958df7;
+}
+
+
+
+.landing .landing-text {
+    text-align: center !important;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media (max-width:900px) {
+    .landing p {
+        width: 600px;
+
+    }
+}
+
+@media (max-width:550px) {
+
+    .landing p {
+        width: 340px;
+        font-size: 15px;
+    }
+
+    .landing h2 {
+        font-size: 29px;
+        margin-bottom: 20px;
+    }
+}
+
+.landing input {
+    border: none;
+    width: 90%;
+    border-radius: 9px;
+    outline: none;
+    padding: 10px 27px;
+}
+
+.inpDiv {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inpMainDiv {
+    width: 45%;
+    height: 135px;
+    border-radius: 9px;
+    box-shadow: 1px 1px 17px -11px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.inpDivLinks {
+    width: 100%;
+    padding: 0 40px;
+}
+
+.inpDivLinks a {
+    color: black;
+    padding: 5px 36px;
+    border-radius: 12px;
+}

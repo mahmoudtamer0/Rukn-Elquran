@@ -1,0 +1,46 @@
+@font-face {
+    font-family: '_PDMS_Saleem_QuranFont Regular';
+    /* Choose a suitable font name */
+    src: url('../../fonts/_PDMS_Saleem_QuranFont\ Regular.ttf') format('truetype');
+    /* Adjust the path to your font file */
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    transition: transform 0.3s ease-in-out;
+    z-index: 10000;
+}
+
+.visible {
+    transform: translateY(0);
+}
+
+.hidden {
+    transform: translateY(-340%);
+}
+
+
+
+.navLogo {
+    font-size: 35px;
+    font-family: "_PDMS_Saleem_QuranFont Regular";
+}
+
+.navLogo span {
+    font-size: 35px !important;
+    color: black;
+    margin-right: 10px;
+}
+
+.navLogo i {
+    color: #795548;
+}

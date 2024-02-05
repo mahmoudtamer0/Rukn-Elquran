@@ -1,0 +1,59 @@
+.recDiv {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.audio {
+    position: fixed;
+    width: 100%;
+    top: 91%;
+    transition: 0.3s;
+}
+
+.audioFalse {
+    position: fixed;
+    width: 100%;
+    top: 100%;
+}
+
+.cancelAudio {
+    position: fixed;
+    top: 87%;
+    right: 30px;
+    transition: 0.3s;
+}
+
+.cancelAudio button {
+    border: none;
+    padding: 5px 10px;
+    color: red;
+}
+
+
+
+
+
+
+
+
+/* {
+      newSewar.map((sora, index)=> {
+              return (<option key= {
+                      index
+                  }
+
+                  value= {
+                      sora.id
+                  }
+
+                  > {
+                      index + 1
+                  }
+
+                      {
+                      sora.name
+                  }
+
+                  </option>)
+          })
+  } */

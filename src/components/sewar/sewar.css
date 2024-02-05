@@ -1,0 +1,178 @@
+@font-face {
+    font-family: '_PDMS_Saleem_QuranFont Regular';
+    /* Choose a suitable font name */
+    src: url('../../fonts/_PDMS_Saleem_QuranFont\ Regular.ttf') format('truetype');
+    /* Adjust the path to your font file */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "UthmanicQaloun\ V21";
+    /* Choose a suitable font name */
+    src: url('../../fonts/UthmanicQaloun\ V21.ttf') format('truetype');
+    /* Adjust the path to your font file */
+    font-weight: normal;
+    font-style: normal;
+}
+
+.Sewar {
+    padding-top: 140px;
+}
+
+
+.sewarBoxes {
+    gap: 10px;
+}
+
+.soraBox {
+    height: 73px;
+    border: 1px solid #ebeef0;
+    border-radius: 9px;
+    padding: 14px;
+    width: 32%;
+    transition: 0.2s;
+}
+
+.soraBox:hover {
+    border-color: #795548;
+}
+
+.soraBox:hover .ayahsCount {
+    color: #795548 !important;
+}
+
+.soraBox:hover .soraNumberDiv {
+    background-color: #795548;
+}
+
+.soraBox:hover .soraNumber {
+    color: white !important;
+}
+
+.ayahsCount {
+    color: #666;
+    font-size: 1.125rem;
+    font-weight: 500;
+}
+
+.soraName {
+    font-family: "_PDMS_Saleem_QuranFont Regular";
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.soraDet {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.soraNumberDiv {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f5f6;
+    rotate: -45deg;
+    transition: 0.2s;
+}
+
+
+.soraNumber {
+    font-weight: 500;
+    font-size: 18px;
+    color: black;
+    rotate: 45deg;
+}
+
+a {
+    text-decoration: none;
+}
+
+.divShow button {
+    color: rgb(121, 85, 72);
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: rgb(255 240 235);
+    transition: 0.2s;
+
+    border-radius: 10px;
+}
+
+.divShow button:hover {
+    background-color: rgb(121, 85, 72);
+    color: rgb(255 240 235) !important;
+}
+
+.Sora {
+    padding-top: 120px;
+    margin-right: 20%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.soraContent {
+    width: 55%;
+}
+
+.soraSideBar {
+    overflow-y: scroll;
+    width: 25%;
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    top: 0;
+}
+
+.Sora p {
+    font-family: "UthmanicQaloun\ V21";
+    word-wrap: break-word;
+    font-size: 30px;
+    text-align: center;
+    word-spacing: 5px;
+    line-height: 1.6;
+}
+
+.soraPage {
+    margin-bottom: 25px;
+    padding-bottom: 35px;
+}
+
+.besmAllah {
+    margin-bottom: 100px;
+}
+
+.besmAllah h2 {
+    font-family: "_PDMS_Saleem_QuranFont Regular";
+    font-size: 45px;
+}
+
+.soraMainName {
+    margin-bottom: 40px;
+}
+
+.soraMainName h1 {
+    font-family: "_PDMS_Saleem_QuranFont Regular";
+    font-weight: 700;
+}
+
+.audioButton button {
+    border: none;
+    color: green;
+    font-size: 17px;
+    font-weight: 600;
+    background-color: #eeffee;
+    margin-bottom: 25px;
+    padding: 4px 9px;
+    border-radius: 8px;
+}
+
+.audioStop {
+    color: red !important;
+    background-color: #FFEBEE !important;
+}
