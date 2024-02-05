@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
+      <Router basename="/Rukn-Elquran">
         <AppContext>
           <Navbar />
           <Routes>
