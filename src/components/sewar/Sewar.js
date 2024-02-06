@@ -19,11 +19,10 @@ const Sewar = () => {
         <div className='Sewar'>
             <div className='container'>
                 <div className='sewarBoxes row justify-content-between align-items-center'>
-
                     {sewar.slice(0, sewarCount).map(sora => {
                         return (
                             <NavLink
-                                to={`/sewar/${sora.number}`}
+                                to={`/Rukn-Elquran/sewar/${sora.number}`}
                                 style={{ backgroundColor: colors.whitColor, }}
                                 className='soraBox d-flex justify-content-between align-items-center'>
                                 <div className='soraDet'>

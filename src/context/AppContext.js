@@ -1,5 +1,6 @@
 import React, { Children } from 'react'
 import { createContext, useContext, useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -20,6 +21,8 @@ const AppContext = ({ children }) => {
     const [soraId, setSoraId] = useState("")
     const [ayahs, setAyahs] = useState([])
     const [scrollBool, setScrollBool] = useState(false)
+    const [element, setElement] = useState()
+    const history = useLocation();
 
     const getSewar = () => {
         fetch("https://api.alquran.cloud/v1/surah")
@@ -40,9 +43,7 @@ const AppContext = ({ children }) => {
             .then(data => setAyahs(data.data.ayahs))
     }
 
-    // useEffect(() => {
-    //     getReciters()
-    // }, [])
+
 
 
 
@@ -56,7 +57,7 @@ const AppContext = ({ children }) => {
                 soraId, setSoraId,
                 ayahs, getAyahs,
                 colors, scrollBool,
-                setScrollBool
+                setScrollBool, element, setElement
             }}>
             {children}
         </DataContext.Provider>

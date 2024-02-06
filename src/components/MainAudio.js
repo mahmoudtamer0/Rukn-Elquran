@@ -24,7 +24,7 @@ const MainAudio = () => {
     // className = { audioBool? "audio": "audioFalse" }
     return (
         < div >
-            <div className={audioBool ? "cancelAudio" : "audioFalse"}><button onClick={() => handleClick()}><i class="fa-solid fa-xmark"></i></button></div>
+            <div className={audioBool ? "cancelAudio" : "audioFalse"}><button onClick={() => handleClick()}><i className="fa-solid fa-xmark"></i></button></div>
             <audio src={`${server}${soraId}.mp3`}
                 ref={audioRef}
                 type="audio/mpeg"

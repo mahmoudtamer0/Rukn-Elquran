@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ProgressBar.css'; // Import your CSS file for styling
+import { useData } from '../../context/AppContext';
 
 const ScrollProgressBar = () => {
+    const { colors } = useData()
     const [scrollPercentage, setScrollPercentage] = useState(0);
 
     const handleScroll = () => {
@@ -20,31 +22,11 @@ const ScrollProgressBar = () => {
         };
     }, []); // Empty dependency array ensures useEffect runs only once
 
-    // const [prevScrollPos, setPrevScrollPos] = useState(0);
-    // const [visible, setVisible] = useState(true);
-
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const currentScrollPos = window.scrollY;
-
-    //         setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-    //         setPrevScrollPos(currentScrollPos);
-    //     };
-
-    //     window.addEventListener('scroll', handleScroll);
-
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll);
-    //     };
-    // }, [prevScrollPos]);
-    // className = "progress-bar-container"
-    // className = {` ${visible ? "progress-bar-container-visible" : "progress-bar-container-hidden"} `
-
     return (
         <div className="progress-bar-container" >
             <div
                 className="progress-bar"
-                style={{ width: `${scrollPercentage}%` }}
+                style={{ width: `${scrollPercentage}%`, backgroundColor: colors.mainColor }}
             ></div>
         </div>
     );

@@ -120,15 +120,6 @@ a {
     width: 55%;
 }
 
-.soraSideBar {
-    overflow-y: scroll;
-    width: 25%;
-    position: fixed;
-    right: 0;
-    height: 100vh;
-    top: 0;
-}
-
 .Sora p {
     font-family: "UthmanicQaloun\ V21";
     word-wrap: break-word;
@@ -150,6 +141,17 @@ a {
 .besmAllah h2 {
     font-family: "_PDMS_Saleem_QuranFont Regular";
     font-size: 45px;
+}
+
+.ayahSpan:hover {
+    background-color: rgb(244, 244, 244);
+    cursor: pointer;
+}
+
+.ayahClicked {
+    color: #795548;
+    font-weight: bold;
+    background-color: rgb(244, 244, 244);
 }
 
 .soraMainName {
@@ -175,4 +177,179 @@ a {
 .audioStop {
     color: red !important;
     background-color: #FFEBEE !important;
+}
+
+
+.soraSideBar {
+    border-left: 1px solid;
+    width: 25%;
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    top: 0;
+
+    padding: 100px 10px;
+}
+
+.scrolll {
+    height: 100vh;
+    padding-bottom: 100px;
+}
+
+.sideBarSoraNameDiv {
+    height: 84%;
+    overflow-y: auto;
+    padding-bottom: 28px;
+}
+
+.sideBarSoraNameDiv::-webkit-scrollbar {
+    width: 10px;
+
+}
+
+.sideBarSoraNameDiv::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+.sideBarSoraNameDiv::-webkit-scrollbar-thumb {
+    background-color: #adb5bd;
+    border-radius: 15px;
+}
+
+.sideBarInput {
+    margin-bottom: 45px;
+    width: 100%;
+}
+
+.sideBarInput input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 7px
+}
+
+.mainSoraLink {
+    padding: 10px;
+    cursor: pointer;
+    display: block;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.mainSoraLink.active,
+.mainSoraLink:hover {
+    background-color: #795548;
+    color: white !important;
+}
+
+.mainSoraLink>span {
+    margin-right: 20px;
+}
+
+.nextButtons a {
+    border: none;
+    padding: 10px 30px;
+    margin: 10px;
+    border-radius: 7px;
+    transition: 0.2s;
+    border: 1px solid #795548;
+}
+
+.nextButtons a:hover {
+    background-color: white !important;
+    color: #795548 !important;
+}
+
+
+.tafseerBtn {
+    width: 127px;
+    height: 40px;
+    background-color: white;
+    box-shadow: 0px 0px 19px -9px;
+    font-size: 20px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 100;
+    right: 28%;
+}
+
+.tafseerBtn button {
+    background-color: white;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    font-size: 23px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.tafseerBtn button:hover {
+    background-color: #795548;
+    color: white;
+    font-size: 23px;
+    font-weight: 600;
+}
+
+.tafseerBtn i {
+    position: absolute;
+    right: -13px;
+    top: -10px;
+    color: red;
+    cursor: pointer;
+}
+
+.visible {
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}
+
+.ayahSpan {
+    position: relative;
+}
+
+
+.tafseerBox {
+    width: 50%;
+    height: 85%;
+    background-color: white;
+    z-index: 1000;
+    bottom: 0;
+    position: fixed;
+    box-shadow: 0px 0px 20px -11px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.boxVisible {
+    transform: translateY(0);
+}
+
+.tafseerBoxCloseBtn button {
+    border: none;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 25px;
+    font-size: 22px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+
+.tafseerBoxCloseBtn button:hover {
+    background-color: #c0c0c0;
+}
+
+.tafseerBoxCloseBtn {
+    padding: 10px;
+    width: 20px;
+    height: 100px;
 }

@@ -30,7 +30,7 @@ function Navbar() {
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container">
                     <div className="navLogo">
-                        <i class="fa-solid fa-book-open"></i>
+                        <i className="fa-solid fa-book-open"></i>
                         <span>ركن القرآن</span>
                     </div>
 
