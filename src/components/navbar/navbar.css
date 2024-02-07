@@ -44,3 +44,38 @@
 .navLogo i {
     color: #795548;
 }
+
+.btnSora {
+    background-color: transparent;
+    border: navajowhite;
+    margin-top: 10px;
+    transform: translateX(-200%);
+    transition: transform 0.2s ease-in-out;
+}
+
+.btnSora span {
+    font-weight: 600;
+}
+
+.Btnclose {
+    transform: translateX(0) !important;
+}
+
+@media(max-width:910px) {
+    .btnSora {
+        transform: translateX(-440%);
+    }
+
+}
+
+@media(max-width:650px) {
+    .btnSora {
+        transform: translateX(-288%);
+    }
+}
+
+@media(max-width:480px) {
+    .btnSora {
+        transform: translateX(-180%);
+    }
+}
