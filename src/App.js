@@ -5,6 +5,7 @@ import Landing from "./components/landing/Landing";
 import Sewar from "./components/sewar/Sewar";
 import Sora from "./components/sewar/Sora";
 import MainAudio from "./components/MainAudio";
+import NavBool from "./components/NavBool";
 // import DateToday from "./components/DateToday";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             </>} />
             <Route path="/Rukn-Elquran/sewar/:soraNum" element={<> <Sora /></>} />
           </Routes>
+          <NavBool />
           <MainAudio />
         </AppContext>
       </Router>
