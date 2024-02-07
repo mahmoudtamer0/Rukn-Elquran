@@ -5,7 +5,7 @@ import { useData } from '../../context/AppContext'
 import "./sewar.css"
 
 const Sewar = () => {
-    const { sewar, getSewar, colors } = useData()
+    const { sewar, getSewar, colors, setSideBarOpen } = useData()
     const [sewarCount, setSewarCount] = useState(21)
 
     useEffect(() => {
@@ -22,6 +22,7 @@ const Sewar = () => {
                     {sewar.slice(0, sewarCount).map(sora => {
                         return (
                             <NavLink
+                                onClick={() => setSideBarOpen(true)}
                                 to={`/Rukn-Elquran/sewar/${sora.number}`}
                                 style={{ backgroundColor: colors.whitColor, }}
                                 className='soraBox d-flex justify-content-between align-items-center'>

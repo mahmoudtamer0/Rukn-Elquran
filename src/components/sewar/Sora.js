@@ -175,6 +175,7 @@ const SoraMain = () => {
     // sid bar
 
     const handleLinkClick = (newNum, e) => {
+        setSideBarOpen(false)
         history?.push(`${newNum}`);
     };
 

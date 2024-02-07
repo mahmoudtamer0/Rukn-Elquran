@@ -22,7 +22,7 @@ const AppContext = ({ children }) => {
     const [soraNow, setSoraNow] = useState("")
     const [ayahs, setAyahs] = useState([])
     const [scrollBool, setScrollBool] = useState(false)
-    const [sideBarOpen, setSideBarOpen] = useState(true)
+    const [sideBarOpen, setSideBarOpen] = useState(false)
     const [element, setElement] = useState()
 
 

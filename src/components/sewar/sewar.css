@@ -115,6 +115,7 @@ a {
     display: flex;
     justify-content: center;
     transition: margin 0.3s;
+    margin-top: 15px;
 }
 
 .soraMargin0 {
@@ -553,5 +554,13 @@ a {
     .tafseerBox {
         width: 95%;
         margin: auto;
+    }
+
+    .nextButtons a {
+        padding: 5px 5px;
+    }
+
+    .nextButtons span {
+        font-size: 12px;
     }
 }

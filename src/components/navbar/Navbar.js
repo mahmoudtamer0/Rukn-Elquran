@@ -56,29 +56,32 @@ function Navbar() {
                     <div></div>
                 </div>
                 {scrollBool ?
-                    <div>
-                        <div>
-                            {sideBarOpen ?
-                                <button
-                                    onClick={() => setSideBarOpen(false)}
-                                    className="btnSora"
-                                >
-                                    <i class="fa-solid fa-angle-right"></i>
-                                    <span>{soraNow}</span>
-                                </button>
-                                :
-                                <button
-                                    onClick={() => setSideBarOpen(true)}
-                                    className="btnSora Btnclose"
-                                >
-                                    <span>{soraNow}</span>
-                                    <i class="fa-solid fa-angle-left"></i>
-                                </button>
-                            }
-
-                        </div>
+                    <>
                         <ScrollProgressBar />
-                    </div>
+                        <div>
+
+                            <div>
+                                {sideBarOpen ?
+                                    <button
+                                        onClick={() => setSideBarOpen(false)}
+                                        className="btnSora"
+                                    >
+                                        <i class="fa-solid fa-angle-right"></i>
+                                        <span>{soraNow}</span>
+                                    </button>
+                                    :
+                                    <button
+                                        onClick={() => setSideBarOpen(true)}
+                                        className="btnSora Btnclose"
+                                    >
+                                        <span>{soraNow}</span>
+                                        <i class="fa-solid fa-angle-left"></i>
+                                    </button>
+                                }
+
+                            </div>
+                        </div>
+                    </>
                     : null}
             </nav>
 
