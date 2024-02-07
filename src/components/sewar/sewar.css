@@ -114,10 +114,15 @@ a {
     height: 100vh;
     display: flex;
     justify-content: center;
+    transition: margin 0.3s;
+}
+
+.soraMargin0 {
+    margin-right: 0;
 }
 
 .soraContent {
-    width: 55%;
+    width: 560px;
 }
 
 .Sora p {
@@ -187,8 +192,21 @@ a {
     right: 0;
     height: 100vh;
     top: 0;
+    transition: transform 0.2s ease-in-out;
+    padding: 115px 10px;
+    z-index: 1000;
+}
 
-    padding: 100px 10px;
+.sideBarIsVisible {
+    padding: 115px 10px;
+}
+
+.sideBarIsNotVisible {
+    padding: 45px 10px;
+}
+
+.sideHide {
+    transform: translateX(100%);
 }
 
 .scrolll {
@@ -271,7 +289,7 @@ a {
     border-radius: 10px;
     position: absolute;
     z-index: 100;
-    right: 28%;
+    right: 33%;
 }
 
 .tafseerBtn button {
@@ -292,7 +310,7 @@ a {
     font-weight: 600;
 }
 
-.tafseerBtn i {
+.tafseerBtn .ii {
     position: absolute;
     right: -13px;
     top: -10px;
@@ -301,11 +319,60 @@ a {
 }
 
 .visible {
-    display: inline-block;
+    display: flex;
 }
 
 .hide {
     display: none;
+}
+
+.spanTitleTafseer,
+.spanTitleTa48eel {
+    background-color: black;
+    color: white;
+    /* width: 10px; */
+    display: none;
+    width: 45px;
+    height: 45px;
+    font-size: 17px;
+    height: 30px;
+    border-radius: 6px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.spanTitleTafseer::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 9px solid black;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.spanTitleTa48eel::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 9px solid black;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btnTafseer:hover .spanTitleTafseer {
+    display: block;
+}
+
+.btnTa48eel:hover .spanTitleTa48eel {
+    display: block;
 }
 
 .ayahSpan {
@@ -351,5 +418,140 @@ a {
 .tafseerBoxCloseBtn {
     padding: 10px;
     width: 20px;
-    height: 100px;
+}
+
+
+@media(max-width:910px) {
+    .soraSideBar {
+        width: 70% !important;
+    }
+
+}
+
+
+@media(max-width:555px) {
+    .soraContent {
+        width: 455px;
+    }
+
+    .Sora p {
+        font-size: 27px;
+    }
+
+}
+
+@media(max-width:555px) {
+
+    .Sora {
+        margin-right: 0;
+    }
+
+    .soraContent {
+        width: 90%;
+        margin: auto;
+    }
+
+    .Sora p {
+        font-size: 25px;
+    }
+
+    .besmAllah h2 {
+        font-size: 40px;
+    }
+
+    .audioButton button {
+        font-size: 15px;
+    }
+
+
+    .soraSideBar {
+        width: 85% !important;
+    }
+
+    .tafseerBtn {
+        right: 5%;
+    }
+}
+
+.sideBarCloseBtn {
+    padding: 11px 0;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.sideBarCloseBtn button {
+    border: none;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 25px;
+    font-size: 22px;
+    width: 30px;
+    height: 30px;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideBarCloseBtn button:hover {
+    background-color: #c0c0c0;
+}
+
+.boxContent {
+    padding: 25px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.boxAyah {
+    color: #795548;
+    font-weight: bold;
+    background-color: rgb(244, 244, 244);
+    font-size: 25px;
+    font-family: "UthmanicQaloun\ V21";
+    padding-bottom: 15px;
+}
+
+
+.boxTafseer {
+    font-size: 25px;
+    word-spacing: 7px;
+    font-weight: 600;
+}
+
+@media(max-width:1000px) {
+    .tafseerBox {
+        width: 70%;
+    }
+}
+
+@media(max-width:790px) {
+    .tafseerBox {
+        width: 75%;
+    }
+}
+
+@media(max-width:690px) {
+    .tafseerBox {
+        width: 85%;
+    }
+}
+
+@media(max-width:620px) {
+    .tafseerBox {
+        width: 90%;
+    }
+}
+
+@media(max-width:560px) {
+    .Sora {
+        display: block;
+    }
+
+    .tafseerBox {
+        width: 95%;
+        margin: auto;
+    }
 }

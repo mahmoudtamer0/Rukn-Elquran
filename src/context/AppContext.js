@@ -19,10 +19,12 @@ const AppContext = ({ children }) => {
     const [reciters, setReciters] = useState([])
     const [server, setServer] = useState()
     const [soraId, setSoraId] = useState("")
+    const [soraNow, setSoraNow] = useState("")
     const [ayahs, setAyahs] = useState([])
     const [scrollBool, setScrollBool] = useState(false)
+    const [sideBarOpen, setSideBarOpen] = useState(true)
     const [element, setElement] = useState()
-    const history = useLocation();
+
 
     const getSewar = () => {
         fetch("https://api.alquran.cloud/v1/surah")
@@ -57,7 +59,9 @@ const AppContext = ({ children }) => {
                 soraId, setSoraId,
                 ayahs, getAyahs,
                 colors, scrollBool,
-                setScrollBool, element, setElement
+                setScrollBool, element, setElement,
+                sideBarOpen, setSideBarOpen,
+                soraNow, setSoraNow,
             }}>
             {children}
         </DataContext.Provider>

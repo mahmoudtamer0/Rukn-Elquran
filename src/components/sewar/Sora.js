@@ -17,7 +17,10 @@ const SoraMain = () => {
         soraId,
         getAyahs, ayahs,
         setScrollBool, colors,
+        server,
         setServer, setSoraId,
+        setSoraNow,
+        sideBarOpen, setSideBarOpen,
     } = useData()
 
     const spanref = useRef(null)
@@ -71,6 +74,14 @@ const SoraMain = () => {
         document.querySelector(`.tafseer${ayah.numberInSurah}`)?.classList.add("visible")
     }
 
+    const handleAyaPlay = (ayah) => {
+        bts.map(bt => {
+            bt.classList.remove("visible")
+            bt.classList.add("hide")
+        })
+        setServer(ayah.audio)
+    }
+
     const handleTafseerClose = (ayahNum) => {
         document.querySelector(`.tafseer${ayahNum}`).classList.remove("visible")
         document.querySelector(`.tafseer${ayahNum}`).classList.add("hide")
@@ -113,12 +124,15 @@ const SoraMain = () => {
     useEffect(() => {
         getSewar()
         getTafseer()
-        setScrollBool(true)
         getAyahs(soraNum)
         fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
             .then(res => res.json())
             .then(data => setSoraName(data.data.name))
     }, [])
+
+    useEffect(() => {
+        setScrollBool(true)
+    }, [history])
 
 
     useEffect(() => {
@@ -132,6 +146,7 @@ const SoraMain = () => {
             groupedPages[page].push(item);
         });
         setPages(groupedPages);
+        setSoraNow(soraName)
     }, [ayahs]);
 
     useEffect(() => {
@@ -142,20 +157,19 @@ const SoraMain = () => {
 
     const handlePlayClick = () => {
         setAudioBool(true)
-        setServer(reciters[0]?.moshaf[0].server)
-        setSoraId(soraNum.padStart(3, 0))
+        setServer(`${reciters[0]?.moshaf[0].server}${soraNum.padStart(3, 0)}.mp3`)
     }
 
     useEffect(() => {
-        if (soraId == "") {
+        if (server == undefined) {
             setAudioBool(false)
         } else {
             setAudioBool(true)
         }
-    }, [soraId])
+    }, [server])
     const handlePauseClick = () => {
         setAudioBool(false)
-        setSoraId("")
+        setServer()
     }
 
     // sid bar
@@ -173,14 +187,46 @@ const SoraMain = () => {
         } else {
             linkRef.current.scrollTop = document.querySelector(`#activeDiv`)?.offsetTop - linkRef.current?.offsetTop - 200;
         }
+        setSoraNow(soraName)
     }, [sewar])
 
 
 
+
+
+    // handleScrolling
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const [visible, setVisible] = useState(true);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollPos = window.scrollY;
+
+            setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+            setPrevScrollPos(currentScrollPos);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [prevScrollPos]);
+
+
+
     return (
-        <div className='Sora'>
-            <div className='soraSideBar' style={{ width: "20%", borderLeftColor: colors.borderColor }}>
+        <div className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
+            <div className={`soraSideBar ${visible ? "sideBarIsVisible" : "sideBarIsNotVisible"} ${!sideBarOpen ? "sideHide" : null}`}
+                style={{
+                    borderLeftColor: colors.borderColor, backgroundColor: colors.whiteColor
+                }}>
                 <div className='sidBarContent'>
+                    <div className='sideBarCloseBtn'>
+                        <button
+                            onClick={() => setSideBarOpen(false)}
+                        ><i className="fa-solid fa-xmark"></i></button>
+                    </div>
                     <div className='sideBarInput'>
                         <input
                             onChange={(e) => setSearch(e.target.value)}
@@ -222,8 +268,11 @@ const SoraMain = () => {
                         }
                         }><i className="fa-solid fa-xmark"></i></button>
                     </div>
-                    <div>{ayahInTafseer}</div>
-                    <div>{theTafseer}</div>
+                    <div className='boxContent'>
+                        <div className='boxAyah'>{ayahInTafseer}</div>
+                        <hr></hr>
+                        <div className='boxTafseer'>{theTafseer}</div>
+                    </div>
                 </div>
                 <div className='text-center soraMainName'>
                     <h1> {soraName}</h1>
@@ -250,12 +299,21 @@ const SoraMain = () => {
                                         <span
                                             className={`tafseerBtn hide tafseer${item.numberInSurah}`}>
                                             <button
+                                                className='btnTafseer'
                                                 onClick={() => handleDetailedTafseer(item)}
                                             >
-                                                تفسير الاية؟
+                                                <i class="fa-solid fa-book-open-reader"></i>
+                                                <span className='spanTitleTafseer'>تفسير</span>
+                                            </button>
+                                            <button
+                                                className='btnTa48eel'
+                                                onClick={() => handleAyaPlay(item)}
+                                            >
+                                                <i class="fa-solid fa-play"></i>
+                                                <span className='spanTitleTa48eel'>تشغيل</span>
                                             </button>
                                             <i
-                                                className="fa-solid fa-circle-xmark"
+                                                className="fa-solid fa-circle-xmark ii"
                                                 onClick={() => handleTafseerClose(item.numberInSurah)}
                                             >
                                             </i>
