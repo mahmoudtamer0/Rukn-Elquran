@@ -42,7 +42,7 @@
 }
 
 .navLogo i {
-    color: #795548;
+    color: #0075ff;
 }
 
 .btnSora {
@@ -52,7 +52,7 @@
     margin-bottom: 5px;
     transform: translateX(0);
     transition: transform 0.2s ease-in-out;
-    background-color: #795548;
+    background-color: #0075ff;
     color: white;
     padding: 6px;
     border-radius: 11px;
