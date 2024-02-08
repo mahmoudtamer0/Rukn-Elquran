@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/Rukn-Elquran/static/css/main.c104c64a.css",
-    "main.js": "/Rukn-Elquran/static/js/main.8f53a3c5.js",
+    "main.css": "/Rukn-Elquran/static/css/main.e298c720.css",
+    "main.js": "/Rukn-Elquran/static/js/main.337125de.js",
     "static/js/592.baa20ba0.chunk.js": "/Rukn-Elquran/static/js/592.baa20ba0.chunk.js",
     "static/media/UthmanicQaloun V21.ttf": "/Rukn-Elquran/static/media/UthmanicQaloun V21.2ae916ad5fd4070a7241.ttf",
     "static/media/_PDMS_Saleem_QuranFont Regular.ttf": "/Rukn-Elquran/static/media/_PDMS_Saleem_QuranFont Regular.a258fc5638bdebfb5b13.ttf",
     "static/media/quran-mazid-hero-calio.png": "/Rukn-Elquran/static/media/quran-mazid-hero-calio.a9b602c1c0ba659ff354.png",
     "index.html": "/Rukn-Elquran/index.html",
-    "main.c104c64a.css.map": "/Rukn-Elquran/static/css/main.c104c64a.css.map",
-    "main.8f53a3c5.js.map": "/Rukn-Elquran/static/js/main.8f53a3c5.js.map",
+    "main.e298c720.css.map": "/Rukn-Elquran/static/css/main.e298c720.css.map",
+    "main.337125de.js.map": "/Rukn-Elquran/static/js/main.337125de.js.map",
     "592.baa20ba0.chunk.js.map": "/Rukn-Elquran/static/js/592.baa20ba0.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c104c64a.css",
-    "static/js/main.8f53a3c5.js"
+    "static/css/main.e298c720.css",
+    "static/js/main.337125de.js"
   ]
 }
