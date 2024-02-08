@@ -8,7 +8,7 @@ const DataContext = createContext();
 const AppContext = ({ children }) => {
 
     const [colors, setColors] = useState({
-        mainColor: "#795548",
+        mainColor: "#0075ff",
         whiteColor: "white",
         blackColor: "black",
         greyColor: "#666",
@@ -34,7 +34,7 @@ const AppContext = ({ children }) => {
 
 
     const getReciters = () => {
-        fetch(" https://www.mp3quran.net/api/v3/reciters?language=ar")
+        fetch("https://www.mp3quran.net/api/v3/reciters?language=ar")
             .then(res => res.json())
             .then(data => setReciters(data.reciters))
     }

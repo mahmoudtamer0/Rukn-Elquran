@@ -35,15 +35,15 @@
 }
 
 .soraBox:hover {
-    border-color: #795548;
+    border-color: #0075ff;
 }
 
 .soraBox:hover .ayahsCount {
-    color: #795548 !important;
+    color: #0075ff !important;
 }
 
 .soraBox:hover .soraNumberDiv {
-    background-color: #795548;
+    background-color: #0075ff;
 }
 
 .soraBox:hover .soraNumber {
@@ -155,7 +155,7 @@ a {
 }
 
 .ayahClicked {
-    color: #795548;
+    color: #0075ff;
     font-weight: bold;
     background-color: rgb(244, 244, 244);
 }
@@ -258,7 +258,7 @@ a {
 
 .mainSoraLink.active,
 .mainSoraLink:hover {
-    background-color: #795548;
+    background-color: #0075ff;
     color: white !important;
 }
 
@@ -272,12 +272,12 @@ a {
     margin: 10px;
     border-radius: 7px;
     transition: 0.2s;
-    border: 1px solid #795548;
+    border: 1px solid #0075ff;
 }
 
 .nextButtons a:hover {
     background-color: white !important;
-    color: #795548 !important;
+    color: #0075ff !important;
 }
 
 
@@ -305,7 +305,7 @@ a {
 }
 
 .tafseerBtn button:hover {
-    background-color: #795548;
+    background-color: #0075ff;
     color: white;
     font-size: 23px;
     font-weight: 600;
@@ -507,7 +507,7 @@ a {
 }
 
 .boxAyah {
-    color: #795548;
+    color: #0075ff;
     font-weight: bold;
     background-color: rgb(244, 244, 244);
     font-size: 25px;
