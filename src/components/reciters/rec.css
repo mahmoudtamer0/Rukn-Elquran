@@ -1,3 +1,9 @@
+.mainRec {
+    padding-top: 140px;
+}
+
+
+
 .recDiv {
     display: flex;
     flex-wrap: wrap;
@@ -15,6 +21,8 @@
     width: 100%;
     top: 100%;
 }
+
+
 
 .cancelAudio {
     position: fixed;
