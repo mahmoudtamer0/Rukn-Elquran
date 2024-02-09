@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useData } from '../../context/AppContext';
+import landingImg from '../../images/quran-book.jpg'
 import "./rec.css"
 import "../sewar/sewar.css"
 import { Link, NavLink } from 'react-router-dom';
@@ -51,13 +52,26 @@ const Reciters = () => {
 
 
     return (
-        <div className='mainRec'>
+        <div>
+            <div className='landing'>
+                <div className='landing-img'>
+                    <img src={landingImg} />
+                </div>
+                <div className='text-center landing-text '>
+                    <div className='d-flex align-items-center justify-content-center'>
+                        <h2 className='landingTitle'>قراء القرأن</h2>
+                    </div>
+                    <div className='recDivSearch'>
+                        <input
+                            onChange={(e) => setSearch(e.target.value)}
+                            type='text'
+                            placeholder='ابحث عن القارئ' />
+                    </div>
+                </div>
+            </div>
 
-            {/* <div>
-                <input onChange={(e) => setSearch(e.target.value)} type='search' />
-            </div> */}
-            <div className='container'>
-                <div className='sewarBoxes row justify-content-between align-items-center'>
+            <div className='container mainRec'>
+                <div className='sewarBoxes justify-content-between align-items-center'>
                     {reciters.filter((item) => {
                         return search !== "" ? item.name.includes(search) : reciters
                     }).map((rec, index) => {
@@ -68,7 +82,7 @@ const Reciters = () => {
                             >
                                 <div className='soraDet'>
                                     <div style={{ color: colors.searchColor }} className='soraNumberDiv'>
-                                        <span style={{ color: colors.blackColor }} className='soraNumber'>{(index + 1).toLocaleString('ar-EG')}</span>
+                                        <span style={{ color: colors.blackColor, zIndex: 0 }} className='soraNumber'>{(index + 1).toLocaleString('ar-EG')}</span>
                                     </div>
                                     <span style={{ color: colors.blackColor }} className='soraName'>{rec.name}</span>
                                 </div>
