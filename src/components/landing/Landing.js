@@ -1,16 +1,61 @@
 import { Link } from 'react-router-dom';
 import landingLogo from '../../images/quran-mazid-hero-calio.png'
+import landingImg from '../../images/quran-book.jpg'
 import './landing.css'
 import { useData } from '../../context/AppContext';
-
+import { useEffect, useState } from 'react';
+import { useClickAway } from "@uidotdev/usehooks";
 
 function Landing() {
 
-    const { colors } = useData()
+    const { colors, reciters, getReciters } = useData()
+    const [search, setSearch] = useState("")
+    const [sewar, setSewar] = useState([])
+    const [focused, setFocused] = useState(false)
+
+    useEffect(() => {
+        getReciters()
+        fetch("https://mp3quran.net/api/v3/suwar?language=ar")
+            .then(res => res.json())
+            .then(data => setSewar(data.suwar))
+    }, [])
+
+    const handleClose = () => {
+        document.querySelector(".searchBox").classList.add("hide")
+        document.querySelector(".searchBox").classList.remove("visibleSearchBox")
+    }
+
+    useEffect(() => {
+        if (focused) {
+            document.querySelector(".searchBox").classList.remove("hide")
+            document.querySelector(".searchBox").classList.add("visibleSearchBox")
+        } else {
+            document.querySelector(".searchBox").classList.add("hide")
+            document.querySelector(".searchBox").classList.remove("visibleSearchBox")
+        }
+    }, [focused])
+
+    console.log(focused)
+
+    useEffect(() => {
+        if (search == "") {
+            handleClose()
+        } else {
+            document.querySelector(".searchBox").classList.remove("hide")
+            document.querySelector(".searchBox").classList.add("visibleSearchBox")
+        }
+    }, [search])
+
+    console.log(reciters)
+
+    const boxRef = useClickAway(() => {
+        handleClose()
+    })
 
     return (
         <div className='landing'>
             <div className='landing-img'>
+                <img src={landingImg} />
             </div>
             <div className='text-center landing-text '>
                 <div className='d-flex align-items-center justify-content-center'>
@@ -19,17 +64,70 @@ function Landing() {
                 </div>
                 <div className='inpDiv'>
                     <div className='inpMainDiv' style={{ backgroundColor: colors.whiteColor }}>
-                        <input style={{ backgroundColor: colors.searchColor, color: colors.black }} type='text' placeholder='ماذا تريد ان تقرا؟' />
-                        <div className='d-flex justify-content-between  align-items-center inpDivLinks'>
-                            <Link style={{ backgroundColor: colors.searchColor }}>الملك</Link>
-                            <Link style={{ backgroundColor: colors.searchColor }}>الملك</Link>
-                            <Link style={{ backgroundColor: colors.searchColor }}>الملك</Link>
-                            <Link style={{ backgroundColor: colors.searchColor }}>الملك</Link>
+                        <div>
+                            <input
+                                onBlur={() => {
+                                    setTimeout(() => {
+                                        setFocused(false)
+                                    }, 300);
+                                }}
+                                onFocus={() => setFocused(true)}
+                                onChange={(e) => setSearch(e.target.value)}
+                                style={{ backgroundColor: colors.searchColor, color: colors.black }}
+                                type='text'
+                                placeholder='ماذا تريد ان تقرا او تسمع؟ ' />
+                        </div>
+                        <div className='fastLinksDiv text-end mt-3 '>
+                            <p style={{ width: "fit-content" }}>لينكات سريعة: </p>
+                            <div className='fastLinks'>
+                                <Link to={`/Rukn-Elquran/sewar/1`}>الفاتحة</Link>
+                                <Link to={`/Rukn-Elquran/sewar/2`}>البقرة</Link>
+                                <Link to={`/Rukn-Elquran/reciters/107`}>مشاري العفاسي</Link>
+                                <Link to={`/Rukn-Elquran/reciters/105`}>محمود خليل الحصري</Link>
+                            </div>
+
+                        </div>
+                        <div ref={boxRef} style={{ borderColor: colors.borderColor }} className='searchBox text-end hide'>
+                            <div className='mb-3'>
+                                <p style={{ color: colors.greyColor, margin: "0" }}>السور :</p>
+                                {
+                                    sewar.filter((item) => {
+                                        return item.name.includes(search) ? search : null
+                                    }).map(link => {
+                                        return (
+                                            <Link
+                                                to={`/Rukn-Elquran/sewar/${link.id}`}
+                                                className='searchMainLink'>
+                                                <span>{link.name}</span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                            </div>
+                            <hr></hr>
+                            <div>
+                                <p style={{ color: colors.greyColor, margin: "0" }}>القراء :</p>
+                                {
+                                    reciters.filter((item) => {
+                                        return item.name.includes(search) ? search : null
+                                    }).map(link => {
+                                        return (
+                                            <Link
+                                                to={`/Rukn-Elquran/reciters/${link.id}`}
+                                                className='searchMainLink'>
+                                                <span>{link.name}</span>
+                                                <i class="fa-solid fa-arrow-left"></i>
+                                            </Link>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
