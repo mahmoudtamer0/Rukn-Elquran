@@ -27,8 +27,8 @@ const Sewar = () => {
                                 style={{ backgroundColor: colors.whitColor, }}
                                 className='soraBox d-flex justify-content-between align-items-center'>
                                 <div className='soraDet'>
-                                    <div style={{ color: colors.searchColor }} className='soraNumberDiv'>
-                                        <span style={{ color: colors.blackColor }} className='soraNumber'>{sora.number.toLocaleString('ar-EG')}</span>
+                                    <div style={{ color: colors.searchColor }} className='soraNumberDiv soraNumSpecial'>
+                                        <span style={{ color: colors.blackColor }} className='soraNumber '>{sora.number.toLocaleString('ar-EG')}</span>
                                     </div>
                                     <span style={{ color: colors.blackColor }} className='soraName'>{sora.name.split("سُورَةُ ")}</span>
                                 </div>
