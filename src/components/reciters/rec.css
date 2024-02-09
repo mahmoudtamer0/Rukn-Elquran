@@ -1,5 +1,5 @@
 .mainRec {
-    padding-top: 140px;
+    padding-top: 40px;
 }
 
 
@@ -42,29 +42,14 @@
 }
 
 
+.recDivSearch input {
+    width: 60%;
+}
 
+.recDivSearch {
+    margin-top: 60px;
+}
 
-
-
-
-/* {
-      newSewar.map((sora, index)=> {
-              return (<option key= {
-                      index
-                  }
-
-                  value= {
-                      sora.id
-                  }
-
-                  > {
-                      index + 1
-                  }
-
-                      {
-                      sora.name
-                  }
-
-                  </option>)
-          })
-  } */
+.landing .landing-text {
+    top: 40%;
+}
