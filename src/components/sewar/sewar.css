@@ -22,7 +22,15 @@
 
 
 .sewarBoxes {
-    gap: 10px;
+    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+@media(max-width:450px) {
+    .sewarBoxes {
+        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    }
 }
 
 .soraBox {
@@ -30,15 +38,16 @@
     border: 1px solid #ebeef0;
     border-radius: 9px;
     padding: 14px;
-    width: 32%;
     transition: 0.2s;
 }
 
-.soraBox:hover {
+.soraBox:hover,
+.soraBoxActiv {
     border-color: #0075ff;
 }
 
-.soraBox:hover .ayahsCount {
+.soraBox:hover .ayahsCount,
+.soraBoxActiv {
     color: #0075ff !important;
 }
 
@@ -46,7 +55,15 @@
     background-color: #0075ff;
 }
 
+.soraBoxActiv .soraNumberDiv {
+    background-color: #0075ff;
+}
+
 .soraBox:hover .soraNumber {
+    color: white !important;
+}
+
+.soraBoxActiv .soraNumber {
     color: white !important;
 }
 
@@ -77,6 +94,10 @@
     background-color: #f4f5f6;
     rotate: -45deg;
     transition: 0.2s;
+}
+
+.soraNumSpecial {
+    z-index: -1;
 }
 
 
