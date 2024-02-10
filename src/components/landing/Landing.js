@@ -76,7 +76,7 @@ function Landing() {
                                 style={{ backgroundColor: colors.searchColor, color: colors.black }}
                                 type='text'
                                 placeholder='ماذا تريد ان تقرا او تسمع؟ ' />
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i className="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <div className='fastLinksDiv text-end mt-3 '>
                             {/* <p style={{ width: "fit-content" }}>لينكات سريعة: </p> */}
@@ -97,10 +97,11 @@ function Landing() {
                                     }).map(link => {
                                         return (
                                             <Link
+                                                key={link.id}
                                                 to={`/Rukn-Elquran/sewar/${link.id}`}
                                                 className='searchMainLink'>
                                                 <span>{link.name}</span>
-                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <i className="fa-solid fa-arrow-left"></i>
                                             </Link>
                                         )
                                     })
@@ -115,10 +116,11 @@ function Landing() {
                                     }).map(link => {
                                         return (
                                             <Link
+                                                key={link.id}
                                                 to={`/Rukn-Elquran/reciters/${link.id}`}
                                                 className='searchMainLink'>
                                                 <span>{link.name}</span>
-                                                <i class="fa-solid fa-arrow-left"></i>
+                                                <i className="fa-solid fa-arrow-left"></i>
                                             </Link>
                                         )
                                     })
