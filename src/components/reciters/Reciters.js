@@ -78,11 +78,12 @@ const Reciters = () => {
                         return (
                             <NavLink
                                 to={`/Rukn-Elquran/reciters/${rec.id}`}
+                                style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                 className="soraBox d-flex justify-content-between align-items-center"
                             >
                                 <div className='soraDet'>
-                                    <div style={{ color: colors.searchColor }} className='soraNumberDiv'>
-                                        <span style={{ color: colors.blackColor, zIndex: 0 }} className='soraNumber'>{(index + 1).toLocaleString('ar-EG')}</span>
+                                    <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
+                                        <span style={{ color: colors.blackColor }} className='soraNumber'>{(index + 1).toLocaleString('ar-EG')}</span>
                                     </div>
                                     <span style={{ color: colors.blackColor }} className='soraName'>{rec.name}</span>
                                 </div>
