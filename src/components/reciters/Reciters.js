@@ -77,6 +77,7 @@ const Reciters = () => {
                     }).map((rec, index) => {
                         return (
                             <NavLink
+                                key={index}
                                 to={`/Rukn-Elquran/reciters/${rec.id}`}
                                 style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                 className="soraBox d-flex justify-content-between align-items-center"
