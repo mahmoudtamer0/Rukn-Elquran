@@ -43,49 +43,54 @@ function Navbar() {
                 <div className="divLinks">
                     <NavLink
                         to={`/Rukn-Elquran`}
+                        onClick={() => setSideNavBarShow(false)}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" aria-current="page" href="#">
-                        <i class="fa-solid fa-house"></i>
+                        <i className="fa-solid fa-house"></i>
                         <span>
                             الصفحة الرئيسية
                         </span>
                     </NavLink>
                     <NavLink
                         to={`/Rukn-Elquran/sewar`}
+                        onClick={() => setSideNavBarShow(false)}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" aria-current="page" href="#">
-                        <i class="fa-solid fa-book-quran"></i>
+                        <i className="fa-solid fa-book-quran"></i>
                         <span>
                             السور
                         </span>
                     </NavLink>
                     <NavLink
+                        onClick={() => setSideNavBarShow(false)}
                         to={`/Rukn-Elquran/reciters`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
-                        <i class="fa-solid fa-tower-broadcast"></i>
+                        <i className="fa-solid fa-tower-broadcast"></i>
                         <span>
                             القراء
                         </span>
                     </NavLink>
                     <NavLink
+                        onClick={() => setSideNavBarShow(false)}
                         to={`/Rukn-Elquran/reciters`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
-                        <i class="fa-regular fa-clock"></i>
+                        <i className="fa-regular fa-clock"></i>
                         <span>
                             مواقيت الصلاة
                         </span>
                     </NavLink>
 
                     <NavLink
+                        onClick={() => setSideNavBarShow(false)}
                         to={`/Rukn-Elquran/reciters`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
-                        <i class="fa-solid fa-exclamation"></i>
+                        <i className="fa-solid fa-exclamation"></i>
                         <span>
                             معلومات عنا
                         </span>
@@ -101,7 +106,7 @@ function Navbar() {
                             <i
                                 onClick={() => setSideNavBarShow(true)}
                                 style={{ color: colors.blackColor }}
-                                class="fa-solid fa-bars"></i>
+                                className="fa-solid fa-bars"></i>
                         </div>
                         <Link to={'/Rukn-Elquran'} className="navLogo">
                             <i className="fa-solid fa-book-open"></i>
@@ -144,19 +149,19 @@ function Navbar() {
                                     <i
                                         style={{ backgroundColor: colors.iconBackGround }}
                                         onClick={() => handleLightMode()}
-                                        class="fa-solid fa-sun"></i>
+                                        className="fa-solid fa-sun"></i>
                                     :
                                     <i
                                         style={{ backgroundColor: colors.iconBackGround }}
                                         onClick={() => handleLightMode()}
-                                        class="fa-solid fa-moon"></i>
+                                        className="fa-solid fa-moon"></i>
                                 }
 
                             </li>
                             <li className="nav-item">
                                 <i
                                     style={{ backgroundColor: colors.iconBackGround }}
-                                    class="fa-solid fa-language"></i>
+                                    className="fa-solid fa-language"></i>
                             </li>
                         </ul>
                     </div>
@@ -174,7 +179,7 @@ function Navbar() {
                                         onClick={() => setSideBarOpen(false)}
                                         className="btnSora"
                                     >
-                                        <i class="fa-solid fa-angle-right"></i>
+                                        <i className="fa-solid fa-angle-right"></i>
                                         <span>{soraNow}</span>
                                     </button>
                                     :
@@ -183,7 +188,7 @@ function Navbar() {
                                         className="btnSora Btnclose"
                                     >
                                         <span>{soraNow}</span>
-                                        <i class="fa-solid fa-angle-left"></i>
+                                        <i className="fa-solid fa-angle-left"></i>
                                     </button>
                                 }
 
