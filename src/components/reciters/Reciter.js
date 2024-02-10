@@ -84,6 +84,7 @@ const Reciter = () => {
                         return search !== "" ? item.name.includes(search) : sewar
                     }).map((sora, index) => (
                         <button
+                            key={sora.id}
                             onClick={() => handlePlay(sora)}
                             style={{ backgroundColor: "transparent", border: `1px solid ${colors.borderColor}` }}
                             className={`soraBox d-flex align-items-center
@@ -93,9 +94,9 @@ const Reciter = () => {
                                 <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
                                     <span style={{ color: colors.blackColor }} className='soraNumber'>
                                         {soraId == sora.id ?
-                                            <i class="fa-solid fa-pause"></i>
+                                            <i className="fa-solid fa-pause"></i>
                                             :
-                                            <i class="fa-solid fa-play"></i>
+                                            <i className="fa-solid fa-play"></i>
                                         }
                                     </span>
                                 </div>
