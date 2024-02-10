@@ -19,6 +19,7 @@ const Sewar = () => {
                     {sewar.slice(0, sewarCount).map(sora => {
                         return (
                             <NavLink
+                                key={sora.number}
                                 onClick={() => setSideBarOpen(true)}
                                 to={`/Rukn-Elquran/sewar/${sora.number}`}
                                 style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
