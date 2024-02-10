@@ -13,9 +13,17 @@ const AppContext = ({ children }) => {
         blackColor: "black",
         greyColor: "#666",
         borderColor: "#ebeef0",
-        searchColor: " rgb(244 244 244/1)"
+        soraNumberDiv: "#f4f5f6",
+        navColor: "white",
+        searchColor: " rgb(244 244 244/1)",
+        iconBackGround: "#0075ff4a",
+        appColor: "white",
+        progress: "#ddd"
     })
     const [sewar, setSewar] = useState([])
+    const [mode, setMode] = useState(
+        JSON.parse(localStorage.getItem("mode")) ?
+            JSON.parse(localStorage.getItem("mode")) : "light")
     const [reciters, setReciters] = useState([])
     const [server, setServer] = useState()
     const [soraId, setSoraId] = useState("")
@@ -31,6 +39,50 @@ const AppContext = ({ children }) => {
             .then(res => res.json())
             .then(data => setSewar(data.data))
     }
+
+    const handleLightMode = () => {
+        if (mode == "dark") {
+            setMode("light")
+            localStorage.setItem("mode", JSON.stringify("light"))
+        } else {
+            setMode("dark")
+            localStorage.setItem("mode", JSON.stringify("dark"))
+        }
+    }
+
+    useEffect(() => {
+        if (mode == "dark") {
+            document.querySelector("body").classList.add("darkApp")
+            setColors({
+                mainColor: "#0075ff",
+                whiteColor: "black",
+                blackColor: "#e7e9ea",
+                greyColor: "#666",
+                borderColor: "#464b50",
+                soraNumberDiv: "#343a40",
+                navColor: "#343a40",
+                searchColor: " rgb(244 244 244/1)",
+                iconBackGround: " rgb(37 48 59/1)",
+                appColor: "#1e2329",
+                progress: "#4c4c4c"
+            })
+        } else {
+            document.querySelector("body").classList.remove("darkApp")
+            setColors({
+                mainColor: "#0075ff",
+                whiteColor: "white",
+                blackColor: "black",
+                greyColor: "#666",
+                borderColor: "#ebeef0",
+                soraNumberDiv: "#f4f5f6",
+                navColor: "white",
+                searchColor: " rgb(244 244 244/1)",
+                iconBackGround: "#0075ff4a",
+                appColor: "white",
+                progress: "#ddd"
+            })
+        }
+    }, [mode])
 
 
     const getReciters = () => {
@@ -62,6 +114,7 @@ const AppContext = ({ children }) => {
                 setScrollBool, element, setElement,
                 sideBarOpen, setSideBarOpen,
                 soraNow, setSoraNow,
+                handleLightMode,
             }}>
             {children}
         </DataContext.Provider>
