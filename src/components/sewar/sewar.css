@@ -333,8 +333,8 @@ a {
 
 
 .tafseerBtn {
-    width: 127px;
-    height: 40px;
+    width: 268px;
+    height: 60px;
     background-color: white;
     box-shadow: 0px 0px 19px -9px;
     font-size: 20px;
@@ -353,6 +353,12 @@ a {
     font-size: 23px;
     font-weight: 600;
     transition: 0.2s;
+
+    border: 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .tafseerBtn button:hover {
