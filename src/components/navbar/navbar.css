@@ -148,3 +148,9 @@
 .sideNaveBar a:hover {
     background-color: #0075ff;
 }
+
+@media(max-width:400px) {
+    .navLogo {
+        font-size: 28px;
+    }
+}
