@@ -12,9 +12,6 @@ const Sewar = () => {
         getSewar()
     }, [])
 
-    console.log(colors.mainColor)
-
-
     return (
         <div className='Sewar'>
             <div className='container'>
@@ -24,10 +21,11 @@ const Sewar = () => {
                             <NavLink
                                 onClick={() => setSideBarOpen(true)}
                                 to={`/Rukn-Elquran/sewar/${sora.number}`}
-                                style={{ backgroundColor: colors.whitColor, }}
+                                style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                 className='soraBox d-flex justify-content-between align-items-center'>
                                 <div className='soraDet'>
-                                    <div style={{ color: colors.searchColor }} className='soraNumberDiv soraNumSpecial'>
+                                    <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }}
+                                        className='soraNumberDiv soraNumSpecial'>
                                         <span style={{ color: colors.blackColor }} className='soraNumber '>{sora.number.toLocaleString('ar-EG')}</span>
                                     </div>
                                     <span style={{ color: colors.blackColor }} className='soraName'>{sora.name.split("سُورَةُ ")}</span>
