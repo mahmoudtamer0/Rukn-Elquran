@@ -85,13 +85,13 @@ const Reciter = () => {
                     }).map((sora, index) => (
                         <button
                             onClick={() => handlePlay(sora)}
-                            style={{ backgroundColor: colors.whiteColor }}
+                            style={{ backgroundColor: "transparent", border: `1px solid ${colors.borderColor}` }}
                             className={`soraBox d-flex align-items-center
                             ${soraId == sora.id && "soraBoxActiv"}`}
                         >
                             <div className='soraDet'>
-                                <div style={{ color: colors.searchColor }} className='soraNumberDiv'>
-                                    <span style={{ color: colors.blackColor, zIndex: 0 }} className='soraNumber'>
+                                <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
+                                    <span style={{ color: colors.blackColor }} className='soraNumber'>
                                         {soraId == sora.id ?
                                             <i class="fa-solid fa-pause"></i>
                                             :
@@ -99,7 +99,7 @@ const Reciter = () => {
                                         }
                                     </span>
                                 </div>
-                                <span>{`${(index + 1).toLocaleString("ar-SA")}`}</span>
+                                <span style={{ color: colors.blackColor }} >{`${(index + 1).toLocaleString("ar-SA")}`}</span>
                                 <span style={{ color: colors.blackColor }} className='soraName'>{sora.name}</span>
                             </div>
                             {/* <div className='ayahsCount' style={{ color: colors.greyColor }}>{sora.numberOfAyahs.toLocaleString('ar-EG')}  آيات</div> */}
