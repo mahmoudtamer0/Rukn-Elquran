@@ -3,3 +3,13 @@ body {
   direction: rtl;
   font-family: 'Noto Sans Arabic', sans-serif;
 }
+
+
+.darkApp {
+  background-color: #1e2329;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
