@@ -35,8 +35,6 @@ function Landing() {
         }
     }, [focused])
 
-    console.log(focused)
-
     useEffect(() => {
         if (search == "") {
             handleClose()
@@ -45,8 +43,6 @@ function Landing() {
             document.querySelector(".searchBox").classList.add("visibleSearchBox")
         }
     }, [search])
-
-    console.log(reciters)
 
     const boxRef = useClickAway(() => {
         handleClose()
@@ -62,9 +58,13 @@ function Landing() {
                     <img style={{ width: "65px" }} src={landingLogo} alt='..' />
                     <h2 className='landingTitle'> ركن القرآن</h2>
                 </div>
+                <div className='landDesc'>
+                    <p style={{ margin: "0", color: "#dbdbdb", maxWidth: "100%" }}>موقع لقراءة و تلاوة و تفسير القران الكريم</p>
+                    <p style={{ maxWidth: "100%", margin: "0", marginTop: "20px", marginBottom: "20px", color: "#dbdbdb" }}>اكتشف أناقة القرآن الرائعة - تعمق في الآيات العميقة والحكمة الخالدة للقرآن، مصدر الإلهام والإرشاد للجميع.</p>
+                </div>
                 <div className='inpDiv'>
-                    <div className='inpMainDiv' style={{ backgroundColor: colors.whiteColor }}>
-                        <div>
+                    <div className='inpMainDiv'>
+                        <div className='searchInputDiv' style={{ position: "relative" }}>
                             <input
                                 onBlur={() => {
                                     setTimeout(() => {
@@ -76,9 +76,10 @@ function Landing() {
                                 style={{ backgroundColor: colors.searchColor, color: colors.black }}
                                 type='text'
                                 placeholder='ماذا تريد ان تقرا او تسمع؟ ' />
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <div className='fastLinksDiv text-end mt-3 '>
-                            <p style={{ width: "fit-content" }}>لينكات سريعة: </p>
+                            {/* <p style={{ width: "fit-content" }}>لينكات سريعة: </p> */}
                             <div className='fastLinks'>
                                 <Link to={`/Rukn-Elquran/sewar/1`}>الفاتحة</Link>
                                 <Link to={`/Rukn-Elquran/sewar/2`}>البقرة</Link>
