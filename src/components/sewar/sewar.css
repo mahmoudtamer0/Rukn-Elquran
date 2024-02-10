@@ -35,15 +35,18 @@
 
 .soraBox {
     height: 73px;
-    border: 1px solid #ebeef0;
     border-radius: 9px;
     padding: 14px;
     transition: 0.2s;
 }
 
+.soraBox:hover {
+    border-color: #0075ff !important;
+}
+
 .soraBox:hover,
 .soraBoxActiv {
-    border-color: #0075ff;
+    border-color: #0075ff !important;
 }
 
 .soraBox:hover .ayahsCount,
@@ -51,12 +54,16 @@
     color: #0075ff !important;
 }
 
+.soraBoxActiv span {
+    color: #0075ff !important;
+}
+
 .soraBox:hover .soraNumberDiv {
-    background-color: #0075ff;
+    background-color: #0075ff !important;
 }
 
 .soraBoxActiv .soraNumberDiv {
-    background-color: #0075ff;
+    background-color: #0075ff !important;
 }
 
 .soraBox:hover .soraNumber {
@@ -65,6 +72,10 @@
 
 .soraBoxActiv .soraNumber {
     color: white !important;
+}
+
+.soraBox:hover .soraName {
+    color: #0075ff !important;
 }
 
 .ayahsCount {
@@ -91,14 +102,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f4f5f6;
     rotate: -45deg;
     transition: 0.2s;
 }
 
-.soraNumSpecial {
+/* .soraNumSpecial {
     z-index: -1;
-}
+} */
 
 
 .soraNumber {
@@ -145,6 +155,7 @@ a {
 
 .soraContent {
     width: 560px;
+    margin-top: 35px;
 }
 
 .Sora p {
@@ -171,11 +182,30 @@ a {
 }
 
 .ayahSpan:hover {
-    background-color: rgb(244, 244, 244);
     cursor: pointer;
 }
 
+.hoverAyahDark {
+    background-color: rgb(44 46 54);
+}
+
+.hoverAyahLight {
+    background-color: rgb(244, 244, 244);
+}
+
 .ayahClicked {
+    color: #0075ff;
+    font-weight: bold;
+    background-color: rgb(244, 244, 244);
+}
+
+.ayahClickedDark {
+    color: #0075ff;
+    font-weight: bold;
+    background-color: rgb(44 46 54);
+}
+
+.ayahClickedLight {
     color: #0075ff;
     font-weight: bold;
     background-color: rgb(244, 244, 244);
@@ -412,6 +442,7 @@ a {
     box-shadow: 0px 0px 20px -11px;
     transform: translateY(100%);
     transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
 }
 
 .boxVisible {
@@ -420,7 +451,7 @@ a {
 
 .tafseerBoxCloseBtn button {
     border: none;
-    background-color: #fff;
+    background-color: transparent;
     padding: 8px;
     border-radius: 25px;
     font-size: 22px;
@@ -498,13 +529,13 @@ a {
 .sideBarCloseBtn {
     padding: 11px 0;
     display: flex;
-    justify-content: end;
+    justify-content: start;
     align-items: center;
 }
 
 .sideBarCloseBtn button {
     border: none;
-    background-color: #fff;
+    background-color: transparent;
     padding: 8px;
     border-radius: 25px;
     font-size: 22px;
@@ -573,8 +604,9 @@ a {
     }
 
     .tafseerBox {
-        width: 95%;
-        margin: auto;
+        width: 100%;
+        left: 0;
+        right: 0;
     }
 
     .nextButtons a {
