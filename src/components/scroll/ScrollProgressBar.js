@@ -23,7 +23,7 @@ const ScrollProgressBar = () => {
     }, []); // Empty dependency array ensures useEffect runs only once
 
     return (
-        <div className="progress-bar-container" >
+        <div style={{ backgroundColor: colors.progress }} className="progress-bar-container" >
             <div
                 className="progress-bar"
                 style={{ width: `${scrollPercentage}%`, backgroundColor: colors.mainColor }}
