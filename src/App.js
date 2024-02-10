@@ -1,4 +1,4 @@
-import AppContext from "./context/AppContext";
+import AppContext, { useData } from "./context/AppContext";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Landing from "./components/landing/Landing";
@@ -11,8 +11,10 @@ import Reciter from "./components/reciters/Reciter";
 // import DateToday from "./components/DateToday";
 
 function App() {
+
+
   return (
-    <div className="App">
+    <div className="App" >
       <Router>
         <AppContext>
           <Navbar />
