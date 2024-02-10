@@ -14,8 +14,6 @@
     left: 0;
     width: 100%;
     padding: 10px;
-    background-color: #333;
-    color: #fff;
     transition: transform 0.3s ease-in-out;
     z-index: 10000;
 }
@@ -31,12 +29,11 @@
 
 
 .navLogo {
-    font-size: 35px;
+    font-size: 30px;
     font-family: "_PDMS_Saleem_QuranFont Regular";
 }
 
 .navLogo span {
-    font-size: 35px !important;
     color: black;
     margin-right: 10px;
 }
@@ -64,4 +61,90 @@
 
 .Btnclose {
     transform: translateX(0) !important;
+}
+
+
+.navIconsDiv i {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 7px;
+    border-radius: 5px;
+    color: #0075ff;
+}
+
+.navIconsDiv ul {
+    gap: 20px;
+    display: flex;
+}
+
+.ulMainLinks a:hover {
+    transition: 0.2s;
+    color: #0075ff !important;
+}
+
+.ulMainLinks a.active {
+    color: #0075ff !important;
+}
+
+@media(max-width:990px) {
+    .navNav {
+        display: none;
+    }
+}
+
+.barsDiv {
+    display: none;
+}
+
+.barsDiv i {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+@media(max-width:990px) {
+    .barsDiv {
+        display: block;
+    }
+}
+
+.sideNaveBar {
+    width: 100%;
+    height: 130vh;
+    z-index: 1000000;
+    top: 0;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 61px 0;
+    transition: transform 0.2s ease-in-out;
+    transform: translateX(100%);
+}
+
+.sideNaveBarShow {
+    transform: translateX(0);
+}
+
+.sideNaveBar .divLinks {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sideNaveBar a {
+    color: rgb(231, 233, 234);
+    width: 100%;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+    margin-top: 30px;
+}
+
+.sideNaveBar a:hover {
+    background-color: #0075ff;
 }
