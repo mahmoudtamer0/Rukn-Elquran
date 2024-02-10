@@ -21,6 +21,7 @@ const SoraMain = () => {
         setServer, setSoraId,
         setSoraNow,
         sideBarOpen, setSideBarOpen,
+        mode
     } = useData()
 
     const spanref = useRef(null)
@@ -62,10 +63,18 @@ const SoraMain = () => {
             console.log(bt)
         })
         ays.map(bt => {
-            bt.classList.remove("ayahClicked")
+            bt.classList.remove("ayahClickedDark")
+        })
+        ays.map(bt => {
+            bt.classList.remove("ayahClickedDark")
         })
 
-        document.querySelector(`.ayahSpan${ayah.numberInSurah}`)?.classList.add("ayahClicked")
+        if (JSON.parse(localStorage.getItem("mode")) == "dark") {
+            document.querySelector(`.ayahSpan${ayah.numberInSurah}`)?.classList.add("ayahClickedDark")
+        } else {
+            document.querySelector(`.ayahSpan${ayah.numberInSurah}`)?.classList.add("ayahClickedLight")
+        }
+
 
         let filter = tafseer?.filter(item => item.aya == ayah.numberInSurah)
         setAyahInTafseer(filter[0].arabic_text)
@@ -86,6 +95,12 @@ const SoraMain = () => {
         document.querySelector(`.tafseer${ayahNum}`).classList.remove("visible")
         document.querySelector(`.tafseer${ayahNum}`).classList.add("hide")
         document.querySelector(`.ayahSpan${ayahNum}`)?.classList.remove("ayahClicked")
+        ays.map(bt => {
+            bt.classList.remove("ayahClickedDark")
+        })
+        ays.map(bt => {
+            bt.classList.remove("ayahClickedDark")
+        })
     }
 
     useEffect(() => {
@@ -96,7 +111,10 @@ const SoraMain = () => {
             })
 
             ays.map(bt => {
-                bt.classList.remove("ayahClicked")
+                bt.classList.remove("ayahClickedDark")
+            })
+            ays.map(bt => {
+                bt.classList.remove("ayahClickedDark")
             })
         } else return
     }, [tafseerBoxBool])
@@ -110,7 +128,12 @@ const SoraMain = () => {
         bts.map(bt => {
             bt.classList.remove("visible")
             bt.classList.add("hide")
-            console.log(bt)
+        })
+        ays.map(bt => {
+            bt.classList.remove("ayahClickedDark")
+        })
+        ays.map(bt => {
+            bt.classList.remove("ayahClickedDark")
         })
         console.log(document.querySelector(`.tafseer`))
         setTafseerBoxBool(false)
@@ -214,17 +237,33 @@ const SoraMain = () => {
         };
     }, [prevScrollPos]);
 
+    console.log(mode)
+
+    const handleMouseOver = (e) => {
+        if (JSON.parse(localStorage.getItem("mode")) == "dark") {
+            e.target.classList.add("hoverAyahDark")
+        } else {
+            e.target.classList.add("hoverAyahLight")
+        }
+    }
+
+    const handleMouseOut = (e) => {
+        e.target.classList.remove("hoverAyahLight")
+        e.target.classList.remove("hoverAyahDark")
+    }
 
 
     return (
-        <div className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
+        <div
+            className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
             <div className={`soraSideBar ${visible ? "sideBarIsVisible" : "sideBarIsNotVisible"} ${!sideBarOpen ? "sideHide" : null}`}
                 style={{
-                    borderLeftColor: colors.borderColor, backgroundColor: colors.whiteColor
+                    borderLeftColor: colors.borderColor, backgroundColor: colors.navColor
                 }}>
                 <div className='sidBarContent'>
                     <div className='sideBarCloseBtn'>
                         <button
+                            style={{ color: colors.blackColor }}
                             onClick={() => setSideBarOpen(false)}
                         ><i className="fa-solid fa-xmark"></i></button>
                     </div>
@@ -262,24 +301,42 @@ const SoraMain = () => {
                 </div>
             </div>
             <div className='soraContent'>
-                <div ref={boxRef} className={tafseerBoxBool ? "tafseerBox boxVisible" : "tafseerBox"}>
+                <div
+                    style={{
+                        backgroundColor: colors.navColor
+                    }}
+                    ref={boxRef} className={tafseerBoxBool ? "tafseerBox boxVisible" : "tafseerBox"}>
                     <div className='tafseerBoxCloseBtn'>
-                        <button onClick={() => {
-                            handleTafseerBoxClose()
-                        }
-                        }><i className="fa-solid fa-xmark"></i></button>
+                        <button
+                            style={{
+                                color: colors.blackColor
+                            }}
+                            onClick={() => {
+                                handleTafseerBoxClose()
+                            }
+                            }><i className="fa-solid fa-xmark"></i></button>
                     </div>
                     <div className='boxContent'>
                         <div className='boxAyah'>{ayahInTafseer}</div>
-                        <hr></hr>
-                        <div className='boxTafseer'>{theTafseer}</div>
+                        <hr
+                            style={{
+                                color: colors.blackColor
+                            }}
+                        ></hr>
+                        <div
+                            style={{
+                                color: colors.blackColor
+                            }}
+                            className='boxTafseer'>{theTafseer}</div>
                     </div>
                 </div>
                 <div className='text-center soraMainName'>
-                    <h1> {soraName}</h1>
+                    <h1 style={{ color: colors.blackColor }}> {soraName}</h1>
                 </div>
                 <div className='besmAllah'>
-                    <h2 className=' text-center'>بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h2>
+                    <h2
+                        style={{ color: colors.blackColor }}
+                        className='text-center'>بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h2>
                 </div>
                 <div>
                     <div className='audioButton'>
@@ -321,6 +378,8 @@ const SoraMain = () => {
                                         </span>
                                         <span
                                             ref={spanref}
+                                            onMouseOut={(e) => handleMouseOut(e)}
+                                            onMouseOver={(e) => handleMouseOver(e)}
                                             onClick={() => handleTafseer(item)}
                                             className={`ayahSpan ayahSpan${item.numberInSurah}`}>
                                             {item.text.includes("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ") ?
@@ -331,7 +390,7 @@ const SoraMain = () => {
                                     </>
                                 ))}
                             </p>
-                            <div className='text-center mt-3'> <span>{pageNumber.toLocaleString('ar-EG')}</span> </div>
+                            <div style={{ color: colors.blackColor }} className='text-center mt-3'> <span>{pageNumber.toLocaleString('ar-EG')}</span> </div>
                         </div>
                     ))}
                 </div>
