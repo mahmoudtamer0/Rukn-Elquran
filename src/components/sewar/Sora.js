@@ -60,7 +60,6 @@ const SoraMain = () => {
         bts.map(bt => {
             bt.classList.remove("visible")
             bt.classList.add("hide")
-            console.log(bt)
         })
         ays.map(bt => {
             bt.classList.remove("ayahClickedDark")
@@ -99,7 +98,7 @@ const SoraMain = () => {
             bt.classList.remove("ayahClickedDark")
         })
         ays.map(bt => {
-            bt.classList.remove("ayahClickedDark")
+            bt.classList.remove("ayahClickedLight")
         })
     }
 
@@ -135,7 +134,6 @@ const SoraMain = () => {
         ays.map(bt => {
             bt.classList.remove("ayahClickedDark")
         })
-        console.log(document.querySelector(`.tafseer`))
         setTafseerBoxBool(false)
     }
 
@@ -236,8 +234,6 @@ const SoraMain = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [prevScrollPos]);
-
-    console.log(mode)
 
     const handleMouseOver = (e) => {
         if (JSON.parse(localStorage.getItem("mode")) == "dark") {
@@ -347,28 +343,28 @@ const SoraMain = () => {
                         </button>}
                     </div>
                     {Object.keys(pages).map(pageNumber => (
-                        <div
+                        < div
                             style={{ borderBottom: `1px solid ${colors.borderColor}` }}
                             className='soraPage'
                             key={pageNumber}>
                             <p style={{ color: colors.blackColor }} className='pAyah'>
                                 {pages[pageNumber].map((item) => (
-                                    <>
+                                    <span key={item.numberInSurah}>
                                         <span
                                             className={`tafseerBtn hide tafseer${item.numberInSurah}`}>
                                             <button
                                                 className='btnTafseer'
                                                 onClick={() => handleDetailedTafseer(item)}
                                             >
-                                                <i class="fa-solid fa-book-open-reader"></i>
-                                                <span className='spanTitleTafseer'>تفسير</span>
+                                                <i style={{ fontSize: "20px" }} className="fa-solid fa-book-open-reader"></i>
+                                                <span style={{ fontSize: "20px" }}> تفسير الاية؟</span>
                                             </button>
                                             <button
                                                 className='btnTa48eel'
                                                 onClick={() => handleAyaPlay(item)}
                                             >
-                                                <i class="fa-solid fa-play"></i>
-                                                <span className='spanTitleTa48eel'>تشغيل</span>
+                                                <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
+                                                <span style={{ fontSize: "20px" }}> تشغيل الاية؟</span>
                                             </button>
                                             <i
                                                 className="fa-solid fa-circle-xmark ii"
@@ -387,7 +383,7 @@ const SoraMain = () => {
                                                 : item.text}
                                             <span style={{ margin: "7px" }}>{item.numberInSurah.toLocaleString('ar-EG')}</span>
                                         </span>
-                                    </>
+                                    </span>
                                 ))}
                             </p>
                             <div style={{ color: colors.blackColor }} className='text-center mt-3'> <span>{pageNumber.toLocaleString('ar-EG')}</span> </div>
