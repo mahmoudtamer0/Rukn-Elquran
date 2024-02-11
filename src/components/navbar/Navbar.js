@@ -4,12 +4,17 @@ import './navbar.css'
 import { useEffect, useState } from "react";
 import ScrollProgressBar from "../scroll/ScrollProgressBar";
 import { useData } from "../../context/AppContext";
+import { useTranslation } from "react-i18next";
 
 function Navbar() {
-    const { scrollBool, setSideBarOpen, sideBarOpen, soraNow, colors, handleLightMode } = useData()
+    const { scrollBool, setSideBarOpen,
+        sideBarOpen, soraNow,
+        colors, handleLightMode,
+        handleEngLanguage, handleArLanguage, font, lang } = useData()
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
     const [sideNavBarShow, setSideNavBarShow] = useState(false)
+    const { t, i18n } = useTranslation()
 
     useEffect(() => {
         const handleScroll = () => {
@@ -74,16 +79,15 @@ function Navbar() {
                     </NavLink>
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
-                        to={`/Rukn-Elquran/reciters`}
+                        to={`/Rukn-Elquran/radio`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
                         <i className="fa-regular fa-clock"></i>
                         <span>
-                            مواقيت الصلاة
+                            راديو القران
                         </span>
                     </NavLink>
-
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
                         to={`/Rukn-Elquran/reciters`}
@@ -108,11 +112,11 @@ function Navbar() {
                                 style={{ color: colors.blackColor }}
                                 className="fa-solid fa-bars"></i>
                         </div>
-                        <Link to={'/Rukn-Elquran'} className="navLogo">
+                        <Link to={'/Rukn-Elquran'} style={{ fontFamily: font }} className="navLogo">
                             <i className="fa-solid fa-book-open"></i>
                             <span
                                 style={{ color: colors.blackColor }}
-                            >ركن القرآن</span>
+                            >{t("navBar.logo")}</span>
                         </Link>
                     </div>
 
@@ -131,9 +135,10 @@ function Navbar() {
                                     className="nav-link" href="#">القراء</NavLink>
                             </li>
                             <li className="nav-item">
-                                <a
+                                <NavLink
+                                    to={`/Rukn-Elquran/radio`}
                                     style={{ color: colors.blackColor }}
-                                    className="nav-link" href="#">مواقيت الصلاة</a>
+                                    className="nav-link" href="#"> راديو القران</NavLink>
                             </li>
                             <li className="nav-item">
                                 <a
@@ -160,8 +165,18 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <i
+                                    onClick={() => handleArLanguage()}
                                     style={{ backgroundColor: colors.iconBackGround }}
                                     className="fa-solid fa-language"></i>
+                                ar
+                            </li>
+
+                            <li className="nav-item">
+                                <i
+                                    onClick={() => handleEngLanguage()}
+                                    style={{ backgroundColor: colors.iconBackGround }}
+                                    className="fa-solid fa-language"></i>
+                                eng
                             </li>
                         </ul>
                     </div>
@@ -173,11 +188,11 @@ function Navbar() {
                     <>
                         <ScrollProgressBar />
                         <div>
-                            <div style={{ paddingTop: "8px" }}>
+                            <div className={`${lang == "eng" && "text-end"}`} style={{ paddingTop: "8px" }}>
                                 {sideBarOpen ?
                                     <button
                                         onClick={() => setSideBarOpen(false)}
-                                        className="btnSora"
+                                        className={`btnSora`}
                                     >
                                         <i className="fa-solid fa-angle-right"></i>
                                         <span>{soraNow}</span>
