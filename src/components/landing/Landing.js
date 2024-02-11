@@ -8,14 +8,14 @@ import { useClickAway } from "@uidotdev/usehooks";
 
 function Landing() {
 
-    const { colors, reciters, getReciters } = useData()
+    const { colors, reciters, getReciters, lang } = useData()
     const [search, setSearch] = useState("")
     const [sewar, setSewar] = useState([])
     const [focused, setFocused] = useState(false)
 
     useEffect(() => {
         getReciters()
-        fetch("https://mp3quran.net/api/v3/suwar?language=ar")
+        fetch(`https://mp3quran.net/api/v3/suwar?language=${lang}`)
             .then(res => res.json())
             .then(data => setSewar(data.suwar))
     }, [])
