@@ -1,0 +1,12 @@
+.control-panel {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.timer {
+
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+}
