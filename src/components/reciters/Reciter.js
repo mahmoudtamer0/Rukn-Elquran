@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom'
 import { Button } from 'bootstrap'
 
 const Reciter = () => {
-    const { colors, setServer } = useData()
+    const { colors, setServer, lang } = useData()
     const { recId } = useParams()
     const [soraId, setSoraId] = useState("")
     const [sewarList, setSewarList] = useState([])
@@ -22,10 +22,10 @@ const Reciter = () => {
 
 
     useEffect(() => {
-        fetch("https://mp3quran.net/api/v3/suwar?language=ar")
+        fetch(`https://mp3quran.net/api/v3/suwar?language=${lang}`)
             .then(res => res.json())
             .then(data => setSewar(data.suwar))
-        fetch(`https://www.mp3quran.net/api/v3/reciters?language=ar&reciter=${recId}`)
+        fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}&reciter=${recId}`)
             .then(res => res.json())
             .then(data => setReciter(data.reciters[0]))
     }, [])
@@ -61,7 +61,7 @@ const Reciter = () => {
 
     return (
         <div className=''>
-            <div className='landing'>
+            <div className='landing' style={{ height: "350px" }}>
                 <div className='landing-img'>
                     <img src={landingImg} />
                 </div>
@@ -79,6 +79,7 @@ const Reciter = () => {
             </div>
 
             <div className='container mainRec'>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع السور لهذا القارئ</h2>
                 <div className='sewarBoxes '>
                     {newSewar.filter((item) => {
                         return search !== "" ? item.name.includes(search) : sewar

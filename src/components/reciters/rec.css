@@ -24,12 +24,12 @@
 
 
 
-.cancelAudio {
+/* .cancelAudio {
     position: fixed;
     top: 87%;
     right: 30px;
     transition: 0.3s;
-}
+} */
 
 .cancelAudio button {
     border: none;
