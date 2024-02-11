@@ -4,10 +4,11 @@ import Navbar from "./components/navbar/Navbar";
 import Landing from "./components/landing/Landing";
 import Sewar from "./components/sewar/Sewar";
 import Sora from "./components/sewar/Sora";
-import MainAudio from "./components/MainAudio";
+import MainAudio from "./components/Audio/MainAudio";
 import NavBool from "./components/NavBool";
 import Reciters from "./components/reciters/Reciters";
 import Reciter from "./components/reciters/Reciter";
+import Radio from "./components/Radio";
 // import DateToday from "./components/DateToday";
 
 function App() {
@@ -33,6 +34,10 @@ function App() {
             </>} />
 
             <Route path="/Rukn-Elquran/reciters/:recId" element={<> <Reciter /></>} />
+
+            <Route path="/Rukn-Elquran/radio" element={<>
+              <Radio />
+            </>} />
           </Routes>
           <NavBool />
           <MainAudio />
