@@ -5,7 +5,7 @@ import { useData } from '../../context/AppContext'
 import "./sewar.css"
 
 const Sewar = () => {
-    const { sewar, getSewar, colors, setSideBarOpen } = useData()
+    const { sewar, getSewar, colors, setSideBarOpen, font } = useData()
     const [sewarCount, setSewarCount] = useState(21)
 
     useEffect(() => {
@@ -16,7 +16,7 @@ const Sewar = () => {
         <div className='Sewar'>
             <div className='container'>
                 <div className='sewarBoxes row justify-content-between align-items-center'>
-                    {sewar.slice(0, sewarCount).map(sora => {
+                    {sewar?.slice(0, sewarCount).map(sora => {
                         return (
                             <NavLink
                                 key={sora.number}
@@ -27,11 +27,17 @@ const Sewar = () => {
                                 <div className='soraDet'>
                                     <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }}
                                         className='soraNumberDiv soraNumSpecial'>
-                                        <span style={{ color: colors.blackColor }} className='soraNumber '>{sora.number.toLocaleString('ar-EG')}</span>
+                                        <span style={{ color: colors.blackColor }} className='soraNumber '>
+                                            {sora.number != undefined && sora.number.toLocaleString('ar-EG') || sora.id}
+                                        </span>
                                     </div>
-                                    <span style={{ color: colors.blackColor }} className='soraName'>{sora.name.split("سُورَةُ ")}</span>
+                                    <span style={{ color: colors.blackColor, fontFamily: font }} className='soraName'>{sora.name.split("سُورَةُ ")}</span>
                                 </div>
-                                <div className='ayahsCount' style={{ color: colors.greyColor }}>{sora.numberOfAyahs.toLocaleString('ar-EG')}  آيات</div>
+                                {sora.numberOfAyahs != undefined &&
+                                    <div className='ayahsCount' style={{ color: colors.greyColor }}>
+                                        {sora.numberOfAyahs != undefined && sora.numberOfAyahs.toLocaleString('ar-EG')}  آيات</div>
+                                }
+
                             </NavLink>
                         )
                     })}
