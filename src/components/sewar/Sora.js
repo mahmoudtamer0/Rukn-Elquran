@@ -21,7 +21,7 @@ const SoraMain = () => {
         setServer, setSoraId,
         setSoraNow,
         sideBarOpen, setSideBarOpen,
-        mode
+        mode, lang
     } = useData()
 
     const spanref = useRef(null)
@@ -45,7 +45,7 @@ const SoraMain = () => {
 
 
     const getSewar = () => {
-        fetch("https://mp3quran.net/api/v3/suwar?language=ar")
+        fetch(`https://mp3quran.net/api/v3/suwar?language=${lang}`)
             .then(res => res.json())
             .then(data => setSewar(data.suwar))
     }
@@ -157,6 +157,7 @@ const SoraMain = () => {
 
 
     useEffect(() => {
+        getReciters()
         // Group data by page number
         const groupedPages = {};
         ayahs.forEach(item => {
@@ -171,14 +172,14 @@ const SoraMain = () => {
     }, [ayahs]);
 
     useEffect(() => {
-        fetch(" https://www.mp3quran.net/api/v3/reciters?language=ar")
+        fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}`)
             .then(res => res.json())
             .then(data => setReciters(data.reciters))
     }, [])
 
     const handlePlayClick = () => {
         setAudioBool(true)
-        setServer(`${reciters[0]?.moshaf[0].server}${soraNum.padStart(3, 0)}.mp3`)
+        setServer(`${reciters[0]?.moshaf[0]?.server}${soraNum.padStart(3, 0)}.mp3`)
     }
 
     useEffect(() => {
@@ -247,7 +248,6 @@ const SoraMain = () => {
         e.target.classList.remove("hoverAyahLight")
         e.target.classList.remove("hoverAyahDark")
     }
-
 
     return (
         <div
