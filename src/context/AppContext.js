@@ -1,6 +1,6 @@
 import React, { Children } from 'react'
 import { createContext, useContext, useEffect, useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 
@@ -14,7 +14,7 @@ const AppContext = ({ children }) => {
         greyColor: "#666",
         borderColor: "#ebeef0",
         soraNumberDiv: "#f4f5f6",
-        navColor: "white",
+        navColor: "#f7f7f7",
         searchColor: " rgb(244 244 244/1)",
         iconBackGround: "#0075ff4a",
         appColor: "white",
@@ -26,18 +26,36 @@ const AppContext = ({ children }) => {
             JSON.parse(localStorage.getItem("mode")) : "light")
     const [reciters, setReciters] = useState([])
     const [server, setServer] = useState()
+    const [radio, setRadio] = useState()
     const [soraId, setSoraId] = useState("")
     const [soraNow, setSoraNow] = useState("")
     const [ayahs, setAyahs] = useState([])
     const [scrollBool, setScrollBool] = useState(false)
     const [sideBarOpen, setSideBarOpen] = useState(false)
     const [element, setElement] = useState()
+    const { t, i18n } = useTranslation()
+    const [sewarApi, setSewarApi] = useState('https://api.alquran.cloud/v1/surah')
+    const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
+    const [lang, setLang] = useState(JSON.parse(localStorage.getItem("lang")) ?
+        JSON.parse(localStorage.getItem("lang")) : "ar")
 
 
     const getSewar = () => {
-        fetch("https://api.alquran.cloud/v1/surah")
+        if (lang == "ar") {
+            fetch("https://api.alquran.cloud/v1/surah")
+                .then(res => res.json())
+                .then(data => setSewar(data.data))
+        } else {
+            fetch("https://mp3quran.net/api/v3/suwar?language=eng")
+                .then(res => res.json())
+                .then(data => setSewar(data.suwar))
+        }
+    }
+
+    const getRadio = () => {
+        fetch(`https://mp3quran.net/api/v3/radios?language=${lang}`)
             .then(res => res.json())
-            .then(data => setSewar(data.data))
+            .then(data => setRadio(data.radios))
     }
 
     const handleLightMode = () => {
@@ -49,6 +67,30 @@ const AppContext = ({ children }) => {
             localStorage.setItem("mode", JSON.stringify("dark"))
         }
     }
+
+    const handleArLanguage = () => {
+        window.location.reload()
+        i18n.changeLanguage("ar")
+        localStorage.setItem("lang", JSON.stringify("ar"))
+        localStorage.setItem("langi18", JSON.stringify(i18n))
+    }
+
+    const handleEngLanguage = () => {
+        window.location.reload()
+        i18n.changeLanguage("eng")
+        localStorage.setItem("lang", JSON.stringify("eng"))
+        localStorage.setItem("langi18", JSON.stringify(i18n))
+    }
+
+    useEffect(() => {
+        if (lang == "eng") {
+            seFont(`'Noto Sans Arabic', sans-serif`)
+            document.querySelector("body").classList.add("ltr")
+        } else {
+            seFont("_PDMS_Saleem_QuranFont Regular")
+        }
+
+    }, [lang])
 
     useEffect(() => {
         if (mode == "dark") {
@@ -75,7 +117,7 @@ const AppContext = ({ children }) => {
                 greyColor: "#666",
                 borderColor: "#ebeef0",
                 soraNumberDiv: "#f4f5f6",
-                navColor: "white",
+                navColor: "#f7f7f7",
                 searchColor: " rgb(244 244 244/1)",
                 iconBackGround: "#0075ff4a",
                 appColor: "white",
@@ -86,7 +128,7 @@ const AppContext = ({ children }) => {
 
 
     const getReciters = () => {
-        fetch("https://www.mp3quran.net/api/v3/reciters?language=ar")
+        fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}`)
             .then(res => res.json())
             .then(data => setReciters(data.reciters))
     }
@@ -97,9 +139,9 @@ const AppContext = ({ children }) => {
             .then(data => setAyahs(data.data.ayahs))
     }
 
-
-
-
+    useEffect(() => {
+        getReciters()
+    }, [])
 
     return (
         <DataContext.Provider value=
@@ -115,6 +157,8 @@ const AppContext = ({ children }) => {
                 sideBarOpen, setSideBarOpen,
                 soraNow, setSoraNow,
                 handleLightMode,
+                getRadio, radio, lang,
+                handleEngLanguage, handleArLanguage, font
             }}>
             {children}
         </DataContext.Provider>
