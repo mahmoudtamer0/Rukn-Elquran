@@ -9,7 +9,7 @@ const Reciters = () => {
     const {
         sewar, getSewar,
         reciters, getReciters,
-        setServer, setSoraId, colors
+        setServer, setSoraId, colors, font
     } = useData()
     const [sewarList, setSewarList] = useState([])
     const [newSewar, setNewSewar] = useState([])
@@ -21,11 +21,6 @@ const Reciters = () => {
         getSewar()
         getReciters()
     }, [])
-
-    const handleClick = (rec) => {
-        setServer(rec.moshaf[0].server)
-        setSewarList(rec.moshaf[0].surah_list.split(','))
-    }
 
 
     useEffect(() => {
@@ -53,7 +48,7 @@ const Reciters = () => {
 
     return (
         <div>
-            <div className='landing'>
+            <div className='landing' style={{ height: "350px" }}>
                 <div className='landing-img'>
                     <img src={landingImg} />
                 </div>
@@ -71,6 +66,7 @@ const Reciters = () => {
             </div>
 
             <div className='container mainRec'>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع القراء</h2>
                 <div className='sewarBoxes justify-content-between align-items-center'>
                     {reciters.filter((item) => {
                         return search !== "" ? item.name.includes(search) : reciters
@@ -86,13 +82,9 @@ const Reciters = () => {
                                     <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
                                         <span style={{ color: colors.blackColor }} className='soraNumber'>{(index + 1).toLocaleString('ar-EG')}</span>
                                     </div>
-                                    <span style={{ color: colors.blackColor }} className='soraName'>{rec.name}</span>
+                                    <span style={{ color: colors.blackColor, fontFamily: font, fontSize: "1.7rem" }} className='soraName'>{rec.name}</span>
                                 </div>
-                                {/* <div className='ayahsCount' style={{ color: colors.greyColor }}>{sora.numberOfAyahs.toLocaleString('ar-EG')}  آيات</div> */}
                             </NavLink>
-                            // <div style={{ margin: "40px" }} key={rec.id}>
-                            //     <button onClick={() => handleClick(rec)}>{index + 1}-{rec.id} {rec.name}</button>
-                            // </div>
                         )
                     })}
                 </div>
