@@ -5,7 +5,7 @@ import { useData } from '../context/AppContext';
 
 const Radio = () => {
 
-    const { radio, getRadio, colors, setServer, server } = useData()
+    const { radio, getRadio, colors, setServer, server, font, fontSize } = useData()
     const [search, setSearch] = useState([])
     const [soraId, setSoraId] = useState()
 
@@ -30,7 +30,7 @@ const Radio = () => {
                     </div>
                     <div className='recDivSearch'>
                         <input
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
                             placeholder='ابحث عن اذاعات القران الكريم' />
                     </div>
@@ -41,7 +41,7 @@ const Radio = () => {
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع اذاعات القران الكريم</h2>
                 <div className='sewarBoxes '>
                     {radio?.filter((item) => {
-                        return search !== "" ? item.name.includes(search) : radio
+                        return search !== "" ? item.name.toLowerCase().includes(search) : radio
                     }).map((radio, index) => (
                         <button
                             key={radio.id}
@@ -61,7 +61,7 @@ const Radio = () => {
                                     </span>
                                 </div>
                                 <span style={{ color: colors.blackColor }} >{`${(index + 1).toLocaleString("ar-SA")}`}</span>
-                                <span style={{ color: colors.blackColor, fontSize: "1.7rem" }} className='soraName'>{radio.name}</span>
+                                <span style={{ color: colors.blackColor, fontSize: fontSize, fontFamily: font }} className='soraName'>{radio.name}</span>
                             </div>
 
                         </button>
