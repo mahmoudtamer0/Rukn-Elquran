@@ -6,6 +6,8 @@ import ScrollProgressBar from "../scroll/ScrollProgressBar";
 import { useData } from "../../context/AppContext";
 import { useTranslation } from "react-i18next";
 
+import { useClickAway } from "@uidotdev/usehooks";
+
 function Navbar() {
     const { scrollBool, setSideBarOpen,
         sideBarOpen, soraNow,
@@ -13,6 +15,7 @@ function Navbar() {
         handleEngLanguage, handleArLanguage, font, lang } = useData()
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
+    const [Langvisible, setLangVisible] = useState(false);
     const [sideNavBarShow, setSideNavBarShow] = useState(false)
     const { t, i18n } = useTranslation()
 
@@ -30,6 +33,10 @@ function Navbar() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, [prevScrollPos]);
+
+    const boxRef = useClickAway(() => {
+        setLangVisible(false)
+    })
 
     return (
         <div className={`navbar ${visible ? 'visible' : 'hidden'}`}>
@@ -149,7 +156,7 @@ function Navbar() {
                     </div>
                     <div className=" navIconsDiv" id="navbarTogglerDemo03">
                         <ul className=" me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
+                            <li className="nav-item langLi" style={{ position: "relative" }}>
                                 {JSON.parse(localStorage.getItem("mode")) == "dark" ?
                                     <i
                                         style={{ backgroundColor: colors.iconBackGround }}
@@ -161,23 +168,26 @@ function Navbar() {
                                         onClick={() => handleLightMode()}
                                         className="fa-solid fa-moon"></i>
                                 }
-
+                                <div ref={boxRef} className={`${Langvisible ? "d-block" : "d-none"}`}>
+                                    <button onClick={() => handleArLanguage()}>Arabic</button>
+                                    <button onClick={() => handleEngLanguage()}>English</button>
+                                </div>
                             </li>
-                            <li className="nav-item">
+                            <li className="nav-item" >
                                 <i
-                                    onClick={() => handleArLanguage()}
+                                    onClick={() => {
+                                        Langvisible ? setLangVisible(false) : setLangVisible(true)
+                                    }}
                                     style={{ backgroundColor: colors.iconBackGround }}
                                     className="fa-solid fa-language"></i>
-                                ar
                             </li>
 
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <i
                                     onClick={() => handleEngLanguage()}
                                     style={{ backgroundColor: colors.iconBackGround }}
                                     className="fa-solid fa-language"></i>
-                                eng
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>
