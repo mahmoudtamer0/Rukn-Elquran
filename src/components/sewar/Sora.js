@@ -13,15 +13,13 @@ const SoraMain = () => {
 
     let { soraNum } = useParams()
     const {
-        getReciters,
         soraId,
         getAyahs, ayahs,
         setScrollBool, colors,
         server,
         setServer, setSoraId,
         setSoraNow,
-        sideBarOpen, setSideBarOpen,
-        mode, lang
+        sideBarOpen, setSideBarOpen, lang, setPlay, fontSize
     } = useData()
 
     const spanref = useRef(null)
@@ -157,7 +155,6 @@ const SoraMain = () => {
 
 
     useEffect(() => {
-        getReciters()
         // Group data by page number
         const groupedPages = {};
         ayahs.forEach(item => {
@@ -180,10 +177,11 @@ const SoraMain = () => {
     const handlePlayClick = () => {
         setAudioBool(true)
         setServer(`${reciters[0]?.moshaf[0]?.server}${soraNum.padStart(3, 0)}.mp3`)
+        setPlay(true)
     }
 
     useEffect(() => {
-        if (server == undefined) {
+        if (server == "") {
             setAudioBool(false)
         } else {
             setAudioBool(true)
@@ -191,7 +189,7 @@ const SoraMain = () => {
     }, [server])
     const handlePauseClick = () => {
         setAudioBool(false)
-        setServer()
+        setServer("")
     }
 
     // sid bar
@@ -201,6 +199,9 @@ const SoraMain = () => {
         history?.push(`${newNum}`);
     };
 
+    useEffect(() => {
+        setSoraId(`${soraNum.padStart(3, 0)}.mp3`)
+    }, [soraId])
 
 
 
@@ -254,7 +255,7 @@ const SoraMain = () => {
             className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
             <div className={`soraSideBar ${visible ? "sideBarIsVisible" : "sideBarIsNotVisible"} ${!sideBarOpen ? "sideHide" : null}`}
                 style={{
-                    borderLeftColor: colors.borderColor, backgroundColor: colors.navColor
+                    borderLeftColor: colors.borderColor, backgroundColor: colors.sidBarColor
                 }}>
                 <div className='sidBarContent'>
                     <div className='sideBarCloseBtn'>
@@ -265,7 +266,7 @@ const SoraMain = () => {
                     </div>
                     <div className='sideBarInput'>
                         <input
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             placeholder='ابحث عن سورة'
                             style={{ backgroundColor: colors.searchColor }}
                             type='text' />
@@ -274,7 +275,7 @@ const SoraMain = () => {
                         <div ref={linkRef} id='sideBar' className='sideBarSoraNameDiv'>
 
                             {sewar?.filter((item) => {
-                                return search !== "" ? item.name.includes(search) : sewar
+                                return search !== "" ? item.name.toLowerCase().includes(search) : sewar
                             }).map(sora => {
                                 return (
                                     <div key={sora.id} id={sora.id == soraNum ? "activeDiv" : ""}>
@@ -336,11 +337,24 @@ const SoraMain = () => {
                 </div>
                 <div>
                     <div className='audioButton'>
-                        {!audioBool ? <button onClick={() => handlePlayClick()}>
-                            <i className="fa-solid fa-play"></i>  تشغيل السورة صوتيا
-                        </button> : <button className='audioStop' onClick={() => handlePauseClick()}>
-                            <i className="fa-solid fa-stop"></i>  ايقاف المشغل
-                        </button>}
+                        {reciters.length > 0 ?
+                            <>
+                                {!audioBool ?
+                                    <>
+                                        <button onClick={() => handlePlayClick()}>
+                                            <i className="fa-solid fa-play"></i>  تشغيل السورة صوتيا
+                                        </button>
+                                        <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>يمكنك الضغط علي اي اية لتفسيرها او تشغيلها</h5>
+                                    </>
+                                    : <>
+                                        <button className='audioStop' onClick={() => handlePauseClick()}>
+                                            <i className="fa-solid fa-stop"></i>  ايقاف المشغل
+                                        </button>
+                                        <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>يمكنك الضغط علي اي اية لتفسيرها او تشغيلها</h5>
+                                    </>}
+                            </> : null
+                        }
+
                     </div>
                     {Object.keys(pages).map(pageNumber => (
                         < div
