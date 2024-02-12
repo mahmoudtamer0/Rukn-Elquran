@@ -1,8 +1,10 @@
 import React from 'react'
 import Button from './Buttons'
 import './control-panel.css'
+import { useData } from '../../context/AppContext'
 
 function ControlPanel({ play, isPlaying, duration, currentTime }) {
+    const { colors } = useData()
     function secondsToHms(seconds) {
         if (!seconds) return '0:00s'
         let duration = seconds
@@ -21,16 +23,25 @@ function ControlPanel({ play, isPlaying, duration, currentTime }) {
         if (parseInt(hours, 10) > 0) {
             return `${parseInt(hours, 10)}:${min}:${sec}`
         } else if (min == 0) {
-            return `0:${sec}`
+            if (sec < 10) {
+                return `0:0${sec}`
+            } else {
+                return `0:${sec}`
+            }
         } else {
-            return `${min}:${sec}`
+            if (sec < 10) {
+                return `${min}:0${sec}`
+            } else {
+                return `${min}:${sec}`
+            }
+
         }
     }
     return (
         <div className='control-panel'>
-            <div className='timer'>{secondsToHms(currentTime)}</div>
+            <div style={{ color: colors.blackColor }} className='timer'>{secondsToHms(currentTime)}</div>
             <Button play={play} isPlaying={isPlaying} />
-            <div className={`timer ${duration == Infinity && "d-none"}`}>{secondsToHms(duration)}</div>
+            <div style={{ color: colors.blackColor }} className={`timer ${duration == Infinity && "d-none"}`}>{secondsToHms(duration)}</div>
         </div>
     )
 }
