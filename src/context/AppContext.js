@@ -18,14 +18,15 @@ const AppContext = ({ children }) => {
         searchColor: " rgb(244 244 244/1)",
         iconBackGround: "#0075ff4a",
         appColor: "white",
-        progress: "#ddd"
+        progress: "#ddd",
+        sidBarColor: "white"
     })
     const [sewar, setSewar] = useState([])
     const [mode, setMode] = useState(
         JSON.parse(localStorage.getItem("mode")) ?
             JSON.parse(localStorage.getItem("mode")) : "light")
     const [reciters, setReciters] = useState([])
-    const [server, setServer] = useState()
+    const [server, setServer] = useState("")
     const [radio, setRadio] = useState()
     const [soraId, setSoraId] = useState("")
     const [soraNow, setSoraNow] = useState("")
@@ -33,9 +34,11 @@ const AppContext = ({ children }) => {
     const [scrollBool, setScrollBool] = useState(false)
     const [sideBarOpen, setSideBarOpen] = useState(false)
     const [element, setElement] = useState()
+    const [play, setPlay] = useState(false)
     const { t, i18n } = useTranslation()
     const [sewarApi, setSewarApi] = useState('https://api.alquran.cloud/v1/surah')
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
+    const [fontSize, setFontSize] = useState("1.7rem")
     const [lang, setLang] = useState(JSON.parse(localStorage.getItem("lang")) ?
         JSON.parse(localStorage.getItem("lang")) : "ar")
 
@@ -85,8 +88,10 @@ const AppContext = ({ children }) => {
     useEffect(() => {
         if (lang == "eng") {
             seFont(`'Noto Sans Arabic', sans-serif`)
+            setFontSize('1.3rem')
             document.querySelector("body").classList.add("ltr")
         } else {
+            setFontSize('1.7rem')
             seFont("_PDMS_Saleem_QuranFont Regular")
         }
 
@@ -106,7 +111,8 @@ const AppContext = ({ children }) => {
                 searchColor: " rgb(244 244 244/1)",
                 iconBackGround: " rgb(37 48 59/1)",
                 appColor: "#1e2329",
-                progress: "#4c4c4c"
+                progress: "#4c4c4c",
+                sidBarColor: "#343a40"
             })
         } else {
             document.querySelector("body").classList.remove("darkApp")
@@ -121,7 +127,8 @@ const AppContext = ({ children }) => {
                 searchColor: " rgb(244 244 244/1)",
                 iconBackGround: "#0075ff4a",
                 appColor: "white",
-                progress: "#ddd"
+                progress: "#ddd",
+                sidBarColor: "white"
             })
         }
     }, [mode])
@@ -158,7 +165,8 @@ const AppContext = ({ children }) => {
                 soraNow, setSoraNow,
                 handleLightMode,
                 getRadio, radio, lang,
-                handleEngLanguage, handleArLanguage, font
+                handleEngLanguage, handleArLanguage, font,
+                play, setPlay, fontSize
             }}>
             {children}
         </DataContext.Provider>
