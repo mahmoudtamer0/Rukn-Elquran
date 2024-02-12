@@ -1,9 +1,9 @@
-/* @font-face {
-  font-family: '_PDMS_Saleem_QuranFont\ Regular';
-  src: url("./fonts/_PDMS_Saleem_QuranFont\ Regular.ttf") format('truetype');
+@font-face {
+  font-family: 'alfont_com_AlFont_com_pdms-saleem-quranfont';
+  src: url("./fonts/alfont_com_AlFont_com_pdms-saleem-quranfont.ttf") format('truetype');
   font-weight: normal;
   font-style: normal;
-} */
+}
 
 
 body {

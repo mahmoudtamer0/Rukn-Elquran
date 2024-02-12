@@ -92,7 +92,7 @@ const AppContext = ({ children }) => {
             document.querySelector("body").classList.add("ltr")
         } else {
             setFontSize('1.7rem')
-            seFont("_PDMS_Saleem_QuranFont Regular")
+            seFont('alfont_com_AlFont_com_pdms-saleem-quranfont')
         }
     }, [lang])
 
