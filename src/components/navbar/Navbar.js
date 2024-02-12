@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import ScrollProgressBar from "../scroll/ScrollProgressBar";
 import { useData } from "../../context/AppContext";
 import { useTranslation } from "react-i18next";
+import "../../fonts/_PDMS_Saleem_QuranFont Regular.ttf"
 
 import { useClickAway } from "@uidotdev/usehooks";
 
