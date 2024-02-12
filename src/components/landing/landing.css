@@ -132,9 +132,8 @@
 
 .searchBox div {
     max-height: 300px;
-    overflow-y: auto;
     padding: 0 10px;
-    width: 50%;
+    width: 100%;
     overflow-x: hidden;
 }
 
@@ -158,8 +157,7 @@
 }
 
 .visibleSearchBox {
-    display: flex;
-    justify-content: space-between;
+    display: block;
 }
 
 .searchBox div::-webkit-scrollbar {

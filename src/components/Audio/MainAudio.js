@@ -4,17 +4,47 @@ import Slider from "./Slider"
 import ControlPanel from './ControlPanel'
 
 const MainAudio = () => {
-    const { server, setServer, sideBarOpen, colors } = useData()
-    const audioRef = useRef()
+    const { server, setServer, sideBarOpen, colors, play } = useData()
+    const audioRef = useRef(null)
     const [audioBool, setAudioBool] = useState(true)
 
+    useEffect(() => {
+        document.addEventListener('keydown', handleSpaceBarPress);
+
+        return () => {
+            document.removeEventListener('keydown', handleSpaceBarPress);
+        };
+    }, []);
+
+    const handleSpaceBarPress = (event) => {
+        if (event.key === ' ') {
+            event.preventDefault();
+            if (!audioRef.current.paused) {
+                audioRef.current.pause();
+                setIsPlaying(false)
+            } else {
+                audioRef.current.play();
+                setIsPlaying(true)
+            }
+        }
+
+    }
 
     useEffect(() => {
-        if (server == undefined) {
+        if (server == "") {
             setAudioBool(false)
         } else {
             audioRef.current?.play()
             setIsPlaying(true)
+            setAudioBool(true)
+        }
+    }, [server])
+
+
+    useEffect(() => {
+        if (server == "") {
+            setAudioBool(false)
+        } else {
             setAudioBool(true)
         }
     }, [server])
@@ -37,7 +67,7 @@ const MainAudio = () => {
         setPercentage(e.target.value)
     }
 
-    const play = () => {
+    const playAudio = () => {
         const audio = audioRef.current
         audio.volume = 1
 
@@ -62,16 +92,6 @@ const MainAudio = () => {
 
     return (
         < div >
-            {/* <div className={`${audioBool ? "cancelAudio" : "audioFalse"}`}><button onClick={() => handleClick()}><i className="fa-solid fa-xmark"></i></button></div>
-            <audio src={`${server}`}
-                ref={audioRef}
-                type="audio/mpeg"
-                controls className={audioBool ? "audio" : "audioFalse"}>
-                <div>d</div>
-                <source src={`${server}`} type="audio/mpeg" />
-                Your browser does not support the audio tag.
-            </audio> */}
-
             <div style={{ backgroundColor: colors.navColor }} className={` app-container ${audioBool ? "cancelAudio" : "audioFalse"}`}>
                 <Slider percentage={percentage} onChange={onChange} />
                 <audio
@@ -83,7 +103,7 @@ const MainAudio = () => {
                     src={`${server}`}
                 ></audio>
                 <ControlPanel
-                    play={play}
+                    play={playAudio}
                     isPlaying={isPlaying}
                     duration={duration}
                     currentTime={currentTime}
