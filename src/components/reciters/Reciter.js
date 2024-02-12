@@ -10,9 +10,8 @@ import { NavLink } from 'react-router-dom'
 import { Button } from 'bootstrap'
 
 const Reciter = () => {
-    const { colors, setServer, lang } = useData()
+    const { colors, setServer, lang, soraId, setSoraId, font, setPlay, fontSize } = useData()
     const { recId } = useParams()
-    const [soraId, setSoraId] = useState("")
     const [sewarList, setSewarList] = useState([])
     const [sewar, setSewar] = useState([])
     const [newSewar, setNewSewar] = useState([])
@@ -36,7 +35,6 @@ const Reciter = () => {
         if (reciter != "") {
             setSewarList(reciter.moshaf[0].surah_list.split(','))
         }
-        // setSewarList(reciter.moshaf[0].surah_list.split(','))
     }, [reciter])
 
     useEffect(() => {
@@ -54,8 +52,9 @@ const Reciter = () => {
     }, [sewarList])
 
     const handlePlay = (sora) => {
-        setSoraId(`${(sora.id.toString().padStart(3, 0))}`)
+        setSoraId(`${(sora.id.toString().padStart(3, 0))}.mp3`)
         setServer(`${reciter.moshaf[0].server}${(sora.id.toString().padStart(3, 0))}.mp3`)
+        setPlay(true)
     }
 
 
@@ -71,7 +70,7 @@ const Reciter = () => {
                     </div>
                     <div className='recDivSearch'>
                         <input
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
                             placeholder='ابحث عن سورة لهذا القارئ' />
                     </div>
@@ -82,19 +81,19 @@ const Reciter = () => {
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع السور لهذا القارئ</h2>
                 <div className='sewarBoxes '>
                     {newSewar.filter((item) => {
-                        return search !== "" ? item.name.includes(search) : sewar
+                        return search !== "" ? item.name.toLowerCase().includes(search) : sewar
                     }).map((sora, index) => (
                         <button
                             key={sora.id}
                             onClick={() => handlePlay(sora)}
                             style={{ backgroundColor: "transparent", border: `1px solid ${colors.borderColor}` }}
                             className={`soraBox d-flex align-items-center
-                            ${soraId == sora.id && "soraBoxActiv"}`}
+                            ${soraId == `${sora.id.toString().padStart(3, 0)}.mp3` && "soraBoxActiv"}`}
                         >
                             <div className='soraDet'>
                                 <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
                                     <span style={{ color: colors.blackColor }} className='soraNumber'>
-                                        {soraId == sora.id ?
+                                        {soraId == `${sora.id.toString().padStart(3, 0)}.mp3` ?
                                             <i className="fa-solid fa-pause"></i>
                                             :
                                             <i className="fa-solid fa-play"></i>
@@ -102,7 +101,7 @@ const Reciter = () => {
                                     </span>
                                 </div>
                                 <span style={{ color: colors.blackColor }} >{`${(index + 1).toLocaleString("ar-SA")}`}</span>
-                                <span style={{ color: colors.blackColor }} className='soraName'>{sora.name}</span>
+                                <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }} className='soraName'>{sora.name}</span>
                             </div>
                             {/* <div className='ayahsCount' style={{ color: colors.greyColor }}>{sora.numberOfAyahs.toLocaleString('ar-EG')}  آيات</div> */}
                         </button>
