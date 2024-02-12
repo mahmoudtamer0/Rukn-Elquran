@@ -9,7 +9,7 @@ const Reciters = () => {
     const {
         sewar, getSewar,
         reciters, getReciters,
-        setServer, setSoraId, colors, font
+        setServer, setSoraId, colors, font, fontSize
     } = useData()
     const [sewarList, setSewarList] = useState([])
     const [newSewar, setNewSewar] = useState([])
@@ -58,7 +58,7 @@ const Reciters = () => {
                     </div>
                     <div className='recDivSearch'>
                         <input
-                            onChange={(e) => setSearch(e.target.value)}
+                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
                             placeholder='ابحث عن القارئ' />
                     </div>
@@ -69,7 +69,7 @@ const Reciters = () => {
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع القراء</h2>
                 <div className='sewarBoxes justify-content-between align-items-center'>
                     {reciters.filter((item) => {
-                        return search !== "" ? item.name.includes(search) : reciters
+                        return search !== "" ? item.name.toLowerCase().includes(search) : reciters
                     }).map((rec, index) => {
                         return (
                             <NavLink
@@ -82,31 +82,13 @@ const Reciters = () => {
                                     <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
                                         <span style={{ color: colors.blackColor }} className='soraNumber'>{(index + 1).toLocaleString('ar-EG')}</span>
                                     </div>
-                                    <span style={{ color: colors.blackColor, fontFamily: font, fontSize: "1.7rem" }} className='soraName'>{rec.name}</span>
+                                    <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }} className='soraName'>{rec.name}</span>
                                 </div>
                             </NavLink>
                         )
                     })}
                 </div>
             </div>
-
-            <button onClick={() => setNumberOfRec(225)}>show more</button>
-
-            <hr></hr>
-
-            <div className='recDiv' >
-                {newSewar.map((sora, index) => {
-                    return (
-                        <div style={{ margin: "40px" }} key={sora.id}>
-                            <button onClick={() => handleSoraClick(sora.id.toString())}>{index + 1}-{sora.id} {sora.name}</button>
-                        </div>
-                    )
-                })}
-            </div>
-
-            <hr></hr>
-
-
         </div >
 
     )
