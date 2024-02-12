@@ -1,12 +1,3 @@
-@font-face {
-    font-family: '_PDMS_Saleem_QuranFont\ Regular';
-    src: url('../../fonts/_PDMS_Saleem_QuranFont\ Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-
-
 .landing {
     width: 100%;
     height: 470px;

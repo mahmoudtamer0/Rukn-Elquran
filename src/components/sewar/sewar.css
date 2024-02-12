@@ -1,13 +1,4 @@
 @font-face {
-    font-family: '_PDMS_Saleem_QuranFont Regular';
-    /* Choose a suitable font name */
-    src: url('../../fonts/_PDMS_Saleem_QuranFont\ Regular.ttf') format('truetype');
-    /* Adjust the path to your font file */
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: "UthmanicQaloun\ V21";
     /* Choose a suitable font name */
     src: url('../../fonts/UthmanicQaloun\ V21.ttf') format('truetype');
