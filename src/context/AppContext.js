@@ -94,7 +94,6 @@ const AppContext = ({ children }) => {
             setFontSize('1.7rem')
             seFont("_PDMS_Saleem_QuranFont Regular")
         }
-
     }, [lang])
 
     useEffect(() => {

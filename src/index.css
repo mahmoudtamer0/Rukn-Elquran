@@ -1,7 +1,16 @@
+@font-face {
+  font-family: '_PDMS_Saleem_QuranFont\ Regular';
+  src: url("./fonts/_PDMS_Saleem_QuranFont\ Regular.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 body {
   margin: 0;
   direction: rtl;
-  font-family: 'Noto Sans Arabic', sans-serif;
+  font-family: '_PDMS_Saleem_QuranFont\ Regular';
+  /* font-family: 'Noto Sans Arabic', sans-serif; */
 }
 
 
