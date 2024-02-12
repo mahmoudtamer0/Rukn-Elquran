@@ -5,7 +5,7 @@ import { useData } from '../../context/AppContext'
 import "./sewar.css"
 
 const Sewar = () => {
-    const { sewar, getSewar, colors, setSideBarOpen, font } = useData()
+    const { sewar, getSewar, colors, setSideBarOpen, font, fontSize } = useData()
     const [sewarCount, setSewarCount] = useState(21)
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const Sewar = () => {
                             <NavLink
                                 key={sora.number}
                                 onClick={() => setSideBarOpen(true)}
-                                to={`/Rukn-Elquran/sewar/${sora.number}`}
+                                to={`/Rukn-Elquran/sewar/${sora.number || sora.id}`}
                                 style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                 className='soraBox d-flex justify-content-between align-items-center'>
                                 <div className='soraDet'>
@@ -31,7 +31,7 @@ const Sewar = () => {
                                             {sora.number != undefined && sora.number.toLocaleString('ar-EG') || sora.id}
                                         </span>
                                     </div>
-                                    <span style={{ color: colors.blackColor, fontFamily: font }} className='soraName'>{sora.name.split("سُورَةُ ")}</span>
+                                    <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }} className='soraName'>{sora.name.split("سُورَةُ ")}</span>
                                 </div>
                                 {sora.numberOfAyahs != undefined &&
                                     <div className='ayahsCount' style={{ color: colors.greyColor }}>
