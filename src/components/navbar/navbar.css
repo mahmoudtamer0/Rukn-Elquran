@@ -148,8 +148,47 @@
     background-color: #0075ff;
 }
 
-@media(max-width:400px) {
+@media(max-width:415px) {
+    .navbar {
+        padding: 10px 0;
+    }
+
     .navLogo {
-        font-size: 28px;
+        font-size: 25px;
     }
 }
+
+.langLi div {
+    position: absolute;
+    background-color: white;
+    width: 100px;
+    padding: 0 10px;
+    left: 0;
+    top: 46px;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.langLi div button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 10px 0;
+    transition: 0.2s;
+}
+
+.langLi div button:first-of-type {
+    border-bottom: 1px solid;
+}
+
+.langLi div button:hover {
+    background-color: #0075ff;
+    color: white;
+}
+
+/* 
+@media(max-width:600px) {
+    .langLi div {
+        left: -50px;
+    }
+} */

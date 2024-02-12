@@ -72,10 +72,10 @@ function Landing() {
                                     }, 300);
                                 }}
                                 onFocus={() => setFocused(true)}
-                                onChange={(e) => setSearch(e.target.value)}
+                                onChange={(e) => setSearch(e.target.value.toLowerCase())}
                                 style={{ backgroundColor: colors.searchColor, color: colors.black }}
                                 type='text'
-                                placeholder='ماذا تريد ان تقرا او تسمع؟ ' />
+                                placeholder='ماذا تريد ان تقرا او تسمع ابحث في السور, القراء؟' />
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <div className='fastLinksDiv text-end mt-3 '>
@@ -90,10 +90,9 @@ function Landing() {
                         </div>
                         <div ref={boxRef} style={{ borderColor: colors.borderColor }} className='searchBox text-end hide'>
                             <div className='mb-3'>
-                                <p style={{ color: colors.greyColor, margin: "0" }}>السور :</p>
                                 {
                                     sewar.filter((item) => {
-                                        return item.name.includes(search) ? search : null
+                                        return item.name.toLowerCase().includes(search) ? search : null
                                     }).map(link => {
                                         return (
                                             <Link
@@ -106,10 +105,23 @@ function Landing() {
                                         )
                                     })
                                 }
+                                {
+                                    reciters.filter((item) => {
+                                        return item.name.toLowerCase().includes(search) ? search : null
+                                    }).map(link => {
+                                        return (
+                                            <Link
+                                                key={link.id}
+                                                to={`/Rukn-Elquran/reciters/${link.id}`}
+                                                className='searchMainLink'>
+                                                <span>القارئ {link.name}</span>
+                                                <i className="fa-solid fa-arrow-left"></i>
+                                            </Link>
+                                        )
+                                    })
+                                }
                             </div>
-                            <hr></hr>
-                            <div>
-                                <p style={{ color: colors.greyColor, margin: "0" }}>القراء :</p>
+                            {/* <div>
                                 {
                                     reciters.filter((item) => {
                                         return item.name.includes(search) ? search : null
@@ -125,7 +137,7 @@ function Landing() {
                                         )
                                     })
                                 }
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
