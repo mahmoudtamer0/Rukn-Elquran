@@ -33,3 +33,109 @@
     justify-content: center;
     align-items: center;
 }
+
+.btn-container .Xdiv i {
+    font-size: 23px;
+    margin-left: 20px;
+    background-color: #0075ff;
+    /* padding: 5px; */
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+}
+
+.ellipsis i {
+    font-size: 23px;
+    margin-right: 20px;
+    background-color: #0075ff;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+}
+
+.selectDiv {
+    position: absolute;
+    left: 40%;
+    transform: translateY(-55%);
+    width: 300px;
+    background-color: white;
+    padding: 15px 10px;
+    border-radius: 9px;
+    display: none;
+    z-index: 100;
+    height: 500px;
+    overflow-y: auto;
+    box-shadow: 0px 0px 33px -17px;
+}
+
+.selectDiv .btnnnnn {
+    width: 100%;
+    display: block;
+    background-color: transparent;
+    text-align: start;
+    padding: 10px !important;
+    border-bottom: 1px solid !important;
+    border-color: #c7c7c7 !important;
+    transition: 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnnnnn i {
+    color: #0075ff;
+}
+
+.btnnnnn button {
+    background-color: transparent;
+}
+
+.selectDiv .btnnnnn:hover {
+    background-color: #0075ff;
+    color: white !important;
+}
+
+.selectDiv .btnnnnn:hover button {
+    color: white !important;
+}
+
+.btnnnnn:hover i {
+    color: white;
+}
+
+.selectXdiv {
+    padding: 0 10px;
+    text-align: end;
+    font-size: 18px;
+}
+
+.selectXdiv i {
+    cursor: pointer;
+}
+
+@media (max-width:780px) {
+    .selectDiv {
+        left: 25%;
+    }
+}
+
+@media (max-width:450px) {
+    .selectDiv {
+        left: 20%;
+        width: 240px;
+    }
+
+    .selectDiv button {
+        font-size: 14px;
+    }
+}
