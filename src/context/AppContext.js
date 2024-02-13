@@ -14,7 +14,7 @@ const AppContext = ({ children }) => {
         greyColor: "#666",
         borderColor: "#ebeef0",
         soraNumberDiv: "#f4f5f6",
-        navColor: "#f7f7f7",
+        navColor: "#f4f5f6",
         searchColor: " rgb(244 244 244/1)",
         iconBackGround: "#0075ff4a",
         appColor: "white",
@@ -42,6 +42,14 @@ const AppContext = ({ children }) => {
     const [lang, setLang] = useState(JSON.parse(localStorage.getItem("lang")) ?
         JSON.parse(localStorage.getItem("lang")) : "ar")
 
+    const [lastSoras, setLastSoras] =
+        useState(JSON.parse(localStorage.getItem("lastSoras")) ?
+            JSON.parse(localStorage.getItem("lastSoras")) : [])
+
+
+    useEffect(() => {
+        localStorage.setItem("lastSoras", JSON.stringify(lastSoras))
+    }, [lastSoras])
 
     const getSewar = () => {
         if (lang == "ar") {
@@ -122,7 +130,7 @@ const AppContext = ({ children }) => {
                 greyColor: "#666",
                 borderColor: "#ebeef0",
                 soraNumberDiv: "#f4f5f6",
-                navColor: "#f7f7f7",
+                navColor: "#f4f5f6",
                 searchColor: " rgb(244 244 244/1)",
                 iconBackGround: "#0075ff4a",
                 appColor: "white",
@@ -145,9 +153,6 @@ const AppContext = ({ children }) => {
             .then(data => setAyahs(data.data.ayahs))
     }
 
-    useEffect(() => {
-        getReciters()
-    }, [])
 
     return (
         <DataContext.Provider value=
@@ -165,7 +170,8 @@ const AppContext = ({ children }) => {
                 handleLightMode,
                 getRadio, radio, lang,
                 handleEngLanguage, handleArLanguage, font,
-                play, setPlay, fontSize
+                play, setPlay, fontSize,
+                setLastSoras, lastSoras
             }}>
             {children}
         </DataContext.Provider>
