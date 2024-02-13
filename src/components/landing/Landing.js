@@ -5,13 +5,15 @@ import './landing.css'
 import { useData } from '../../context/AppContext';
 import { useEffect, useState } from 'react';
 import { useClickAway } from "@uidotdev/usehooks";
+import { useTranslation } from 'react-i18next';
 
 function Landing() {
 
-    const { colors, reciters, getReciters, lang } = useData()
+    const { colors, reciters, getReciters, lang, font, fontSize } = useData()
     const [search, setSearch] = useState("")
     const [sewar, setSewar] = useState([])
     const [focused, setFocused] = useState(false)
+    const { t, i18n } = useTranslation()
 
     useEffect(() => {
         getReciters()
@@ -55,12 +57,16 @@ function Landing() {
             </div>
             <div className='text-center landing-text '>
                 <div className='d-flex align-items-center justify-content-center'>
-                    <img style={{ width: "65px" }} src={landingLogo} alt='..' />
-                    <h2 className='landingTitle'> ركن القرآن</h2>
+                    <img style={{ width: "65px", margin: "10px" }} src={landingLogo} alt='..' />
+                    <h2
+                        style={{ fontFamily: font }}
+                        className={`landingTitle ${lang == "eng" ? "font2" : null}`}>
+                        {t("navBar.logo")}
+                    </h2>
                 </div>
                 <div className='landDesc'>
-                    <p style={{ margin: "0", color: "#dbdbdb", maxWidth: "100%" }}>موقع لقراءة و تلاوة و تفسير القران الكريم</p>
-                    <p style={{ maxWidth: "100%", margin: "0", marginTop: "20px", marginBottom: "20px", color: "#dbdbdb" }}>اكتشف أناقة القرآن الرائعة - تعمق في الآيات العميقة والحكمة الخالدة للقرآن، مصدر الإلهام والإرشاد للجميع.</p>
+                    <p style={{ margin: "0", color: "#dbdbdb", maxWidth: "100%" }}>{t("landing.p1")}</p>
+                    <p style={{ maxWidth: "100%", margin: "0", marginTop: "20px", marginBottom: "20px", color: "#dbdbdb" }}>{t("landing.p2")}</p>
                 </div>
                 <div className='inpDiv'>
                     <div className='inpMainDiv'>
@@ -75,16 +81,15 @@ function Landing() {
                                 onChange={(e) => setSearch(e.target.value.toLowerCase())}
                                 style={{ backgroundColor: colors.searchColor, color: colors.black }}
                                 type='text'
-                                placeholder='ماذا تريد ان تقرا او تسمع ابحث في السور, القراء؟' />
-                            <i className="fa-solid fa-magnifying-glass"></i>
+                                placeholder={t("landing.search")} />
+                            <i className={`${lang == "eng" ? "rightI" : "leftI"} fa-solid fa-magnifying-glass`}></i>
                         </div>
                         <div className='fastLinksDiv text-end mt-3 '>
-                            {/* <p style={{ width: "fit-content" }}>لينكات سريعة: </p> */}
                             <div className='fastLinks'>
-                                <Link to={`/Rukn-Elquran/sewar/1`}>الفاتحة</Link>
-                                <Link to={`/Rukn-Elquran/sewar/2`}>البقرة</Link>
-                                <Link to={`/Rukn-Elquran/reciters/107`}>مشاري العفاسي</Link>
-                                <Link to={`/Rukn-Elquran/reciters/105`}>محمود خليل الحصري</Link>
+                                <Link to={`/Rukn-Elquran/sewar/1`}>{t("landing.link1")}</Link>
+                                <Link to={`/Rukn-Elquran/sewar/2`}>{t("landing.link2")}</Link>
+                                <Link to={`/Rukn-Elquran/reciters/107`}>{t("landing.link3")}</Link>
+                                <Link to={`/Rukn-Elquran/reciters/105`}>{t("landing.link4")}</Link>
                             </div>
 
                         </div>

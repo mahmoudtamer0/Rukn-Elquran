@@ -238,12 +238,27 @@
     .landDesc p {
         font-size: 12px;
     }
+
+    .landing-text img {
+        width: 50px !important;
+    }
 }
 
 .searchInputDiv i {
     position: absolute;
-    left: 20px;
     top: 20px;
     color: #0075ff;
     font-size: 20px;
+}
+
+.leftI {
+    left: 20px;
+}
+
+.rightI {
+    right: 20px;
+}
+
+.font2 {
+    font-size: 2rem !important;
 }
