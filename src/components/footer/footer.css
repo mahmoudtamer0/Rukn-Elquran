@@ -1,0 +1,265 @@
+.footer {
+    padding-top: 60px;
+    height: 50vh;
+}
+
+.foot-firstlayer {
+    background-color: #F8F8F8;
+    padding: 30px 0;
+}
+
+.foot-secondlayer {
+    padding: 30px 0;
+    background-color: #FFF;
+}
+
+.email-div {
+
+    gap: 15px;
+}
+
+.email-div h3 {
+    color: #333333;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.email-div p {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 300px;
+    color: #666666;
+}
+
+.email-div i {
+    font-size: 35px;
+    background-color: #D6F8F080;
+    padding: 16px;
+    border-radius: 50%;
+    color: #62D0B6;
+    font-weight: 100;
+}
+
+.inp-contact-div h3 {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.inp-contact-div button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #62D0B6;
+    color: white;
+    border-radius: 4px;
+}
+
+.inp-contact-div input {
+    width: 80%;
+    height: 40px;
+    border: 1px solid #EEE;
+    outline: none;
+}
+
+.inp-contact-div div {
+    gap: 7px;
+}
+
+.ios-div h4 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: #333333;
+}
+
+.ios-div div {
+    gap: 5px;
+}
+
+.ios-div img {
+    cursor: pointer;
+}
+
+ul {
+    padding: 0;
+}
+
+.foot-secondlayer h4 {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 25px;
+    color: #333333;
+}
+
+.foot-secondlayer p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 25px;
+    color: #666666;
+    width: 400px;
+}
+
+.foot-secondlayer li a {
+    padding-left: 10px;
+    color: #9c9c9c !important;
+    transition: 0.3s;
+}
+
+.foot-secondlayer li i {
+    height: 7.2px;
+    font-size: 14px;
+    color: #9c9c9c;
+}
+
+.foot-secondlayer li {
+    margin-bottom: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+
+.foot-secondlayer li:hover {
+    padding-right: 15px;
+}
+
+
+.foot-secondlayer h4 {
+    margin-bottom: 25px;
+}
+
+.foot-sociallinks div {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: 20px;
+}
+
+.foot-sociallinks i {
+    font-size: 20px;
+    color: #A5A5A5;
+    padding: 12px;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #EEEEEE;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.foot-sociallinks i:hover {
+    border-color: #62D0B6;
+    color: #62D0B6;
+}
+
+.foot-sec-main {
+    gap: 5px !important;
+}
+
+.spec-ul li {
+    margin: 0;
+}
+
+@media (max-width:780px) {
+
+    .first-foot-main {
+        gap: 35px;
+    }
+
+    .email-div i {
+        font-size: 28px;
+        background-color: #D6F8F080;
+        padding: 9px;
+        border-radius: 50%;
+        color: #62D0B6;
+        font-weight: 100;
+    }
+
+    .email-div h3 {
+        font-size: 18px;
+    }
+
+    .email-div p {
+        font-size: 11px;
+        width: fit-content;
+    }
+}
+
+.foot-lastlayer {
+    padding: 14px 0;
+    background-color: #1D1F1F;
+}
+
+@media (max-width:1290px) {
+    .first-foot-main {
+        gap: 35px;
+    }
+
+    .email-div p {
+        width: 250px;
+    }
+}
+
+.foot-last-fdiv {
+    color: #FFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.foot-last-secdiv h6 {
+    margin: 0;
+}
+
+.foot-last-secdiv {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #FFF;
+    gap: 15px;
+}
+
+.foot-last-secdiv img {
+    background-color: white;
+    padding: 8px;
+    margin-left: 5px;
+}
+
+@media (max-width:555px) {
+
+    .foot-last-main {
+        gap: 10px;
+        text-align: center;
+    }
+
+    .foot-last-secdiv {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .foot-secondlayer p {
+        width: 300px;
+    }
+}
+
+.foot-last-secdiv img {
+    width: 45px;
+}
+
+.foot-madby a {
+    color: #62D0B6;
+    margin-left: 4px;
+}
