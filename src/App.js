@@ -9,6 +9,8 @@ import NavBool from "./components/NavBool";
 import Reciters from "./components/reciters/Reciters";
 import Reciter from "./components/reciters/Reciter";
 import Radio from "./components/Radio";
+import { LastSec } from "./components/lastsection/LastSec";
+import Footer from "./components/footer/Footer";
 // import DateToday from "./components/DateToday";
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
           <Routes>
             <Route path="/Rukn-Elquran" element={<>
               <Landing />
+              <LastSec />
               <Sewar />
             </>} />
             <Route path="/Rukn-Elquran/sewar" element={<>
@@ -41,6 +44,7 @@ function App() {
           </Routes>
           <NavBool />
           <MainAudio />
+          <Footer />
         </AppContext>
       </Router>
     </div >
