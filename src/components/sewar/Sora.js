@@ -7,24 +7,25 @@ import './sewar.css'
 import { useLocation } from 'react-router-dom'
 import { useClickAway } from "@uidotdev/usehooks";
 import { useOnClickOutside } from 'usehooks-ts'
+import Footer from '../footer/Footer'
 
 
 const SoraMain = () => {
 
     let { soraNum } = useParams()
     const {
-        soraId,
-        getAyahs, ayahs,
+        soraId, getAyahs, ayahs,
         setScrollBool, colors,
-        server,
-        setServer, setSoraId,
-        setSoraNow,
-        sideBarOpen, setSideBarOpen, lang, setPlay, fontSize
+        server, setServer,
+        setSoraId, setSoraNow,
+        sideBarOpen, setSideBarOpen,
+        lang, setPlay, fontSize,
+        setLastSoras, lastSoras,
+        getReciters, reciters
     } = useData()
 
     const spanref = useRef(null)
     const [pages, setPages] = useState({})
-    const [reciters, setReciters] = useState([])
     const [sewar, setSewar] = useState([])
     const [soraName, setSoraName] = useState('')
     const [audioBool, setAudioBool] = useState(false)
@@ -41,6 +42,28 @@ const SoraMain = () => {
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
 
+    useEffect(() => {
+        getReciters()
+    }, [])
+
+    useEffect(() => {
+        const index = lastSoras.findIndex(sora => sora.soraId == soraNum);
+        if (soraName != "") {
+            if (index !== -1) {
+                const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
+                    soraName: soraName,
+                    soraId: soraNum
+                }];
+                setLastSoras(updatedProducts)
+            } else {
+                setLastSoras([...lastSoras, {
+                    soraName: soraName,
+                    soraId: soraNum
+                }])
+            }
+        }
+    }, [reciters])
+
 
     const getSewar = () => {
         fetch(`https://mp3quran.net/api/v3/suwar?language=${lang}`)
@@ -49,9 +72,16 @@ const SoraMain = () => {
     }
 
     const getTafseer = () => {
-        fetch(`https://quranenc.com/api/v1/translation/sura/arabic_moyassar/${soraNum}`)
-            .then(res => res.json())
-            .then(data => setTafseer(data.result))
+        if (lang == "ar") {
+            fetch(`https://quranenc.com/api/v1/translation/sura/arabic_moyassar/${soraNum}`)
+                .then(res => res.json())
+                .then(data => setTafseer(data.result))
+        } else {
+            fetch(`https://quranenc.com/api/v1/translation/sura/english_saheeh/${soraNum}`)
+                .then(res => res.json())
+                .then(data => setTafseer(data.result))
+        }
+
     }
 
     const handleTafseer = (ayah) => {
@@ -119,6 +149,12 @@ const SoraMain = () => {
 
     const handleDetailedTafseer = (ayah) => {
         setTafseerBoxBool(true)
+        ays.map(bt => {
+            bt.classList.remove("ayahClickedDark")
+        })
+        ays.map(bt => {
+            bt.classList.remove("ayahClickedLight")
+        })
     }
 
     const handleTafseerBoxClose = () => {
@@ -167,12 +203,6 @@ const SoraMain = () => {
         setPages(groupedPages);
         setSoraNow(soraName)
     }, [ayahs]);
-
-    useEffect(() => {
-        fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}`)
-            .then(res => res.json())
-            .then(data => setReciters(data.reciters))
-    }, [])
 
     const handlePlayClick = () => {
         setAudioBool(true)
@@ -257,6 +287,26 @@ const SoraMain = () => {
                 style={{
                     borderLeftColor: colors.borderColor, backgroundColor: colors.sidBarColor
                 }}>
+                <div className={`${lang == "eng" && "text-end"} btnOfSideBar`}>
+                    {sideBarOpen ?
+                        <button
+                            onClick={() => setSideBarOpen(false)}
+                            className={`btnSora`}
+                        >
+                            <i className="fa-solid fa-xmark"></i>
+                            {/* <span>{soraName}</span> */}
+                        </button>
+                        :
+                        <button
+                            onClick={() => setSideBarOpen(true)}
+                            className="btnSora Btnclose"
+                        >
+                            {/* <span>{soraName}</span> */}
+                            <i className="fa-solid fa-bars"></i>
+                        </button>
+                    }
+
+                </div>
                 <div className='sidBarContent'>
                     <div className='sideBarCloseBtn'>
                         <button
@@ -408,7 +458,7 @@ const SoraMain = () => {
                     {+soraNum > 1 && <Link
                         to={`/Rukn-Elquran/sewar/${+soraNum - 1}`}
                         onClick={() => history?.push(`${+soraNum - 1}`)}
-                        style={{ color: colors.whiteColor, backgroundColor: colors.mainColor }}>
+                        style={{ color: "white", backgroundColor: colors.mainColor }}>
                         <i className="fa-solid fa-chevron-right"></i>
                         <span style={{ marginRight: "10px" }}>
                             السورة السابقة
@@ -418,7 +468,7 @@ const SoraMain = () => {
                         < Link
                             to={`/Rukn-Elquran/sewar/${+soraNum + 1}`}
                             onClick={() => history?.push(`${+soraNum + 1}`)}
-                            style={{ color: colors.whiteColor, backgroundColor: colors.mainColor }}>
+                            style={{ color: "white", backgroundColor: colors.mainColor }}>
                             <span style={{ marginLeft: "10px" }}>
                                 السورة القادمة
                             </span>
