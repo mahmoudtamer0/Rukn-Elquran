@@ -1,5 +1,37 @@
 {
     "navBar": {
-        "logo": "Rukn Elquran"
+        "logo": "Rukn EL-Qur’an",
+        "list": "List",
+        "main": "Main Page",
+        "sewar": "Surahs",
+        "reciters": "Reciters",
+        "radio": "Qur’an Radio",
+        "about": "About Us"
+    },
+    "landing": {
+        "p1": "A website for reading, reciting and interpreting the Holy Quran",
+        "p2": "Discover the exquisite elegance of the Quran - Delve into the profound verses and timeless wisdom of the Quran",
+        "search": "Search in surahs, reciters?",
+        "link1": "Al-Fatiha",
+        "link2": "Al-Baqara",
+        "link3": "Mashari Al-eafaasi",
+        "link4": "mahmud khalil"
+    },
+    "footer": {
+        "about_store": "about our store",
+        "about_desc": "Rukn EL-Qur’an website is an ongoing charity. We hope to make it easier for everyone to read, study and learn the Holy Quran. The Holy Qur’an has many names, including the Holy Qur’an, the Book, the Criterion, the Sermon, the Remembrance, and the Light.",
+        "col2_title": "My Account",
+        "col2_link1": "My Account",
+        "col2_link2": "My Orders",
+        "col2_link3": "cart",
+        "col2_link4": "Favourite",
+        "col3_title": "important Links",
+        "col3_link1": "about us",
+        "col3_link2": "Privacy",
+        "col3_link3": "privacy policy",
+        "col3_link4": "Help Center",
+        "col4_title": "Follow us on",
+        "copy_right": "Copyright © 2024 All rights reserved",
+        "tax_number": "Tax number: 5343322"
     }
 }
