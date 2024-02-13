@@ -130,9 +130,8 @@ a {
 }
 
 .Sora {
-    padding-top: 120px;
+    padding: 120px 0;
     margin-right: 20%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     transition: margin 0.3s;
@@ -167,7 +166,7 @@ a {
 }
 
 .besmAllah h2 {
-    font-family: "_PDMS_Saleem_QuranFont Regular";
+    font-family: 'alfont_com_AlFont_com_pdms-saleem-quranfont';
     font-size: 45px;
 }
 
@@ -206,7 +205,7 @@ a {
 }
 
 .soraMainName h1 {
-    font-family: "_PDMS_Saleem_QuranFont Regular";
+    font-family: 'alfont_com_AlFont_com_pdms-saleem-quranfont';
     font-weight: 700;
 }
 
@@ -612,4 +611,14 @@ a {
     .nextButtons span {
         font-size: 12px;
     }
+}
+
+.btnOfSideBar {
+    top: 58px;
+    position: absolute;
+    left: -35px
+}
+
+.btnOfSideBar button {
+    padding: 10px;
 }
