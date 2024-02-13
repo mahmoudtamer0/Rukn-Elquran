@@ -50,7 +50,7 @@ function Navbar() {
                 </div>
                 <p style={{ color: colors.blackColor, margin: "0" }}
                     className="text-center"
-                >القائمة</p>
+                > {t("navBar.list")}</p>
                 <div className="divLinks">
                     <NavLink
                         to={`/Rukn-Elquran`}
@@ -59,7 +59,7 @@ function Navbar() {
                         className="nav-link" aria-current="page" href="#">
                         <i className="fa-solid fa-house"></i>
                         <span>
-                            الصفحة الرئيسية
+                            {t("navBar.main")}
                         </span>
                     </NavLink>
                     <NavLink
@@ -69,7 +69,7 @@ function Navbar() {
                         className="nav-link" aria-current="page" href="#">
                         <i className="fa-solid fa-book-quran"></i>
                         <span>
-                            السور
+                            {t("navBar.sewar")}
                         </span>
                     </NavLink>
                     <NavLink
@@ -80,7 +80,7 @@ function Navbar() {
                     >
                         <i className="fa-solid fa-tower-broadcast"></i>
                         <span>
-                            القراء
+                            {t("navBar.reciters")}
                         </span>
                     </NavLink>
                     <NavLink
@@ -91,7 +91,7 @@ function Navbar() {
                     >
                         <i className="fa-regular fa-clock"></i>
                         <span>
-                            راديو القران
+                            {t("navBar.radio")}
                         </span>
                     </NavLink>
                     <NavLink
@@ -102,7 +102,7 @@ function Navbar() {
                     >
                         <i className="fa-solid fa-exclamation"></i>
                         <span>
-                            معلومات عنا
+                            {t("navBar.about")}
                         </span>
                     </NavLink>
                 </div>
@@ -132,24 +132,24 @@ function Navbar() {
                                 <NavLink
                                     to={`/Rukn-Elquran/sewar`}
                                     style={{ color: colors.blackColor }}
-                                    className="nav-link" aria-current="page" href="#">السور</NavLink>
+                                    className="nav-link" aria-current="page" href="#">{t("navBar.sewar")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
                                     to={`/Rukn-Elquran/reciters`}
                                     style={{ color: colors.blackColor }}
-                                    className="nav-link" href="#">القراء</NavLink>
+                                    className="nav-link" href="#">{t("navBar.reciters")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
                                     to={`/Rukn-Elquran/radio`}
                                     style={{ color: colors.blackColor }}
-                                    className="nav-link" href="#"> راديو القران</NavLink>
+                                    className="nav-link" href="#">{t("navBar.radio")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <a
                                     style={{ color: colors.blackColor }}
-                                    className="nav-link" href="#">معلومات عنا</a>
+                                    className="nav-link" href="#">{t("navBar.about")}</a>
                             </li>
                         </ul>
                     </div>
@@ -180,13 +180,6 @@ function Navbar() {
                                     style={{ backgroundColor: colors.iconBackGround }}
                                     className="fa-solid fa-language"></i>
                             </li>
-
-                            {/* <li className="nav-item">
-                                <i
-                                    onClick={() => handleEngLanguage()}
-                                    style={{ backgroundColor: colors.iconBackGround }}
-                                    className="fa-solid fa-language"></i>
-                            </li> */}
                         </ul>
                     </div>
                 </div>
@@ -196,28 +189,6 @@ function Navbar() {
                 {scrollBool ?
                     <>
                         <ScrollProgressBar />
-                        <div>
-                            <div className={`${lang == "eng" && "text-end"}`} style={{ paddingTop: "8px" }}>
-                                {sideBarOpen ?
-                                    <button
-                                        onClick={() => setSideBarOpen(false)}
-                                        className={`btnSora`}
-                                    >
-                                        <i className="fa-solid fa-angle-right"></i>
-                                        <span>{soraNow}</span>
-                                    </button>
-                                    :
-                                    <button
-                                        onClick={() => setSideBarOpen(true)}
-                                        className="btnSora Btnclose"
-                                    >
-                                        <span>{soraNow}</span>
-                                        <i className="fa-solid fa-angle-left"></i>
-                                    </button>
-                                }
-
-                            </div>
-                        </div>
                     </>
                     : null}
             </nav>
