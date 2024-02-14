@@ -3,13 +3,15 @@ import { useData } from '../../context/AppContext';
 import landingImg from '../../images/quran-book.jpg'
 import "./rec.css"
 import "../sewar/sewar.css"
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import PulseLoader from "react-spinners/PulseLoader";
 const Reciters = () => {
 
     const {
         sewar, getSewar,
         reciters, getReciters,
-        setServer, setSoraId, colors, font, fontSize
+        colors, font, fontSize,
+        lang
     } = useData()
     const [sewarList, setSewarList] = useState([])
     const [newSewar, setNewSewar] = useState([])
@@ -37,15 +39,6 @@ const Reciters = () => {
         }
     }, [sewarList])
 
-
-    const handleSoraClick = (sora) => {
-        const padSora = sora.padStart(3, '0')
-        setSoraId(padSora)
-    }
-
-
-
-
     return (
         <div>
             <div className='landing' style={{ height: "350px" }}>
@@ -54,7 +47,7 @@ const Reciters = () => {
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
-                        <h2 className='landingTitle'>قراء القرأن</h2>
+                        <h2 className={`landingTitle ${lang == "eng" ? "font2" : null}`}>قراء القرأن</h2>
                     </div>
                     <div className='recDivSearch'>
                         <input
@@ -67,27 +60,40 @@ const Reciters = () => {
 
             <div className='container mainRec'>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع القراء</h2>
-                <div className='sewarBoxes justify-content-between align-items-center'>
-                    {reciters.filter((item) => {
-                        return search !== "" ? item.name.toLowerCase().includes(search) : reciters
-                    }).map((rec, index) => {
-                        return (
-                            <NavLink
-                                key={index}
-                                to={`/Rukn-Elquran/reciters/${rec.id}`}
-                                style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
-                                className="soraBox d-flex justify-content-between align-items-center"
-                            >
-                                <div className='soraDet'>
-                                    <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
-                                        <span style={{ color: colors.blackColor }} className='soraNumber'>{(index + 1).toLocaleString('ar-EG')}</span>
+                {reciters.length > 0 ?
+                    <div className='sewarBoxes justify-content-between align-items-center'>
+                        {reciters.filter((item) => {
+                            return search !== "" ? item.name.toLowerCase().includes(search) : reciters
+                        }).map((rec, index) => {
+                            return (
+                                <NavLink
+                                    key={index}
+                                    to={`/Rukn-Elquran/reciters/${rec.id}`}
+                                    style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
+                                    className="soraBox d-flex justify-content-between align-items-center"
+                                >
+                                    <div className='soraDet'>
+                                        <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
+                                            <span style={{ color: colors.blackColor }} className='soraNumber'>{lang == "ar" ? (index + 1).toLocaleString("ar-SA") : (index + 1)}</span>
+                                        </div>
+                                        <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }} className='soraName'>{rec.name}</span>
                                     </div>
-                                    <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }} className='soraName'>{rec.name}</span>
-                                </div>
-                            </NavLink>
-                        )
-                    })}
-                </div>
+                                </NavLink>
+                            )
+                        })}
+                    </div>
+                    :
+                    <div className='loaderDivSora'>
+                        <PulseLoader
+                            color='#0075ff'
+                            loading={true}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
+                }
+
             </div>
         </div >
 
