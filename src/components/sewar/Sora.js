@@ -1,75 +1,42 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useParams, NavLink } from 'react-router-dom'
 import { useData } from '../../context/AppContext'
-import ScrollProgressBar from '../scroll/ScrollProgressBar'
 import './sewar.css'
 import './sewar.css'
 import { useLocation } from 'react-router-dom'
 import { useClickAway } from "@uidotdev/usehooks";
-import { useOnClickOutside } from 'usehooks-ts'
-import Footer from '../footer/Footer'
-
+import SideBar from './SideBar'
+import MoonLoader from "react-spinners/MoonLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const SoraMain = () => {
 
     let { soraNum } = useParams()
     const {
-        soraId, getAyahs, ayahs,
+        getAyahs, ayahs,
         setScrollBool, colors,
         server, setServer,
-        setSoraId, setSoraNow,
-        sideBarOpen, setSideBarOpen,
-        lang, setPlay, fontSize,
+        setSoraNow,
+        sideBarOpen,
+        lang, setPlay,
         setLastSoras, lastSoras,
         getReciters, reciters
     } = useData()
 
     const spanref = useRef(null)
     const [pages, setPages] = useState({})
-    const [sewar, setSewar] = useState([])
     const [soraName, setSoraName] = useState('')
     const [audioBool, setAudioBool] = useState(false)
-    const [search, setSearch] = useState('')
     const [tafseer, setTafseer] = useState([])
-    const [tafseerBool, setTafseerBool] = useState(false)
     const [tafseerBoxBool, setTafseerBoxBool] = useState(false)
     const [ayahInTafseer, setAyahInTafseer] = useState('')
     const [theTafseer, setTheTafseer] = useState('')
-
     const history = useLocation();
-    const linkRef = useRef()
-
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
 
-    useEffect(() => {
-        getReciters()
-    }, [])
 
-    useEffect(() => {
-        const index = lastSoras.findIndex(sora => sora.soraId == soraNum);
-        if (soraName != "") {
-            if (index !== -1) {
-                const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
-                    soraName: soraName,
-                    soraId: soraNum
-                }];
-                setLastSoras(updatedProducts)
-            } else {
-                setLastSoras([...lastSoras, {
-                    soraName: soraName,
-                    soraId: soraNum
-                }])
-            }
-        }
-    }, [reciters])
-
-
-    const getSewar = () => {
-        fetch(`https://mp3quran.net/api/v3/suwar?language=${lang}`)
-            .then(res => res.json())
-            .then(data => setSewar(data.suwar))
-    }
+    // start handling tafseer function
 
     const getTafseer = () => {
         if (lang == "ar") {
@@ -110,14 +77,6 @@ const SoraMain = () => {
         document.querySelector(`.tafseer${ayah.numberInSurah}`)?.classList.add("visible")
     }
 
-    const handleAyaPlay = (ayah) => {
-        bts.map(bt => {
-            bt.classList.remove("visible")
-            bt.classList.add("hide")
-        })
-        setServer(ayah.audio)
-    }
-
     const handleTafseerClose = (ayahNum) => {
         document.querySelector(`.tafseer${ayahNum}`).classList.remove("visible")
         document.querySelector(`.tafseer${ayahNum}`).classList.add("hide")
@@ -129,23 +88,6 @@ const SoraMain = () => {
             bt.classList.remove("ayahClickedLight")
         })
     }
-
-    useEffect(() => {
-        if (tafseerBoxBool == false) {
-            bts.map(bt => {
-                bt.classList.remove("visible")
-                bt.classList.add("hide")
-            })
-
-            ays.map(bt => {
-                bt.classList.remove("ayahClickedDark")
-            })
-            ays.map(bt => {
-                bt.classList.remove("ayahClickedDark")
-            })
-        } else return
-    }, [tafseerBoxBool])
-
 
     const handleDetailedTafseer = (ayah) => {
         setTafseerBoxBool(true)
@@ -175,20 +117,107 @@ const SoraMain = () => {
         setTafseerBoxBool(false)
     });
 
+    // end handling tafseer function
 
+    // start handling single ayah play
+    const handleAyaPlay = (ayah) => {
+        bts.map(bt => {
+            bt.classList.remove("visible")
+            bt.classList.add("hide")
+        })
+        setServer(ayah.audio)
+    }
+    // end handling single ayah play
+
+    // start handling the sora play
+    const handlePlayClick = () => {
+        setAudioBool(true)
+        setServer(`${reciters[0]?.moshaf[0]?.server}${soraNum.padStart(3, 0)}.mp3`)
+        setPlay(true)
+    }
+
+    const handlePauseClick = () => {
+        setAudioBool(false)
+        setServer("")
+    }
+    // start handling the sora play
+
+    // start style for single ayah on hover
+    const handleMouseOver = (e) => {
+        if (JSON.parse(localStorage.getItem("mode")) == "dark") {
+            e.target.classList.add("hoverAyahDark")
+        } else {
+            e.target.classList.add("hoverAyahLight")
+        }
+    }
+    const handleMouseOut = (e) => {
+        e.target.classList.remove("hoverAyahLight")
+        e.target.classList.remove("hoverAyahDark")
+    }
+    // end style for single ayah on hover
+
+    //start getting reciters tafseer and ayahs and the soraName
     useEffect(() => {
-        getSewar()
+        getReciters()
         getTafseer()
-        getAyahs(soraNum)
+        setTimeout(() => {
+            getAyahs(soraNum)
+        }, 1000)
         fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
             .then(res => res.json())
             .then(data => setSoraName(data.data.name))
+
+        window.scrollTo(0, 0)
     }, [])
+    //end getting reciters tafseer and ayahs and the soraName
+
+    //start handle the function of sora history
+    useEffect(() => {
+        const index = lastSoras.findIndex(sora => sora.soraId == soraNum);
+        if (soraName != "") {
+            if (index !== -1) {
+                const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
+                    soraName: soraName,
+                    soraId: soraNum
+                }];
+                setLastSoras(updatedProducts)
+            } else {
+                setLastSoras([...lastSoras, {
+                    soraName: soraName,
+                    soraId: soraNum
+                }])
+            }
+        }
+    }, [reciters])
+    //end handle the function of sora history
+
+    useEffect(() => {
+        if (tafseerBoxBool == false) {
+            bts.map(bt => {
+                bt.classList.remove("visible")
+                bt.classList.add("hide")
+            })
+
+            ays.map(bt => {
+                bt.classList.remove("ayahClickedDark")
+            })
+            ays.map(bt => {
+                bt.classList.remove("ayahClickedDark")
+            })
+        } else return
+    }, [tafseerBoxBool])
+
+    useEffect(() => {
+        if (server == "") {
+            setAudioBool(false)
+        } else {
+            setAudioBool(true)
+        }
+    }, [server])
 
     useEffect(() => {
         setScrollBool(true)
     }, [history])
-
 
     useEffect(() => {
         // Group data by page number
@@ -204,179 +233,11 @@ const SoraMain = () => {
         setSoraNow(soraName)
     }, [ayahs]);
 
-    const handlePlayClick = () => {
-        setAudioBool(true)
-        setServer(`${reciters[0]?.moshaf[0]?.server}${soraNum.padStart(3, 0)}.mp3`)
-        setPlay(true)
-    }
-
-    useEffect(() => {
-        if (server == "") {
-            setAudioBool(false)
-        } else {
-            setAudioBool(true)
-        }
-    }, [server])
-    const handlePauseClick = () => {
-        setAudioBool(false)
-        setServer("")
-    }
-
-    // sid bar
-
-    const handleLinkClick = (newNum, e) => {
-        setSideBarOpen(false)
-        history?.push(`${newNum}`);
-    };
-
-    useEffect(() => {
-        setSoraId(`${soraNum.padStart(3, 0)}.mp3`)
-    }, [soraId])
-
-
-
-    useEffect(() => {
-        if (document.querySelector(`#activeDiv`)?.offsetTop - linkRef.current?.offsetTop < 428) {
-            return
-        } else {
-            linkRef.current.scrollTop = document.querySelector(`#activeDiv`)?.offsetTop - linkRef.current?.offsetTop - 200;
-        }
-        setSoraNow(soraName)
-    }, [sewar])
-
-
-
-
-
-    // handleScrolling
-    const [prevScrollPos, setPrevScrollPos] = useState(0);
-    const [visible, setVisible] = useState(true);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const currentScrollPos = window.scrollY;
-
-            setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-            setPrevScrollPos(currentScrollPos);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [prevScrollPos]);
-
-    const handleMouseOver = (e) => {
-        if (JSON.parse(localStorage.getItem("mode")) == "dark") {
-            e.target.classList.add("hoverAyahDark")
-        } else {
-            e.target.classList.add("hoverAyahLight")
-        }
-    }
-
-    const handleMouseOut = (e) => {
-        e.target.classList.remove("hoverAyahLight")
-        e.target.classList.remove("hoverAyahDark")
-    }
-
     return (
         <div
             className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
-            <div className={`soraSideBar ${visible ? "sideBarIsVisible" : "sideBarIsNotVisible"} ${!sideBarOpen ? "sideHide" : null}`}
-                style={{
-                    borderLeftColor: colors.borderColor, backgroundColor: colors.sidBarColor
-                }}>
-                <div className={`${lang == "eng" && "text-end"} btnOfSideBar`}>
-                    {sideBarOpen ?
-                        <button
-                            onClick={() => setSideBarOpen(false)}
-                            className={`btnSora`}
-                        >
-                            <i className="fa-solid fa-xmark"></i>
-                            {/* <span>{soraName}</span> */}
-                        </button>
-                        :
-                        <button
-                            onClick={() => setSideBarOpen(true)}
-                            className="btnSora Btnclose"
-                        >
-                            {/* <span>{soraName}</span> */}
-                            <i className="fa-solid fa-bars"></i>
-                        </button>
-                    }
-
-                </div>
-                <div className='sidBarContent'>
-                    <div className='sideBarCloseBtn'>
-                        <button
-                            style={{ color: colors.blackColor }}
-                            onClick={() => setSideBarOpen(false)}
-                        ><i className="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div className='sideBarInput'>
-                        <input
-                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
-                            placeholder='ابحث عن سورة'
-                            style={{ backgroundColor: colors.searchColor }}
-                            type='text' />
-                    </div>
-                    <div className='scrolll'>
-                        <div ref={linkRef} id='sideBar' className='sideBarSoraNameDiv'>
-
-                            {sewar?.filter((item) => {
-                                return search !== "" ? item.name.toLowerCase().includes(search) : sewar
-                            }).map(sora => {
-                                return (
-                                    <div key={sora.id} id={sora.id == soraNum ? "activeDiv" : ""}>
-                                        <NavLink
-                                            style={{ color: colors.blackColor }}
-                                            id={`id${(soraNum)}`}
-                                            className={'mainSoraLink'}
-                                            to={`/Rukn-Elquran/sewar/${sora.id}`}
-                                            onClick={(e) => handleLinkClick(sora.id, e.target)}>
-                                            <span>{sora.id.toLocaleString('ar-EG')}</span>
-                                            <span>{sora.name}</span>
-                                        </NavLink>
-                                    </div>
-
-                                )
-                            })}
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <SideBar soraNum={soraNum} />
             <div className='soraContent'>
-                <div
-                    style={{
-                        backgroundColor: colors.navColor
-                    }}
-                    ref={boxRef} className={tafseerBoxBool ? "tafseerBox boxVisible" : "tafseerBox"}>
-                    <div className='tafseerBoxCloseBtn'>
-                        <button
-                            style={{
-                                color: colors.blackColor
-                            }}
-                            onClick={() => {
-                                handleTafseerBoxClose()
-                            }
-                            }><i className="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div className='boxContent'>
-                        <div className='boxAyah'>{ayahInTafseer}</div>
-                        <hr
-                            style={{
-                                color: colors.blackColor
-                            }}
-                        ></hr>
-                        <div
-                            style={{
-                                color: colors.blackColor
-                            }}
-                            className='boxTafseer'>{theTafseer}</div>
-                    </div>
-                </div>
                 <div className='text-center soraMainName'>
                     <h1 style={{ color: colors.blackColor }}> {soraName}</h1>
                 </div>
@@ -385,98 +246,149 @@ const SoraMain = () => {
                         style={{ color: colors.blackColor }}
                         className='text-center'>بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h2>
                 </div>
-                <div>
-                    <div className='audioButton'>
-                        {reciters.length > 0 ?
-                            <>
-                                {!audioBool ?
-                                    <>
-                                        <button onClick={() => handlePlayClick()}>
-                                            <i className="fa-solid fa-play"></i>  تشغيل السورة صوتيا
-                                        </button>
-                                        <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>يمكنك الضغط علي اي اية لتفسيرها او تشغيلها</h5>
-                                    </>
-                                    : <>
-                                        <button className='audioStop' onClick={() => handlePauseClick()}>
-                                            <i className="fa-solid fa-stop"></i>  ايقاف المشغل
-                                        </button>
-                                        <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>يمكنك الضغط علي اي اية لتفسيرها او تشغيلها</h5>
-                                    </>}
-                            </> : null
-                        }
-
-                    </div>
-                    {Object.keys(pages).map(pageNumber => (
-                        < div
-                            style={{ borderBottom: `1px solid ${colors.borderColor}` }}
-                            className='soraPage'
-                            key={pageNumber}>
-                            <p style={{ color: colors.blackColor }} className='pAyah'>
-                                {pages[pageNumber].map((item) => (
-                                    <span key={item.numberInSurah}>
-                                        <span
-                                            className={`tafseerBtn hide tafseer${item.numberInSurah}`}>
-                                            <button
-                                                className='btnTafseer'
-                                                onClick={() => handleDetailedTafseer(item)}
-                                            >
-                                                <i style={{ fontSize: "20px" }} className="fa-solid fa-book-open-reader"></i>
-                                                <span style={{ fontSize: "20px" }}> تفسير الاية؟</span>
-                                            </button>
-                                            <button
-                                                className='btnTa48eel'
-                                                onClick={() => handleAyaPlay(item)}
-                                            >
-                                                <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
-                                                <span style={{ fontSize: "20px" }}> تشغيل الاية؟</span>
-                                            </button>
-                                            <i
-                                                className="fa-solid fa-circle-xmark ii"
-                                                onClick={() => handleTafseerClose(item.numberInSurah)}
-                                            >
-                                            </i>
-                                        </span>
-                                        <span
-                                            ref={spanref}
-                                            onMouseOut={(e) => handleMouseOut(e)}
-                                            onMouseOver={(e) => handleMouseOver(e)}
-                                            onClick={() => handleTafseer(item)}
-                                            className={`ayahSpan ayahSpan${item.numberInSurah}`}>
-                                            {item.text.includes("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ") ?
-                                                item.text.split("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ").toString()
-                                                : item.text}
-                                            <span style={{ margin: "7px" }}>{item.numberInSurah.toLocaleString('ar-EG')}</span>
-                                        </span>
-                                    </span>
-                                ))}
-                            </p>
-                            <div style={{ color: colors.blackColor }} className='text-center mt-3'> <span>{pageNumber.toLocaleString('ar-EG')}</span> </div>
+                {ayahs.length > 0 ?
+                    <>
+                        <div
+                            style={{
+                                backgroundColor: colors.navColor
+                            }}
+                            ref={boxRef} className={tafseerBoxBool ? "tafseerBox boxVisible" : "tafseerBox"}>
+                            <div className='tafseerBoxCloseBtn'>
+                                <button
+                                    style={{
+                                        color: colors.blackColor
+                                    }}
+                                    onClick={() => {
+                                        handleTafseerBoxClose()
+                                    }
+                                    }><i className="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <div className='boxContent'>
+                                <div className='boxAyah'>{ayahInTafseer}</div>
+                                <hr
+                                    style={{
+                                        color: colors.blackColor
+                                    }}
+                                ></hr>
+                                <div
+                                    style={{
+                                        color: colors.blackColor
+                                    }}
+                                    className='boxTafseer'>{theTafseer}</div>
+                            </div>
                         </div>
-                    ))}
-                </div>
-                <div className='text-center nextButtons'>
-                    {+soraNum > 1 && <Link
-                        to={`/Rukn-Elquran/sewar/${+soraNum - 1}`}
-                        onClick={() => history?.push(`${+soraNum - 1}`)}
-                        style={{ color: "white", backgroundColor: colors.mainColor }}>
-                        <i className="fa-solid fa-chevron-right"></i>
-                        <span style={{ marginRight: "10px" }}>
-                            السورة السابقة
-                        </span>
-                    </Link>}
-                    {+soraNum <= 113 &&
-                        < Link
-                            to={`/Rukn-Elquran/sewar/${+soraNum + 1}`}
-                            onClick={() => history?.push(`${+soraNum + 1}`)}
-                            style={{ color: "white", backgroundColor: colors.mainColor }}>
-                            <span style={{ marginLeft: "10px" }}>
-                                السورة القادمة
-                            </span>
 
-                            <i className="fa-solid fa-chevron-left"></i>
-                        </Link>}
+                        <div>
+                            <div className='audioButton'>
+                                {reciters.length > 0 ?
+                                    <>
+                                        {!audioBool ?
+                                            <>
+                                                <button onClick={() => handlePlayClick()}>
+                                                    <i className="fa-solid fa-play"></i>  تشغيل السورة صوتيا
+                                                </button>
+                                            </>
+                                            : <>
+                                                <button className='audioStop' onClick={() => handlePauseClick()}>
+                                                    <i className="fa-solid fa-stop"></i>  ايقاف المشغل
+                                                </button>
+                                            </>}
+                                    </> : <div className='mb-5' style={{ padding: "0 10px" }}>
+                                        <MoonLoader
+                                            color='#0075ff'
+                                            loading={true}
+                                            size={30}
+                                            aria-label="Loading Spinner"
+                                            data-testid="loader"
+                                        />
+                                    </div>
+                                }
+                                <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>يمكنك الضغط علي اي اية لتفسيرها او تشغيلها</h5>
+                            </div>
+                            {Object.keys(pages).map(pageNumber => (
+                                < div
+                                    style={{ borderBottom: `1px solid ${colors.borderColor}` }}
+                                    className='soraPage'
+                                    key={pageNumber}>
+                                    <p style={{ color: colors.blackColor }} className='pAyah'>
+                                        {pages[pageNumber].map((item) => (
+                                            <span key={item.numberInSurah}>
+                                                <span
+                                                    className={`tafseerBtn hide tafseer${item.numberInSurah}`}>
+                                                    <button
+                                                        className='btnTafseer'
+                                                        onClick={() => handleDetailedTafseer(item)}
+                                                    >
+                                                        <i style={{ fontSize: "20px" }} className="fa-solid fa-book-open-reader"></i>
+                                                        <span style={{ fontSize: "20px" }}> تفسير الاية؟</span>
+                                                    </button>
+                                                    <button
+                                                        className='btnTa48eel'
+                                                        onClick={() => handleAyaPlay(item)}
+                                                    >
+                                                        <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
+                                                        <span style={{ fontSize: "20px" }}> تشغيل الاية؟</span>
+                                                    </button>
+                                                    <i
+                                                        className="fa-solid fa-circle-xmark ii"
+                                                        onClick={() => handleTafseerClose(item.numberInSurah)}
+                                                    >
+                                                    </i>
+                                                </span>
+                                                <span
+                                                    ref={spanref}
+                                                    onMouseOut={(e) => handleMouseOut(e)}
+                                                    onMouseOver={(e) => handleMouseOver(e)}
+                                                    onClick={() => handleTafseer(item)}
+                                                    className={`ayahSpan ayahSpan${item.numberInSurah}`}>
+                                                    {item.text.includes("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ") ?
+                                                        item.text.split("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ").toString()
+                                                        : item.text}
+                                                    <span style={{ margin: "7px" }}>{item.numberInSurah.toLocaleString('ar-EG')}</span>
+                                                </span>
+                                            </span>
+                                        ))}
+                                    </p>
+                                    <div style={{ color: colors.blackColor }} className='text-center mt-3'> <span>{pageNumber.toLocaleString('ar-EG')}</span> </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className='text-center nextButtons'>
+                            {+soraNum > 1 && <Link
+                                to={`/Rukn-Elquran/sewar/${+soraNum - 1}`}
+                                onClick={() => history?.push(`${+soraNum - 1}`)}
+                                style={{ color: "white", backgroundColor: colors.mainColor }}>
+                                <i className="fa-solid fa-chevron-right"></i>
+                                <span style={{ marginRight: "10px" }}>
+                                    السورة السابقة
+                                </span>
+                            </Link>}
+                            {+soraNum <= 113 &&
+                                < Link
+                                    to={`/Rukn-Elquran/sewar/${+soraNum + 1}`}
+                                    onClick={() => history?.push(`${+soraNum + 1}`)}
+                                    style={{ color: "white", backgroundColor: colors.mainColor }}>
+                                    <span style={{ marginLeft: "10px" }}>
+                                        السورة القادمة
+                                    </span>
 
-                </div>
+                                    <i className="fa-solid fa-chevron-left"></i>
+                                </Link>}
+
+                        </div>
+                    </>
+                    :
+                    <div className='loaderDivSora'>
+                        <PulseLoader
+                            color='#0075ff'
+                            loading={true}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
+                }
+
             </div>
         </div >
     )
