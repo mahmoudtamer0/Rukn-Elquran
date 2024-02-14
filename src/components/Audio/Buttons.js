@@ -19,6 +19,8 @@ function Button({ play, isPlaying }) {
 
     const { pathname } = useLocation()
 
+    // console.log(Math.floor(Math.random() * 999))
+
     useEffect(() => {
         if (server.includes("https://backup.qurango.net/")) {
             setElliBool(false)
@@ -50,8 +52,7 @@ function Button({ play, isPlaying }) {
         setSelectReciters(false)
     })
 
-
-    const handleDownload = async (sora) => {
+    const handleDownload = async () => {
         try {
             setLoading(true)
             const audioUrl = server;
@@ -60,7 +61,7 @@ function Button({ play, isPlaying }) {
             const url = window.URL.createObjectURL(new Blob([blob]));
             const link = document.createElement('a');
             link.href = url;
-            link.setAttribute('download', "audio.mp3");
+            link.setAttribute('download', `RuknElQuran_${soraId.split(".mp3")[0]}.mp3`);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
