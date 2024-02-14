@@ -96,7 +96,7 @@ const AppContext = ({ children }) => {
     useEffect(() => {
         if (lang == "eng") {
             seFont(`'Noto Sans Arabic', sans-serif`)
-            setFontSize('1.3rem')
+            setFontSize('1rem')
             document.querySelector("body").classList.add("ltr")
         } else {
             setFontSize('1.7rem')
