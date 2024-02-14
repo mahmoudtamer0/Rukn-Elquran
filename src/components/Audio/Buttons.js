@@ -3,12 +3,16 @@ import './buttons.css'
 import { useData } from '../../context/AppContext'
 import { useClickAway } from '@uidotdev/usehooks'
 import { useLocation } from 'react-router-dom'
+import { MoonLoader } from 'react-spinners'
 
 function Button({ play, isPlaying }) {
     const { colors, setServer, reciters, getReciters, soraId, server, setSoraId } = useData()
     const [select, setSelect] = useState(false)
+    const [selectReciters, setSelectReciters] = useState(false)
     const [elliBool, setElliBool] = useState(false)
     const [search, setSearch] = useState('')
+    const [downLoaded, setDownLoaded] = useState(<i style={{ color: colors.greyColor }} class="fa-solid fa-download"></i>)
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         getReciters()
     }, [])
@@ -21,6 +25,8 @@ function Button({ play, isPlaying }) {
         } else {
             setElliBool(true)
         }
+
+        setDownLoaded(<i style={{ color: colors.greyColor }} class="fa-solid fa-download"></i>)
     }, [server])
 
     const handleElliClick = () => {
@@ -40,16 +46,42 @@ function Button({ play, isPlaying }) {
         setSelect(false)
     })
 
+    const box2Ref = useClickAway(() => {
+        setSelectReciters(false)
+    })
+
+
+    const handleDownload = async (sora) => {
+        try {
+            setLoading(true)
+            const audioUrl = server;
+            const response = await fetch(audioUrl);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', "audio.mp3");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch {
+
+        }
+        setLoading(false)
+        setDownLoaded(<i style={{ color: colors.mainColor }} class="fa-solid fa-check"></i>)
+    }
+
+
     return (
         <div className='btn-container'>
             <div
                 style={{ background: colors.sidBarColor }}
-                ref={boxRef}
-                className={`selectDiv ${select ? "d-block" : "noo"}`}
+                ref={box2Ref}
+                className={`selectDiv ${selectReciters ? "d-block" : "noo"}`}
             >
                 <div className='selectXdiv'>
                     <i style={{ color: colors.blackColor }}
-                        onClick={() => setSelect(false)}
+                        onClick={() => setSelectReciters(false)}
                         className="fa-solid fa-xmark mb-4"></i>
                 </div>
                 <div className='sideBarInput mb-4'>
@@ -75,6 +107,51 @@ function Button({ play, isPlaying }) {
                     </button>
                 ))}
             </div>
+
+            <div
+                style={{
+                    background: colors.sidBarColor,
+                    width: "200px", height: "130px"
+                }}
+                ref={boxRef}
+                className={`selectDiv ${select ? "d-block" : "noo"}`}
+            >
+                <button
+                    disabled={loading}
+                    onClick={() => handleDownload()}
+                    className={`btnnnnn justify-content-end ${loading ? "opaaa" : ""}`}>
+                    <span
+                        style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
+                        تحميل
+                    </span>
+                    {!loading
+                        ?
+                        downLoaded
+                        :
+                        <MoonLoader
+                            color='#0075ff'
+                            loading={true}
+                            size={25}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    }
+                </button>
+                <button
+                    onClick={() => {
+                        setSelectReciters(true)
+                        setSelect(false)
+                    }}
+                    className='btnnnnn justify-content-end'>
+                    <span
+                        style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
+                        القراء
+                    </span>
+                </button>
+            </div>
+
+
+
             <div className={`ellipsis ${elliBool == true ? "d-block" : "d-none"}`}>
                 <i
                     onClick={() => handleElliClick()}
