@@ -526,6 +526,7 @@ a {
     display: flex;
     justify-content: start;
     align-items: center;
+    direction: rtl;
 }
 
 .sideBarCloseBtn button {
@@ -621,4 +622,12 @@ a {
 
 .btnOfSideBar button {
     padding: 10px;
+}
+
+.loaderDivSora {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
 }
