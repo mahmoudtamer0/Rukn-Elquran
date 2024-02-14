@@ -4,10 +4,8 @@ import "./rec.css"
 import "../sewar/sewar.css"
 import landingImg from "../../images/quran-book.jpg"
 import { useData } from '../../context/AppContext'
-import landingLogo from '../../images/quran-mazid-hero-calio.png'
-
-import { NavLink } from 'react-router-dom'
-import { Button } from 'bootstrap'
+import PulseLoader from "react-spinners/PulseLoader";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Reciter = () => {
     const { colors, setServer, lang, soraId, setSoraId, font, setPlay, fontSize } = useData()
@@ -17,7 +15,7 @@ const Reciter = () => {
     const [newSewar, setNewSewar] = useState([])
     const [reciter, setReciter] = useState([])
     const [search, setSearch] = useState([])
-
+    const [loading, setLoading] = useState(false)
 
 
     useEffect(() => {
@@ -57,6 +55,26 @@ const Reciter = () => {
         setPlay(true)
     }
 
+    const handleDownload = async (sora) => {
+        try {
+            setLoading(true)
+            setSoraId(sora.id)
+            const audioUrl = `${reciter.moshaf[0].server}${(sora.id.toString().padStart(3, 0))}.mp3`;
+            const response = await fetch(audioUrl);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${sora.name}(القارئ ${reciter.name}).mp3`); // Change the filename if needed
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch {
+
+        }
+        setLoading(false)
+        setSoraId("")
+    }
 
     return (
         <div className=''>
@@ -66,7 +84,8 @@ const Reciter = () => {
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
-                        <h2 className='landingTitle'> {reciter.name}</h2>
+                        <h2 className={`landingTitle ${lang == "eng" ? "font2" : null}`}
+                            style={{ fontFamily: font }}> {reciter.name}</h2>
                     </div>
                     <div className='recDivSearch'>
                         <input
@@ -79,34 +98,92 @@ const Reciter = () => {
 
             <div className='container mainRec'>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع السور لهذا القارئ</h2>
-                <div className='sewarBoxes '>
-                    {newSewar.filter((item) => {
-                        return search !== "" ? item.name.toLowerCase().includes(search) : sewar
-                    }).map((sora, index) => (
-                        <button
-                            key={sora.id}
-                            onClick={() => handlePlay(sora)}
-                            style={{ backgroundColor: "transparent", border: `1px solid ${colors.borderColor}` }}
-                            className={`soraBox d-flex align-items-center
+                {newSewar.length > 0 ?
+                    <div className='sewarBoxes'>
+                        {newSewar.filter((item) => {
+                            return search !== "" ? item.name.toLowerCase().includes(search) : sewar
+                        }).map((sora, index) => (
+                            <div style={{ position: "relative" }}>
+                                <button
+                                    key={sora.id}
+                                    onClick={() => handlePlay(sora)}
+                                    style={{
+                                        backgroundColor: "transparent",
+                                        border: `1px solid ${colors.borderColor}`,
+                                        width: "100%"
+                                    }}
+                                    className={`soraBox 
                             ${soraId == `${sora.id.toString().padStart(3, 0)}.mp3` && "soraBoxActiv"}`}
-                        >
-                            <div className='soraDet'>
-                                <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
-                                    <span style={{ color: colors.blackColor }} className='soraNumber'>
-                                        {soraId == `${sora.id.toString().padStart(3, 0)}.mp3` ?
-                                            <i className="fa-solid fa-pause"></i>
-                                            :
-                                            <i className="fa-solid fa-play"></i>
-                                        }
-                                    </span>
-                                </div>
-                                <span style={{ color: colors.blackColor }} >{`${(index + 1).toLocaleString("ar-SA")}`}</span>
-                                <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }} className='soraName'>{sora.name}</span>
+                                >
+                                    <div className='soraDet'>
+                                        <div style={{ color: colors.searchColor, backgroundColor: colors.soraNumberDiv }} className='soraNumberDiv'>
+                                            <span style={{ color: colors.blackColor }} className='soraNumber'>
+                                                {soraId == `${sora.id.toString().padStart(3, 0)}.mp3` ?
+                                                    <i className="fa-solid fa-pause"></i>
+                                                    :
+                                                    <i className="fa-solid fa-play"></i>
+                                                }
+                                            </span>
+                                        </div>
+                                        <span style={{ color: colors.blackColor }} >
+                                            {`${lang == "ar" ? (index + 1).toLocaleString("ar-SA") : (index + 1)}`}
+                                        </span>
+                                        <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }}
+                                            className='soraName'>
+                                            {sora.name}
+                                        </span>
+                                    </div>
+
+                                </button>
+                                {loading && soraId == sora.id ?
+                                    <div
+                                        className={`ayahsCount btnDownLoadDiv 
+                                        ${lang == "ar" ? "downLeft" : "dowmRight"}`}
+                                        style={{
+                                            color: colors.greyColor,
+                                            backgroundColor: "transparent",
+                                            border: "none",
+                                            left: "15px"
+                                        }}>
+                                        <MoonLoader
+                                            color='#0075ff'
+                                            loading={true}
+                                            size={30}
+                                            aria-label="Loading Spinner"
+                                            data-testid="loader"
+                                        />
+                                    </div>
+                                    : <button
+                                        className={`ayahsCount btnDownLoadDiv ${loading ? "opaa" : ""}
+                                        ${lang == "ar" ? "downLeft" : "downRight"} 
+                                        `}
+                                        disabled={loading}
+                                        onClick={() => handleDownload(sora)}
+                                        style={{
+                                            color: colors.greyColor,
+                                            backgroundColor: "transparent",
+                                            border: "none"
+                                        }}>
+                                        <i class="downLoadBtn fa-solid fa-download"></i>
+                                    </button>
+
+                                }
+
                             </div>
-                            {/* <div className='ayahsCount' style={{ color: colors.greyColor }}>{sora.numberOfAyahs.toLocaleString('ar-EG')}  آيات</div> */}
-                        </button>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                    :
+                    <div className='loaderDivSora'>
+                        <PulseLoader
+                            color='#0075ff'
+                            loading={true}
+                            size={30}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
+                }
+
             </div>
         </div >
     )
