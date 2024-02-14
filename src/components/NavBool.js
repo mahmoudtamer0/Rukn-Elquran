@@ -13,6 +13,8 @@ const NavBool = () => {
         } else {
             setScrollBool(false)
         }
+
+        window.scrollTo(0, 0);
     }, [pathname])
 }
 

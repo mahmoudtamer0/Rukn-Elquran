@@ -20,6 +20,7 @@ function App() {
     <div className="App" >
       <Router>
         <AppContext>
+          <NavBool />
           <Navbar />
           <Routes>
             <Route path="/Rukn-Elquran" element={<>
@@ -42,7 +43,6 @@ function App() {
               <Radio />
             </>} />
           </Routes>
-          <NavBool />
           <MainAudio />
           <Footer />
         </AppContext>
