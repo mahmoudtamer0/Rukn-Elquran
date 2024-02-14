@@ -34,7 +34,6 @@
 .cancelAudio button {
     border: none;
     padding: 5px 10px;
-    color: red;
 }
 
 .w70 {
@@ -46,10 +45,44 @@
     width: 60%;
 }
 
+@media(max-width:550px) {
+    .recDivSearch input {
+        width: 100% !important;
+    }
+}
+
 .recDivSearch {
     margin-top: 60px;
 }
 
 .landing .landing-text {
     top: 40%;
+}
+
+.downLoadBtn {
+    padding: 10px;
+    border-radius: 30px;
+    transition: 0.2s;
+}
+
+.downLoadBtn:hover {
+    background-color: #363636;
+}
+
+.btnDownLoadDiv {
+    position: absolute;
+    top: 25%;
+}
+
+.downLeft {
+    left: 0;
+}
+
+.downRight {
+    right: 0;
+}
+
+.opaa {
+    opacity: 0.2;
+    cursor: not-allowed;
 }
