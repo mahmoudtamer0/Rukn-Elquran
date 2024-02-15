@@ -11,6 +11,8 @@ import Reciter from "./components/reciters/Reciter";
 import Radio from "./components/Radio";
 import { LastSec } from "./components/lastsection/LastSec";
 import Footer from "./components/footer/Footer";
+import Home from "./components/Home"
+import DateToday from "./components/date/DateToday";
 // import DateToday from "./components/DateToday";
 
 function App() {
@@ -24,12 +26,14 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/Rukn-Elquran" element={<>
-              <Landing />
-              <LastSec />
-              <Sewar />
+              <Home />
             </>} />
             <Route path="/Rukn-Elquran/sewar" element={<>
               <Sewar />
+            </>} />
+
+            <Route path="/Rukn-Elquran/prayer_times" element={<>
+              <DateToday />
             </>} />
             <Route path="/Rukn-Elquran/sewar/:soraNum" element={<> <Sora /></>} />
 
