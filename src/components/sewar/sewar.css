@@ -112,7 +112,7 @@ a {
     text-decoration: none;
 }
 
-.divShow button {
+/* .divShow button {
     color: rgb(121, 85, 72);
     border: none;
     padding: 10px 25px;
@@ -122,7 +122,7 @@ a {
     transition: 0.2s;
 
     border-radius: 10px;
-}
+} */
 
 .divShow button:hover {
     background-color: rgb(121, 85, 72);
@@ -630,4 +630,33 @@ a {
     justify-content: center;
     align-items: center;
     height: 20vh;
+}
+
+.linkForMore a,
+button {
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+
+.linkForMore button {
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.2s;
+    border-radius: 10px;
+}
+
+.linkForMore a,
+button.dark {
+    background-color: rgb(37, 48, 59);
+}
+
+.linkForMore a,
+button.light {
+    background-color: rgba(0, 117, 255, 0.29);
 }
