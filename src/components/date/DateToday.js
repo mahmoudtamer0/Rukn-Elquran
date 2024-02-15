@@ -17,6 +17,8 @@ const DateToday = () => {
     const [selectShow, setSelectShow] = useState(false)
     const [secondSelectShow, setSecondSelectShow] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [search, setSearch] = useState([])
+    const [search2, setSearch2] = useState([])
 
 
 
@@ -148,18 +150,21 @@ const DateToday = () => {
                         </div>
                         <div className='sideBarInput mb-4'>
                             <input
-                                placeholder='ابحث عن قارئ'
+                                autoFocus
+                                placeholder='ابحث عن البلد'
                                 style={{ backgroundColor: colors.searchColor }}
+                                onChange={(e) => setSearch(e.target.value.toLowerCase())}
                                 type='text' />
                         </div>
-                        {countrys.map((country, index) => (
+                        {countrys.filter((item) => {
+                            return search !== "" ? item.country.toLowerCase().includes(search) : countrys
+                        }).map((country) => (
                             <button
                                 onClick={() => handleSelectClick(country)}
                                 className='btnnnnn'>
                                 <button
                                     style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
                                     {country.country}
-                                    {index}
                                 </button>
                             </button>
                         ))}
@@ -192,11 +197,14 @@ const DateToday = () => {
                         </div>
                         <div className='sideBarInput mb-4'>
                             <input
-                                placeholder='ابحث عن قارئ'
+                                placeholder='ابحث عن مدينة'
+                                onChange={(e) => setSearch2(e.target.value.toLowerCase())}
                                 style={{ backgroundColor: colors.searchColor }}
                                 type='text' />
                         </div>
-                        {cities.map(cityy => (
+                        {cities.filter((item) => {
+                            return search2 !== "" ? item.toLowerCase().includes(search2) : cities
+                        }).map(cityy => (
                             <button
                                 onClick={() => handleSecondeSelectClick(cityy)}
                                 className='btnnnnn'>
