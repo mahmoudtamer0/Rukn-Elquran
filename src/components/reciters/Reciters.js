@@ -8,36 +8,16 @@ import PulseLoader from "react-spinners/PulseLoader";
 const Reciters = () => {
 
     const {
-        sewar, getSewar,
         reciters, getReciters,
         colors, font, fontSize,
         lang
     } = useData()
-    const [sewarList, setSewarList] = useState([])
-    const [newSewar, setNewSewar] = useState([])
     const [search, setSearch] = useState('')
 
-    const [numberOfRec, setNumberOfRec] = useState(20)
-
     useEffect(() => {
-        getSewar()
         getReciters()
     }, [])
 
-
-    useEffect(() => {
-        const newarr = []
-        if (sewarList != '') {
-            sewarList.map(soraList => {
-                sewar?.map(soraName => {
-                    if (soraName.id == soraList) {
-                        newarr.push(soraName)
-                        setNewSewar(newarr)
-                    }
-                })
-            })
-        }
-    }, [sewarList])
 
     return (
         <div>
