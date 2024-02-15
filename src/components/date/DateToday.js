@@ -23,15 +23,10 @@ const DateToday = () => {
 
 
     useEffect(() => {
-
-        try {
-            setLoading(true)
-            fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
-                .then(res => res.json())
-                .then(data => setTimings(data.data))
-        } catch { }
-        setLoading(false)
-    }, [])
+        fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
+            .then(res => res.json())
+            .then(data => setTimings(data.data))
+    }, [country])
 
 
     useEffect(() => {
@@ -70,10 +65,8 @@ const DateToday = () => {
 
 
     const handleSecondeSelectClick = async (city) => {
-
         setCity(city)
         setSecondSelectShow(false)
-
         try {
             setLoading(true)
             await fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
@@ -88,11 +81,8 @@ const DateToday = () => {
 
 
     const today = new Date();
-
-    // Initialize state with today's date
     const [selectedDate, setSelectedDate] = useState(today);
 
-    // Function to format the date to "DD-MM-YYYY" format
     const formatDate = (date) => {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
