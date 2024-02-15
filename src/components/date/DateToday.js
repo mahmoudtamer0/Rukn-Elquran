@@ -10,8 +10,8 @@ const DateToday = () => {
         font, fontSize, lang } = useData();
 
     const [timings, setTimings] = useState([])
-    const [country, setCountry] = useState("Egypt")
-    const [city, setCity] = useState("Cairo")
+    const [country, setCountry] = useState()
+    const [city, setCity] = useState()
     const [countrys, setCountrys] = useState([])
     const [cities, setCities] = useState([])
     const [selectShow, setSelectShow] = useState(false)
@@ -23,19 +23,17 @@ const DateToday = () => {
 
     const getTimings = async () => {
         try {
-            setLoading(true)
             await fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
                 .then(res => res.json())
                 .then(data => setTimings(data.data))
         } catch {
 
         }
-        setLoading(false)
     }
 
     useEffect(() => {
         getTimings()
-    }, [])
+    }, [city])
 
 
     useEffect(() => {
@@ -128,7 +126,6 @@ const DateToday = () => {
             <div className='container mainRec' style={{ paddingBottom: "0" }}>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>مواقيت الصلاه</h2>
                 <form onSubmit={handleSubmit} class="row mb-4 formDate">
-
                     <div
                         ref={boxRef}
                         style={{ background: colors.sidBarColor, transform: "translateY(-30%)" }}
