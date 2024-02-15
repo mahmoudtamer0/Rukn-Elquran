@@ -240,9 +240,10 @@ const DateToday = () => {
 
                 {!loading > 0 ?
                     <>
-                        <div>{city}, {country}, {lang == "eng" ? timings?.date?.gregorian?.weekday?.en :
-                            timings?.date?.hijri?.weekday?.ar
-                        }</div>
+                        <div className='mb-3' style={{ color: colors.blackColor }}>
+                            {city}, {country}, {lang == "eng" ? timings?.date?.gregorian?.weekday?.en :
+                                timings?.date?.hijri?.weekday?.ar
+                            }</div>
                         <div className='sewarBoxes justify-content-between align-items-center'>
                             <div
                                 style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
