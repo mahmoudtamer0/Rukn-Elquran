@@ -10,8 +10,8 @@ const DateToday = () => {
         font, fontSize, lang } = useData();
 
     const [timings, setTimings] = useState([])
-    const [country, setCountry] = useState()
-    const [city, setCity] = useState()
+    const [country, setCountry] = useState("Egypt")
+    const [city, setCity] = useState("Cairo")
     const [countrys, setCountrys] = useState([])
     const [cities, setCities] = useState([])
     const [selectShow, setSelectShow] = useState(false)
@@ -21,12 +21,21 @@ const DateToday = () => {
     const [search2, setSearch2] = useState([])
 
 
+    const getTimings = async () => {
+        try {
+            setLoading(true)
+            await fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
+                .then(res => res.json())
+                .then(data => setTimings(data.data))
+        } catch {
+
+        }
+        setLoading(false)
+    }
 
     useEffect(() => {
-        fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
-            .then(res => res.json())
-            .then(data => setTimings(data.data))
-    }, [country])
+        getTimings()
+    }, [])
 
 
     useEffect(() => {
@@ -48,15 +57,13 @@ const DateToday = () => {
     }
 
     const handleSelectClick = async (country) => {
+        setLoading(true)
         setCountry(country.country)
         setCities(country.cities)
         setCity(country.cities[0])
         setSelectShow(false)
         try {
-            setLoading(true)
-            await fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
-                .then(res => res.json())
-                .then(data => setTimings(data.data))
+            getTimings()
         } catch { }
         setTimeout(() => {
             setLoading(false)
@@ -68,10 +75,7 @@ const DateToday = () => {
         setCity(city)
         setSecondSelectShow(false)
         try {
-            setLoading(true)
-            await fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
-                .then(res => res.json())
-                .then(data => setTimings(data.data))
+            getTimings()
         } catch { }
 
         setTimeout(() => {
@@ -96,10 +100,7 @@ const DateToday = () => {
         const [day, month, year] = event.target.value.split('-').map(Number);
         const selectedDate = new Date(year, month - 1, day); // Month is zero-based
         setSelectedDate(selectedDate);
-
-        fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
-            .then(res => res.json())
-            .then(data => setTimings(data.data))
+        getTimings()
     };
 
 
@@ -149,14 +150,17 @@ const DateToday = () => {
                         {countrys.filter((item) => {
                             return search !== "" ? item.country.toLowerCase().includes(search) : countrys
                         }).map((country) => (
-                            <button
-                                onClick={() => handleSelectClick(country)}
-                                className='btnnnnn'>
+                            country.country != "United States" ?
                                 <button
-                                    style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
-                                    {country.country}
+                                    onClick={() => handleSelectClick(country)}
+                                    className='btnnnnn'>
+                                    <button
+                                        style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
+                                        {country.country}
+                                    </button>
                                 </button>
-                            </button>
+                                :
+                                null
                         ))}
                     </div>
 
