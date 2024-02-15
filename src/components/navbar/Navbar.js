@@ -89,18 +89,18 @@ function Navbar() {
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
-                        <i className="fa-regular fa-clock"></i>
+                        <i class="fa-solid fa-radio"></i>
                         <span>
                             {t("navBar.radio")}
                         </span>
                     </NavLink>
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
-                        to={`/Rukn-Elquran/reciters`}
+                        to={`/Rukn-Elquran/prayer_times`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
-                        <i className="fa-solid fa-exclamation"></i>
+                        <i className="fa-regular fa-clock"></i>
                         <span>
                             {t("navBar.about")}
                         </span>
@@ -147,9 +147,10 @@ function Navbar() {
                                     className="nav-link" href="#">{t("navBar.radio")}</NavLink>
                             </li>
                             <li className="nav-item">
-                                <a
+                                <NavLink
+                                    to={`/Rukn-Elquran/prayer_times`}
                                     style={{ color: colors.blackColor }}
-                                    className="nav-link" href="#">{t("navBar.about")}</a>
+                                    className="nav-link" href="#">{t("navBar.about")}</NavLink>
                             </li>
                         </ul>
                     </div>
