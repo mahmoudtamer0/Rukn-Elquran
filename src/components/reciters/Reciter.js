@@ -166,7 +166,7 @@ const Reciter = () => {
                                             backgroundColor: "transparent",
                                             border: "none"
                                         }}>
-                                        <i class="downLoadBtn fa-solid fa-download"></i>
+                                        <i className="downLoadBtn fa-solid fa-download"></i>
                                     </button>
 
                                 }
