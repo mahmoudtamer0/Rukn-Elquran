@@ -105,6 +105,18 @@ function Navbar() {
                             {t("navBar.about")}
                         </span>
                     </NavLink>
+
+                    <NavLink
+                        onClick={() => setSideNavBarShow(false)}
+                        to={`/Rukn-Elquran/about_us`}
+                        style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
+                        className="nav-link" href="#"
+                    >
+                        <i className="fa-regular fa-clock"></i>
+                        <span>
+                            {t("home.about_us")}
+                        </span>
+                    </NavLink>
                 </div>
             </div>
             <nav style={{ display: "block", backgroundColor: colors.navColor }} className="navbar navbar-expand-lg ">
@@ -152,6 +164,12 @@ function Navbar() {
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" href="#">{t("navBar.about")}</NavLink>
                             </li>
+                            <li className="nav-item">
+                                <NavLink
+                                    to={`/Rukn-Elquran/about_us`}
+                                    style={{ color: colors.blackColor }}
+                                    className="nav-link" href="#">{t("home.about_us")}</NavLink>
+                            </li>
                         </ul>
                     </div>
                     <div className=" navIconsDiv" id="navbarTogglerDemo03">
@@ -187,12 +205,14 @@ function Navbar() {
 
 
 
-                {scrollBool ?
-                    <>
-                        <ScrollProgressBar />
-                    </>
-                    : null}
-            </nav>
+                {
+                    scrollBool ?
+                        <>
+                            <ScrollProgressBar />
+                        </>
+                        : null
+                }
+            </nav >
 
         </div >
 
