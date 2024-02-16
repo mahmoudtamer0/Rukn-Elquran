@@ -44,6 +44,10 @@ h1 {
   direction: ltr;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .mahmoud {
   text-decoration: underline;
 }
