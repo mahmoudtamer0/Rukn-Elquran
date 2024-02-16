@@ -660,3 +660,8 @@ button.dark {
 button.light {
     background-color: rgba(0, 117, 255, 0.29);
 }
+
+.linkHome:hover {
+    transition: 0.2s;
+    color: #0075ff !important;
+}
