@@ -4,22 +4,22 @@ import { useData } from '../../context/AppContext'
 import { useClickAway } from '@uidotdev/usehooks'
 import { useLocation } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
+import { useTranslation } from 'react-i18next'
 
 function Button({ play, isPlaying }) {
-    const { colors, setServer, reciters, getReciters, soraId, server, setSoraId } = useData()
+    const { colors, setServer, reciters, getReciters, soraId, server, setSoraId, lang } = useData()
     const [select, setSelect] = useState(false)
     const [selectReciters, setSelectReciters] = useState(false)
     const [elliBool, setElliBool] = useState(false)
     const [search, setSearch] = useState('')
     const [downLoaded, setDownLoaded] = useState(<i style={{ color: colors.greyColor }} class="fa-solid fa-download"></i>)
     const [loading, setLoading] = useState(false)
+    const { t, i18n } = useTranslation()
     useEffect(() => {
         getReciters()
     }, [])
 
     const { pathname } = useLocation()
-
-    // console.log(Math.floor(Math.random() * 999))
 
     useEffect(() => {
         if (server.includes("https://backup.qurango.net/")) {
@@ -120,10 +120,13 @@ function Button({ play, isPlaying }) {
                 <button
                     disabled={loading}
                     onClick={() => handleDownload()}
-                    className={`btnnnnn justify-content-end ${loading ? "opaaa" : ""}`}>
+                    className=
+                    {`btnnnnn 
+                    ${lang == "ar" ? "justify-content-end" : "justify-content-start"}
+                     ${loading ? "opaaa" : ""}`}>
                     <span
                         style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
-                        تحميل
+                        {t("audio.download")}
                     </span>
                     {!loading
                         ?
@@ -143,10 +146,10 @@ function Button({ play, isPlaying }) {
                         setSelectReciters(true)
                         setSelect(false)
                     }}
-                    className='btnnnnn justify-content-end'>
+                    className={`btnnnnn ${lang == "ar" ? "justify-content-end" : "justify-content-start"}`}>
                     <span
                         style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
-                        القراء
+                        {t("audio.rec_change")}
                     </span>
                 </button>
             </div>
