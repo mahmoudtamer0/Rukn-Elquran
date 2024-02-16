@@ -3,6 +3,7 @@ import { useData } from '../../context/AppContext';
 import { useClickAway } from '@uidotdev/usehooks'
 import './date.css'
 import PulseLoader from "react-spinners/PulseLoader";
+import { useTranslation } from 'react-i18next';
 
 const DateToday = () => {
     const {
@@ -19,6 +20,7 @@ const DateToday = () => {
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState([])
     const [search2, setSearch2] = useState([])
+    const { t, i18n } = useTranslation()
 
 
     const getTimings = async () => {
@@ -124,7 +126,7 @@ const DateToday = () => {
     return (
         <div className='mainRec'>
             <div className='container mainRec' style={{ paddingBottom: "0" }}>
-                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>مواقيت الصلاه</h2>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("home.prayer_times")}</h2>
                 <form onSubmit={handleSubmit} class="row mb-4 formDate">
                     <div
                         ref={boxRef}
@@ -139,7 +141,7 @@ const DateToday = () => {
                         <div className='sideBarInput mb-4'>
                             <input
                                 autoFocus
-                                placeholder='ابحث عن البلد'
+                                placeholder={t("home.search_for_country")}
                                 style={{ backgroundColor: colors.searchColor }}
                                 onChange={(e) => setSearch(e.target.value.toLowerCase())}
                                 type='text' />
@@ -188,7 +190,7 @@ const DateToday = () => {
                         </div>
                         <div className='sideBarInput mb-4'>
                             <input
-                                placeholder='ابحث عن مدينة'
+                                placeholder={t("home.search_for_city")}
                                 onChange={(e) => setSearch2(e.target.value.toLowerCase())}
                                 style={{ backgroundColor: colors.searchColor }}
                                 type='text' />
@@ -250,7 +252,7 @@ const DateToday = () => {
                             >
                                 <div className='soraDet'>
                                     <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }}
-                                        className='soraName'>الفجر</span>
+                                        className='soraName'>{t("home.fajr")}</span>
                                 </div>
                                 <div className='ayahsCount' style={{ color: colors.greyColor }}>
                                     {timings?.timings?.Fajr}</div>
@@ -261,7 +263,7 @@ const DateToday = () => {
                             >
                                 <div className='soraDet'>
                                     <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }}
-                                        className='soraName'>الشروق</span>
+                                        className='soraName'>{t("home.sunrise")}</span>
                                 </div>
                                 <div className='ayahsCount' style={{ color: colors.greyColor }}>
                                     {timings?.timings?.Sunrise}</div>
@@ -272,7 +274,7 @@ const DateToday = () => {
                             >
                                 <div className='soraDet'>
                                     <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }}
-                                        className='soraName'>الضهر</span>
+                                        className='soraName'>{t("home.duhr")}</span>
                                 </div>
                                 <div className='ayahsCount' style={{ color: colors.greyColor }}>
                                     {timings?.timings?.Dhuhr}
@@ -284,7 +286,7 @@ const DateToday = () => {
                             >
                                 <div className='soraDet'>
                                     <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }}
-                                        className='soraName'>العصر</span>
+                                        className='soraName'>{t("home.asr")}</span>
                                 </div>
                                 <div className='ayahsCount' style={{ color: colors.greyColor }}>
                                     {timings?.timings?.Asr}</div>
@@ -295,7 +297,7 @@ const DateToday = () => {
                             >
                                 <div className='soraDet'>
                                     <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }}
-                                        className='soraName'>المغرب</span>
+                                        className='soraName'>{t("home.maghrib")}</span>
                                 </div>
                                 <div className='ayahsCount' style={{ color: colors.greyColor }}>
                                     {timings?.timings?.Maghrib}</div>
@@ -306,7 +308,7 @@ const DateToday = () => {
                             >
                                 <div className='soraDet'>
                                     <span style={{ color: colors.blackColor, fontFamily: font, fontSize: fontSize }}
-                                        className='soraName'>العشاء</span>
+                                        className='soraName'>{t("home.isha")}</span>
                                 </div>
                                 <div className='ayahsCount' style={{ color: colors.greyColor }}>
                                     {timings?.timings?.Isha}</div>
