@@ -5,12 +5,17 @@ import { useData } from '../../context/AppContext'
 import "./sewar.css"
 
 const Sewar = () => {
-    const { sewar, getSewar, colors, setSideBarOpen, font, fontSize } = useData()
+    const { sewar, getSewar, colors, setSideBarOpen, font, fontSize, setPageScrollTo } = useData()
     const [sewarCount, setSewarCount] = useState(21)
 
     useEffect(() => {
         getSewar()
     }, [])
+
+    const handleClick = () => {
+        setSideBarOpen(true)
+        setPageScrollTo(0)
+    }
 
     return (
         <div className='Sewar'>
@@ -20,7 +25,7 @@ const Sewar = () => {
                         return (
                             <NavLink
                                 key={sora.number}
-                                onClick={() => setSideBarOpen(true)}
+                                onClick={() => handleClick()}
                                 to={`/Rukn-Elquran/sewar/${sora.number || sora.id}`}
                                 style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                 className='soraBox d-flex justify-content-between align-items-center'>
