@@ -12,7 +12,7 @@ function Button({ play, isPlaying }) {
     const [selectReciters, setSelectReciters] = useState(false)
     const [elliBool, setElliBool] = useState(false)
     const [search, setSearch] = useState('')
-    const [downLoaded, setDownLoaded] = useState(<i style={{ color: colors.greyColor }} class="fa-solid fa-download"></i>)
+    const [downLoaded, setDownLoaded] = useState(<i style={{ color: colors.greyColor }} className="fa-solid fa-download"></i>)
     const [loading, setLoading] = useState(false)
     const { t, i18n } = useTranslation()
     useEffect(() => {
@@ -28,7 +28,7 @@ function Button({ play, isPlaying }) {
             setElliBool(true)
         }
 
-        setDownLoaded(<i style={{ color: colors.greyColor }} class="fa-solid fa-download"></i>)
+        setDownLoaded(<i style={{ color: colors.greyColor }} className="fa-solid fa-download"></i>)
     }, [server])
 
     const handleElliClick = () => {
@@ -69,7 +69,7 @@ function Button({ play, isPlaying }) {
 
         }
         setLoading(false)
-        setDownLoaded(<i style={{ color: colors.mainColor }} class="fa-solid fa-check"></i>)
+        setDownLoaded(<i style={{ color: colors.mainColor }} className="fa-solid fa-check"></i>)
     }
 
 
@@ -103,7 +103,7 @@ function Button({ play, isPlaying }) {
                             style={{ borderColor: colors.borderColor, color: colors.blackColor }}>{rec.name}
                         </button>
                         {server == `${rec.moshaf[0].server}${soraId}` ?
-                            <i class="fa-solid fa-check"></i> : null
+                            <i className="fa-solid fa-check"></i> : null
                         }
                     </button>
                 ))}
