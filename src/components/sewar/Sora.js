@@ -177,8 +177,9 @@ const SoraMain = () => {
     //end getting reciters tafseer and ayahs and the soraName
 
     useEffect(() => {
-        window.scrollTo(0, document.querySelector(`.page${pageScrollTo}`)?.offsetTop)
-    }, [ayahs])
+        console.log(pageScrollTo)
+        window.scrollTo(0, document.querySelector(`.page${pageScrollTo}`)?.offsetTop - 50)
+    }, [pages])
 
 
     //start handle the function of sora history
@@ -202,7 +203,7 @@ const SoraMain = () => {
                 }])
             }
         }
-    }, [reciters, scrollY])
+    }, [reciters])
     //end handle the function of sora history
 
     useEffect(() => {
