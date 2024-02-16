@@ -188,7 +188,7 @@ function Navbar() {
                                 }
                                 <div ref={boxRef} className={`${Langvisible ? "d-block" : "d-none"}`}>
                                     <button style={{ borderRadius: "0" }} onClick={() => handleArLanguage()}>Arabic</button>
-                                    <button onClick={() => handleEngLanguage()}>English</button>
+                                    <button style={{ borderRadius: "0" }} onClick={() => handleEngLanguage()}>English</button>
                                 </div>
                             </li>
                             <li className="nav-item" >
