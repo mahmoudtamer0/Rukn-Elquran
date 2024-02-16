@@ -2,12 +2,14 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import landingImg from "../images/quran-book.jpg"
 import { useData } from '../context/AppContext';
+import { useTranslation } from 'react-i18next';
 
 const Radio = () => {
 
-    const { radio, getRadio, colors, setServer, server, font, fontSize } = useData()
+    const { radio, getRadio, colors, setServer, server, font, fontSize, lang } = useData()
     const [search, setSearch] = useState([])
     const [soraId, setSoraId] = useState()
+    const { t, i18n } = useTranslation()
 
     useEffect(() => {
         getRadio()
@@ -26,19 +28,21 @@ const Radio = () => {
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
-                        <h2 className='landingTitle'>قراء القرأن</h2>
+                        <h2
+                            style={{ fontFamily: font, }}
+                            className={`landingTitle ${lang == "eng" ? "font2" : null}`}>{t("radio.quran_radios")}</h2>
                     </div>
                     <div className='recDivSearch'>
                         <input
                             onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
-                            placeholder='ابحث عن اذاعات القران الكريم' />
+                            placeholder={t("radio.search_for_quran_radios")} />
                     </div>
                 </div>
             </div>
 
             <div className='container mainRec'>
-                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع اذاعات القران الكريم</h2>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("radio.all_radios")}</h2>
                 <div className='sewarBoxes '>
                     {radio?.filter((item) => {
                         return search !== "" ? item.name.toLowerCase().includes(search) : radio
@@ -60,7 +64,9 @@ const Radio = () => {
                                         }
                                     </span>
                                 </div>
-                                <span style={{ color: colors.blackColor }} >{`${(index + 1).toLocaleString("ar-SA")}`}</span>
+                                <span style={{ color: colors.blackColor }} >
+                                    {lang == "ar" ? (index + 1).toLocaleString("ar-SA") : (index + 1)}
+                                </span>
                                 <span style={{ color: colors.blackColor, fontSize: fontSize, fontFamily: font }} className='soraName'>{radio.name}</span>
                             </div>
 
