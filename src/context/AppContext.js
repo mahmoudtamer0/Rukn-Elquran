@@ -36,7 +36,7 @@ const AppContext = ({ children }) => {
     const [element, setElement] = useState()
     const [play, setPlay] = useState(false)
     const { t, i18n } = useTranslation()
-    const [sewarApi, setSewarApi] = useState('https://api.alquran.cloud/v1/surah')
+    const [pageScrollTo, setPageScrollTo] = useState(0)
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
     const [fontSize, setFontSize] = useState("1.7rem")
     const [lang, setLang] = useState(JSON.parse(localStorage.getItem("lang")) ?
@@ -152,8 +152,6 @@ const AppContext = ({ children }) => {
             .then(res => res.json())
             .then(data => setAyahs(data.data.ayahs))
     }
-
-
     return (
         <DataContext.Provider value=
             {{
@@ -171,7 +169,8 @@ const AppContext = ({ children }) => {
                 getRadio, radio, lang,
                 handleEngLanguage, handleArLanguage, font,
                 play, setPlay, fontSize,
-                setLastSoras, lastSoras
+                setLastSoras, lastSoras,
+                pageScrollTo, setPageScrollTo
             }}>
             {children}
         </DataContext.Provider>
