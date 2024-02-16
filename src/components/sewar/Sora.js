@@ -66,13 +66,14 @@ const SoraMain = () => {
             bt.classList.remove("ayahClickedDark")
         })
         ays.map(bt => {
-            bt.classList.remove("ayahClickedDark")
+            bt.classList.remove("ayahClickedLight")
         })
 
-        if (JSON.parse(localStorage.getItem("mode")) == "dark") {
-            document.querySelector(`.ayahSpan${ayah.numberInSurah}`)?.classList.add("ayahClickedDark")
-        } else {
+        if (JSON.parse(localStorage.getItem("mode")) == "light") {
             document.querySelector(`.ayahSpan${ayah.numberInSurah}`)?.classList.add("ayahClickedLight")
+
+        } else {
+            document.querySelector(`.ayahSpan${ayah.numberInSurah}`)?.classList.add("ayahClickedDark")
         }
 
 
@@ -150,10 +151,10 @@ const SoraMain = () => {
 
     // start style for single ayah on hover
     const handleMouseOver = (e) => {
-        if (JSON.parse(localStorage.getItem("mode")) == "dark") {
-            e.target.classList.add("hoverAyahDark")
-        } else {
+        if (JSON.parse(localStorage.getItem("mode")) == "light") {
             e.target.classList.add("hoverAyahLight")
+        } else {
+            e.target.classList.add("hoverAyahDark")
         }
     }
     const handleMouseOut = (e) => {
