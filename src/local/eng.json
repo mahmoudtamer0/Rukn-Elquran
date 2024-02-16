@@ -18,7 +18,7 @@
         "link4": "mahmud khalil"
     },
     "home": {
-        "befor": "Last read",
+        "befor": "Readed Before",
         "page": "Page",
         "prayer_times": "Prayer Times",
         "search_for_country": "search for country",
@@ -38,7 +38,8 @@
         "aboutp4": "Contact with me",
         "aboutp5": "E-mail",
         "all_surahs": "Qur'an Surahs",
-        "search_for_surah": "search for surah"
+        "search_for_surah": "search for surah",
+        "no_surahs": "There are no previous surahs"
     },
     "reciters": {
         "quran_reciters": "Qur'an Reciters",
