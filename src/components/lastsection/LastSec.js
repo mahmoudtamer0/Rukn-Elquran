@@ -17,6 +17,7 @@ export const LastSec = () => {
                     <div className='lastMainBoxes d-flex align-items-center'>
                         {lastSoras.slice(-10).reverse().map((sora, index) => (
                             <NavLink
+                                key={sora.soraName}
                                 onClick={() => setPageScrollTo(sora.PageNow)}
                                 to={`/Rukn-Elquran/sewar/${sora.soraId}`}
                                 className='mainBox'
