@@ -11,12 +11,17 @@ const Home = () => {
     const { sewar, getSewar,
         colors, setSideBarOpen,
         font, fontSize,
-        reciters, getReciters, lang, mode } = useData()
+        reciters, getReciters, lang, mode, setPageScrollTo } = useData()
 
     useEffect(() => {
         getReciters()
         getSewar()
     }, [])
+
+    const handleClick = () => {
+        setSideBarOpen(true)
+        setPageScrollTo(0)
+    }
 
     return (
         <div>
@@ -33,7 +38,7 @@ const Home = () => {
                             return (
                                 <NavLink
                                     key={sora.number}
-                                    onClick={() => setSideBarOpen(true)}
+                                    onClick={() => handleClick()}
                                     to={`/Rukn-Elquran/sewar/${sora.number || sora.id}`}
                                     style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                     className='soraBox d-flex justify-content-between align-items-center'>
