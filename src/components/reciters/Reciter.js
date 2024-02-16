@@ -105,9 +105,9 @@ const Reciter = () => {
                         {newSewar.filter((item) => {
                             return search !== "" ? item.name.toLowerCase().includes(search) : sewar
                         }).map((sora, index) => (
-                            <div style={{ position: "relative" }}>
+                            <div key={index} style={{ position: "relative" }}>
                                 <button
-                                    key={sora.id}
+                                    key={index}
                                     onClick={() => handlePlay(sora)}
                                     style={{
                                         backgroundColor: "transparent",
