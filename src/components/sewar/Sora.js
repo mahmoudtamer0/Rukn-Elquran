@@ -189,7 +189,7 @@ const SoraMain = () => {
                 const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                     soraName: soraName,
                     soraId: soraNum,
-                    firstPageNumber: pags[0].className.split("soraPage page")[1],
+                    firstPageNumber: pags[0]?.className.split("soraPage page")[1],
                     PageNow: pageNow
                 }];
                 setLastSoras(updatedProducts)
@@ -197,7 +197,7 @@ const SoraMain = () => {
                 setLastSoras([...lastSoras, {
                     soraName: soraName,
                     soraId: soraNum,
-                    firstPageNumber: pags[0].className.split("soraPage page")[1],
+                    firstPageNumber: pags[0]?.className.split("soraPage page")[1],
                     PageNow: pageNow
                 }])
             }
@@ -250,11 +250,13 @@ const SoraMain = () => {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY)
-            if (pags.length > 0) {
-                pags?.map(page =>
+            if (pags.length == 0) {
+                return
+            } else {
+                pags.map(page =>
                 (
-                    page?.offsetTop - 50 <= scrollY &&
-                    setPageNow(page?.className?.split("soraPage page")[1])
+                    page.offsetTop - 50 <= scrollY &&
+                    setPageNow(page?.className.split("soraPage page")[1])
                 )
                 )
             }
@@ -263,7 +265,7 @@ const SoraMain = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [scrollY, pages])
+    }, [scrollY])
 
 
     return (
