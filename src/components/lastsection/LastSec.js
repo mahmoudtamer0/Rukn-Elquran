@@ -4,7 +4,7 @@ import "./last-sec.css"
 import { NavLink } from 'react-router-dom'
 
 export const LastSec = () => {
-    const { colors, lastSoras, font } = useData()
+    const { colors, lastSoras, font, setPageScrollTo } = useData()
 
 
     return (
@@ -15,6 +15,7 @@ export const LastSec = () => {
                 <div className='lastMainBoxes d-flex align-items-center'>
                     {lastSoras.slice(-10).reverse().map((sora, index) => (
                         <NavLink
+                            onClick={() => setPageScrollTo(sora.PageNow)}
                             to={`/Rukn-Elquran/sewar/${sora.soraId}`}
                             className='mainBox'
                             style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
@@ -24,6 +25,19 @@ export const LastSec = () => {
                             </div>
                             <div className='boxBody' style={{ backgroundColor: colors.navColor }}>
                                 <div style={{ fontFamily: font, fontSize: "2rem" }}>{sora.soraName.split("سُورَةُ")}</div>
+                                {sora.PageNow != undefined ?
+                                    <div style={{ fontSize: "17px" }}>
+                                        <span style={{ fontFamily: font }}>صفحة</span>
+                                        <span>{sora.PageNow}</span>
+
+                                    </div>
+                                    :
+                                    <div style={{ fontSize: "17px" }}>
+                                        <span style={{ fontFamily: font }}> صفحة</span>
+                                        <span> {sora.firstPageNumber}</span>
+                                    </div>
+                                }
+
                             </div>
                         </NavLink>
                     ))}
