@@ -38,7 +38,8 @@
         "aboutp4": "تواصل معي",
         "aboutp5": "ايميل",
         "all_surahs": "سور القران",
-        "search_for_surah": "ابحث عن سورة"
+        "search_for_surah": "ابحث عن سورة",
+        "no_surahs": "لا يوجد سور سابقة"
     },
     "reciters": {
         "quran_reciters": "قراء القرأن",
