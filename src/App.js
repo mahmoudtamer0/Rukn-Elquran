@@ -13,6 +13,7 @@ import { LastSec } from "./components/lastsection/LastSec";
 import Footer from "./components/footer/Footer";
 import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
+import AboutUs from "./components/AboutUs";
 // import DateToday from "./components/DateToday";
 
 function App() {
@@ -45,6 +46,10 @@ function App() {
 
             <Route path="/Rukn-Elquran/radio" element={<>
               <Radio />
+            </>} />
+
+            <Route path="/Rukn-Elquran/about_us" element={<>
+              <AboutUs />
             </>} />
           </Routes>
           <MainAudio />
