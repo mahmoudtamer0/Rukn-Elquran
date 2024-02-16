@@ -5,6 +5,7 @@ import "./rec.css"
 import "../sewar/sewar.css"
 import { NavLink } from 'react-router-dom';
 import PulseLoader from "react-spinners/PulseLoader";
+import { useTranslation } from 'react-i18next';
 const Reciters = () => {
 
     const {
@@ -13,6 +14,7 @@ const Reciters = () => {
         lang
     } = useData()
     const [search, setSearch] = useState('')
+    const { t, i18n } = useTranslation()
 
     useEffect(() => {
         getReciters()
@@ -27,19 +29,22 @@ const Reciters = () => {
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
-                        <h2 className={`landingTitle ${lang == "eng" ? "font2" : null}`}>قراء القرأن</h2>
+                        <h2 style={{ fontFamily: font, }}
+                            className={`landingTitle ${lang == "eng" ? "font2" : null}`}>
+                            {t("reciters.quran_reciters")}
+                        </h2>
                     </div>
                     <div className='recDivSearch'>
                         <input
                             onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
-                            placeholder='ابحث عن القارئ' />
+                            placeholder={t("reciters.search_for_reciter")} />
                     </div>
                 </div>
             </div>
 
             <div className='container mainRec'>
-                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع القراء</h2>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("reciters.all_reciters")}</h2>
                 {reciters.length > 0 ?
                     <div className='sewarBoxes justify-content-between align-items-center'>
                         {reciters.filter((item) => {
