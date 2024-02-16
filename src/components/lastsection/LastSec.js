@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { useData } from '../../context/AppContext'
 import "./last-sec.css"
 import { NavLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export const LastSec = () => {
     const { colors, lastSoras, font, setPageScrollTo } = useData()
-
+    const { t, i18n } = useTranslation()
 
     return (
         <div>
             <div className='container mainRec' style={{ position: "relative" }}>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}
-                >قرئ مؤخرا</h2>
+                >{t("home.befor")}</h2>
                 <div className='lastMainBoxes d-flex align-items-center'>
                     {lastSoras.slice(-10).reverse().map((sora, index) => (
                         <NavLink
@@ -27,13 +28,13 @@ export const LastSec = () => {
                                 <div style={{ fontFamily: font, fontSize: "2rem" }}>{sora.soraName.split("سُورَةُ")}</div>
                                 {sora.PageNow != undefined ?
                                     <div style={{ fontSize: "17px" }}>
-                                        <span style={{ fontFamily: font }}>صفحة</span>
-                                        <span>{sora.PageNow}</span>
+                                        <span style={{ fontFamily: font }}> {t("home.page")} </span>
+                                        <span> {sora.PageNow}</span>
 
                                     </div>
                                     :
                                     <div style={{ fontSize: "17px" }}>
-                                        <span style={{ fontFamily: font }}> صفحة</span>
+                                        <span style={{ fontFamily: font }}> {t("home.page")} </span>
                                         <span> {sora.firstPageNumber}</span>
                                     </div>
                                 }
