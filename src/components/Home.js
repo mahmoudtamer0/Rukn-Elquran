@@ -34,7 +34,16 @@ const Home = () => {
 
             <div className='Sewar' style={{ paddingTop: "65px" }}>
                 <div className='container'>
-                    <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("navBar.sewar")}</h2>
+                    <NavLink
+                        className={`linkHome`}
+                        to={`/Rukn-Elquran/sewar`}
+                        style=
+                        {{
+                            color: colors.blackColor, fontSize: "1.7rem",
+                            marginBottom: "20px", width: "100%", display: "block"
+                        }}>
+                        {t("navBar.sewar")}
+                    </NavLink>
                     <div className='sewarBoxes row justify-content-between align-items-center'>
                         {sewar?.slice(0, 9).map(sora => {
                             return (
@@ -73,7 +82,16 @@ const Home = () => {
             </div>
 
             <div className='container mainRec'>
-                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("navBar.reciters")}</h2>
+                <NavLink
+                    to={`/Rukn-Elquran/reciters`}
+                    className={`linkHome`}
+                    style=
+                    {{
+                        color: colors.blackColor, fontSize: "1.7rem", marginBottom: "20px",
+                        width: "100%", display: "block"
+                    }}>
+                    {t("navBar.reciters")}
+                </NavLink>
 
                 <div className='sewarBoxes justify-content-between align-items-center'>
                     {reciters.slice(0, 9).map((rec, index) => {
