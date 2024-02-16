@@ -6,6 +6,7 @@ import landingImg from "../../images/quran-book.jpg"
 import { useData } from '../../context/AppContext'
 import PulseLoader from "react-spinners/PulseLoader";
 import MoonLoader from "react-spinners/MoonLoader";
+import { useTranslation } from 'react-i18next'
 
 const Reciter = () => {
     const { colors, setServer, lang, soraId, setSoraId, font, setPlay, fontSize } = useData()
@@ -16,6 +17,7 @@ const Reciter = () => {
     const [reciter, setReciter] = useState([])
     const [search, setSearch] = useState([])
     const [loading, setLoading] = useState(false)
+    const { t, i18n } = useTranslation()
 
 
     useEffect(() => {
@@ -91,13 +93,13 @@ const Reciter = () => {
                         <input
                             onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
-                            placeholder='ابحث عن سورة لهذا القارئ' />
+                            placeholder={t("reciters.search_surah_for_reciter")} />
                     </div>
                 </div>
             </div>
 
             <div className='container mainRec'>
-                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>جميع السور لهذا القارئ</h2>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("reciters.all_surahs_reciter")}</h2>
                 {newSewar.length > 0 ?
                     <div className='sewarBoxes'>
                         {newSewar.filter((item) => {
