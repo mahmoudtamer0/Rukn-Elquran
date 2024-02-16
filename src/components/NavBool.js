@@ -14,7 +14,9 @@ const NavBool = () => {
             setScrollBool(false)
         }
 
-        window.scrollTo(0, 0);
+        if (pathname.includes("/Rukn-Elquran/sewar/")) {
+            return
+        } else window.scrollTo(0, 0);
     }, [pathname])
 }
 
