@@ -6,8 +6,10 @@ import { Link, NavLink } from 'react-router-dom'
 import { useData } from '../context/AppContext'
 import "./sewar/sewar.css"
 import DateToday from './date/DateToday';
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
+    const { t, i18n } = useTranslation()
     const { sewar, getSewar,
         colors, setSideBarOpen,
         font, fontSize,
@@ -30,9 +32,9 @@ const Home = () => {
 
             <DateToday />
 
-            <div className='Sewar'>
+            <div className='Sewar' style={{ paddingTop: "65px" }}>
                 <div className='container'>
-                    <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>السور</h2>
+                    <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("navBar.sewar")}</h2>
                     <div className='sewarBoxes row justify-content-between align-items-center'>
                         {sewar?.slice(0, 9).map(sora => {
                             return (
@@ -64,14 +66,14 @@ const Home = () => {
                             to={`/Rukn-Elquran/sewar`}
                             className={mode == "dark?" ? "dark" : "light"}
                             style={{ color: colors.mainColor }}
-                        >المزيد من السور
+                        >{t("home.more_surahs")}
                         </NavLink>
                     </div>
                 </div>
             </div>
 
             <div className='container mainRec'>
-                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}> القراء</h2>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("navBar.reciters")}</h2>
 
                 <div className='sewarBoxes justify-content-between align-items-center'>
                     {reciters.slice(0, 9).map((rec, index) => {
@@ -97,7 +99,7 @@ const Home = () => {
                         to={`/Rukn-Elquran/reciters`}
                         className={mode == "dark?" ? "dark" : "light"}
                         style={{ color: colors.mainColor }}
-                    >المزيد من القراء
+                    >{t("home.more_reciters")}
                     </NavLink>
                 </div>
             </div>
