@@ -152,6 +152,16 @@
     }
 }
 
+@media (max-width:1200px) {
+    .navLogo {
+        font-size: 26px;
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+        gap: 5px
+    }
+}
+
 .langLi div {
     position: absolute;
     background-color: white;
