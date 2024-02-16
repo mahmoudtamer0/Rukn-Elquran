@@ -20,7 +20,8 @@ const SoraMain = () => {
         sideBarOpen,
         lang, setPlay,
         setLastSoras, lastSoras,
-        getReciters, reciters
+        getReciters, reciters,
+        pageScrollTo
     } = useData()
 
     const spanref = useRef(null)
@@ -32,8 +33,11 @@ const SoraMain = () => {
     const [ayahInTafseer, setAyahInTafseer] = useState('')
     const [theTafseer, setTheTafseer] = useState('')
     const history = useLocation();
+    const [pageNow, setPageNow] = useState()
+    const [scrollY, setScrollY] = useState(0)
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
+    const pags = [...document.querySelectorAll('.soraPage')];
 
 
     // start handling tafseer function
@@ -166,10 +170,13 @@ const SoraMain = () => {
         fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
             .then(res => res.json())
             .then(data => setSoraName(data.data.name))
-
-        window.scrollTo(0, 0)
     }, [])
     //end getting reciters tafseer and ayahs and the soraName
+
+    useEffect(() => {
+        window.scrollTo(0, document.querySelector(`.page${pageScrollTo}`)?.offsetTop)
+    }, [ayahs])
+
 
     //start handle the function of sora history
     useEffect(() => {
@@ -178,17 +185,21 @@ const SoraMain = () => {
             if (index !== -1) {
                 const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                     soraName: soraName,
-                    soraId: soraNum
+                    soraId: soraNum,
+                    firstPageNumber: pags[0].className.split("soraPage page")[1],
+                    PageNow: pageNow
                 }];
                 setLastSoras(updatedProducts)
             } else {
                 setLastSoras([...lastSoras, {
                     soraName: soraName,
-                    soraId: soraNum
+                    soraId: soraNum,
+                    firstPageNumber: pags[0].className.split("soraPage page")[1],
+                    PageNow: pageNow
                 }])
             }
         }
-    }, [reciters])
+    }, [reciters, scrollY])
     //end handle the function of sora history
 
     useEffect(() => {
@@ -232,6 +243,23 @@ const SoraMain = () => {
         setPages(groupedPages);
         setSoraNow(soraName)
     }, [ayahs]);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY)
+            pags.map(page =>
+            (
+                page.offsetTop - 50 <= scrollY &&
+                setPageNow(page.className.split("soraPage page")[1])
+            )
+            )
+        }
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrollY])
+
 
     return (
         <div
@@ -308,7 +336,7 @@ const SoraMain = () => {
                             {Object.keys(pages).map(pageNumber => (
                                 < div
                                     style={{ borderBottom: `1px solid ${colors.borderColor}` }}
-                                    className='soraPage'
+                                    className={`soraPage page${pageNumber}`}
                                     key={pageNumber}>
                                     <p style={{ color: colors.blackColor }} className='pAyah'>
                                         {pages[pageNumber].map((item) => (
