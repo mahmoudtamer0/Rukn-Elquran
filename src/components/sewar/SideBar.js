@@ -5,6 +5,7 @@ import './sewar.css'
 import './sewar.css'
 import { useLocation } from 'react-router-dom'
 import { useClickAway } from "@uidotdev/usehooks";
+import { useTranslation } from 'react-i18next'
 
 const SideBar = ({ soraNum }) => {
 
@@ -22,6 +23,7 @@ const SideBar = ({ soraNum }) => {
     const [search, setSearch] = useState('')
     const history = useLocation();
     const linkRef = useRef()
+    const { t, i18n } = useTranslation()
 
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const [visible, setVisible] = useState(true);
@@ -104,7 +106,7 @@ const SideBar = ({ soraNum }) => {
                 <div className='sideBarInput'>
                     <input
                         onChange={(e) => setSearch(e.target.value.toLowerCase())}
-                        placeholder='ابحث عن سورة'
+                        placeholder={t("sora.search_for_surah")}
                         style={{ backgroundColor: colors.searchColor }}
                         type='text' />
                 </div>
@@ -122,7 +124,12 @@ const SideBar = ({ soraNum }) => {
                                         className={'mainSoraLink'}
                                         to={`/Rukn-Elquran/sewar/${sora.id}`}
                                         onClick={(e) => handleLinkClick(sora.id, e.target)}>
-                                        <span>{sora.id.toLocaleString('ar-EG')}</span>
+                                        {lang == "ar" ?
+                                            <span>{sora.id.toLocaleString('ar-EG')}</span>
+                                            :
+                                            <span>{sora.id}</span>
+                                        }
+
                                         <span>{sora.name}</span>
                                     </NavLink>
                                 </div>
