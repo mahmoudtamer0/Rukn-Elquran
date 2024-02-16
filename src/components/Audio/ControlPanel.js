@@ -43,7 +43,7 @@ function ControlPanel({ play, isPlaying, duration, currentTime }) {
                 className='timer'>{secondsToHms(currentTime)}</div>
             <Button play={play} isPlaying={isPlaying} />
             {duration == Infinity ?
-                <div style={{ color: colors.mainColor }} className={`timer`}><i class="fa-regular fa-circle-dot"></i> Live</div>
+                <div style={{ color: colors.mainColor }} className={`timer`}><i className="fa-regular fa-circle-dot"></i> Live</div>
                 : null
             }
             <div style={{ color: colors.blackColor }}
