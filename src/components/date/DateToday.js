@@ -127,7 +127,7 @@ const DateToday = () => {
         <div className='mainRec'>
             <div className='container mainRec' style={{ paddingBottom: "0" }}>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("home.prayer_times")}</h2>
-                <form onSubmit={handleSubmit} class="row mb-4 formDate">
+                <form onSubmit={handleSubmit} className="row mb-4 formDate">
                     <div
                         ref={boxRef}
                         style={{ background: colors.sidBarColor, transform: "translateY(-30%)" }}
@@ -148,22 +148,23 @@ const DateToday = () => {
                         </div>
                         {countrys.filter((item) => {
                             return search !== "" ? item.country.toLowerCase().includes(search) : countrys
-                        }).map((country) => (
+                        }).map((country, index) => (
                             country.country != "United States" ?
                                 <button
+                                    key={index}
                                     onClick={() => handleSelectClick(country)}
                                     className='btnnnnn'>
-                                    <button
+                                    <span
                                         style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
                                         {country.country}
-                                    </button>
+                                    </span>
                                 </button>
                                 :
                                 null
                         ))}
                     </div>
 
-                    <div class="col">
+                    <div className="col">
                         <button
                             style={{
                                 border: `1px solid ${colors.borderColor}`,
@@ -174,7 +175,7 @@ const DateToday = () => {
                             onClick={() => setSelectShow(true)}
                             className='buttonDate d-flex w-100 justify-content-between align-items-center'>
                             <span>{country}</span>
-                            <span><i class="fa-solid fa-angle-down"></i></span>
+                            <span><i className="fa-solid fa-angle-down"></i></span>
                         </button>
                     </div>
 
@@ -199,17 +200,18 @@ const DateToday = () => {
                             return search2 !== "" ? item.toLowerCase().includes(search2) : cities
                         }).map(cityy => (
                             <button
+                                key={cityy}
                                 onClick={() => handleSecondeSelectClick(cityy)}
                                 className='btnnnnn'>
-                                <button
+                                <span
                                     style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
                                     {cityy}
-                                </button>
+                                </span>
                             </button>
                         ))}
                     </div>
 
-                    <div class="col">
+                    <div className="col">
                         <button
                             style={{
                                 border: `1px solid ${colors.borderColor}`,
@@ -220,7 +222,7 @@ const DateToday = () => {
                             onClick={() => setSecondSelectShow(true)}
                             className='buttonDate d-flex w-100 justify-content-between align-items-center'>
                             <span>{city}</span>
-                            <span><i class="fa-solid fa-angle-down"></i></span>
+                            <span><i className="fa-solid fa-angle-down"></i></span>
                         </button>
                     </div>
 
