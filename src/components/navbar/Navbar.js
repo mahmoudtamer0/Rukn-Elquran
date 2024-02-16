@@ -89,7 +89,7 @@ function Navbar() {
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
-                        <i class="fa-solid fa-radio"></i>
+                        <i className="fa-solid fa-radio"></i>
                         <span>
                             {t("navBar.radio")}
                         </span>
