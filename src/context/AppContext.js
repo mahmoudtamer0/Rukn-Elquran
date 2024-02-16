@@ -24,7 +24,7 @@ const AppContext = ({ children }) => {
     const [sewar, setSewar] = useState([])
     const [mode, setMode] = useState(
         JSON.parse(localStorage.getItem("mode")) ?
-            JSON.parse(localStorage.getItem("mode")) : "light")
+            JSON.parse(localStorage.getItem("mode")) : "dark")
     const [reciters, setReciters] = useState([])
     const [server, setServer] = useState("")
     const [radio, setRadio] = useState()
