@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useTransition } from 'react'
 import { Link, useParams, NavLink } from 'react-router-dom'
 import { useData } from '../../context/AppContext'
 import './sewar.css'
@@ -8,6 +8,7 @@ import { useClickAway } from "@uidotdev/usehooks";
 import SideBar from './SideBar'
 import MoonLoader from "react-spinners/MoonLoader";
 import PulseLoader from "react-spinners/PulseLoader";
+import { useTranslation } from 'react-i18next'
 
 const SoraMain = () => {
 
@@ -21,7 +22,7 @@ const SoraMain = () => {
         lang, setPlay,
         setLastSoras, lastSoras,
         getReciters, reciters,
-        pageScrollTo
+        pageScrollTo, font
     } = useData()
 
     const spanref = useRef(null)
@@ -38,6 +39,7 @@ const SoraMain = () => {
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
     const pags = [...document.querySelectorAll('.soraPage')];
+    const { t, i18n } = useTranslation()
 
 
     // start handling tafseer function
@@ -247,18 +249,20 @@ const SoraMain = () => {
     useEffect(() => {
         const handleScroll = () => {
             setScrollY(window.scrollY)
-            pags.map(page =>
-            (
-                page.offsetTop - 50 <= scrollY &&
-                setPageNow(page.className.split("soraPage page")[1])
-            )
-            )
+            if (pags.length > 0) {
+                pags?.map(page =>
+                (
+                    page?.offsetTop - 50 <= scrollY &&
+                    setPageNow(page?.className?.split("soraPage page")[1])
+                )
+                )
+            }
         }
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [scrollY])
+    }, [scrollY, pages])
 
 
     return (
@@ -313,12 +317,12 @@ const SoraMain = () => {
                                         {!audioBool ?
                                             <>
                                                 <button onClick={() => handlePlayClick()}>
-                                                    <i className="fa-solid fa-play"></i>  تشغيل السورة صوتيا
+                                                    <i className="fa-solid fa-play"></i>  {t("sora.play_btn")}
                                                 </button>
                                             </>
                                             : <>
                                                 <button className='audioStop' onClick={() => handlePauseClick()}>
-                                                    <i className="fa-solid fa-stop"></i>  ايقاف المشغل
+                                                    <i className="fa-solid fa-stop"></i>   {t("sora.pause_btn")}
                                                 </button>
                                             </>}
                                     </> : <div className='mb-5' style={{ padding: "0 10px" }}>
@@ -331,7 +335,7 @@ const SoraMain = () => {
                                         />
                                     </div>
                                 }
-                                <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>يمكنك الضغط علي اي اية لتفسيرها او تشغيلها</h5>
+                                <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>{t("sora.p1")}</h5>
                             </div>
                             {Object.keys(pages).map(pageNumber => (
                                 < div
@@ -347,15 +351,14 @@ const SoraMain = () => {
                                                         className='btnTafseer'
                                                         onClick={() => handleDetailedTafseer(item)}
                                                     >
-                                                        <i style={{ fontSize: "20px" }} className="fa-solid fa-book-open-reader"></i>
-                                                        <span style={{ fontSize: "20px" }}> تفسير الاية؟</span>
+                                                        <span style={{ fontSize: "15px", fontFamily: font }}>{t("sora.tafseer_ayah")}</span>
                                                     </button>
                                                     <button
                                                         className='btnTa48eel'
                                                         onClick={() => handleAyaPlay(item)}
                                                     >
                                                         <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
-                                                        <span style={{ fontSize: "20px" }}> تشغيل الاية؟</span>
+                                                        <span style={{ fontSize: "13px", fontFamily: font }}>{t("sora.ta48eel_ayah")}</span>
                                                     </button>
                                                     <i
                                                         className="fa-solid fa-circle-xmark ii"
@@ -386,9 +389,13 @@ const SoraMain = () => {
                                 to={`/Rukn-Elquran/sewar/${+soraNum - 1}`}
                                 onClick={() => history?.push(`${+soraNum - 1}`)}
                                 style={{ color: "white", backgroundColor: colors.mainColor }}>
-                                <i className="fa-solid fa-chevron-right"></i>
+                                {lang == "ar" ?
+                                    <i className="fa-solid fa-chevron-right"></i>
+                                    :
+                                    <i className="fa-solid fa-chevron-left"></i>
+                                }
                                 <span style={{ marginRight: "10px" }}>
-                                    السورة السابقة
+                                    {t("sora.previous_surah")}
                                 </span>
                             </Link>}
                             {+soraNum <= 113 &&
@@ -397,10 +404,14 @@ const SoraMain = () => {
                                     onClick={() => history?.push(`${+soraNum + 1}`)}
                                     style={{ color: "white", backgroundColor: colors.mainColor }}>
                                     <span style={{ marginLeft: "10px" }}>
-                                        السورة القادمة
+                                        {t("sora.next_surah")}
                                     </span>
+                                    {lang == "ar" ?
+                                        <i className="fa-solid fa-chevron-left"></i>
+                                        :
+                                        <i className="fa-solid fa-chevron-right"></i>
+                                    }
 
-                                    <i className="fa-solid fa-chevron-left"></i>
                                 </Link>}
 
                         </div>
