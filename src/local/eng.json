@@ -46,7 +46,8 @@
         "all_reciters": "All Reciters",
         "search_for_reciter": "search for reciter",
         "search_surah_for_reciter": "search for surah for this reciter",
-        "all_surahs_reciter": "All Surahs For This Reciters"
+        "all_surahs_reciter": "All Surahs For This Reciters",
+        "reciter": "Reciter"
     },
     "radio": {
         "quran_radios": "Qur'an Channels Radio",
