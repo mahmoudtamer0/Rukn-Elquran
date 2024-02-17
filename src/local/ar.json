@@ -46,7 +46,8 @@
         "all_reciters": "جميع القراء",
         "search_for_reciter": "ابحث عن قارئ",
         "search_surah_for_reciter": "ابحث عن سورة لهذا القارئ",
-        "all_surahs_reciter": "جميع السور لهذا القارئ"
+        "all_surahs_reciter": "جميع السور لهذا القارئ",
+        "reciter": "القارئ"
     },
     "radio": {
         "quran_radios": "اذاعات قنوات القران",
