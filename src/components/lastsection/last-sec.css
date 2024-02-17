@@ -5,6 +5,10 @@
     padding: 5px 10px;
 }
 
+.mainLatSec {
+    z-index: -1;
+}
+
 .lastMainBoxes::-webkit-scrollbar {
     display: none;
 }
