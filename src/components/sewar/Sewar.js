@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next'
 
 const Sewar = () => {
     const { sewar, getSewar, colors, setSideBarOpen, font, fontSize, setPageScrollTo, lang } = useData()
-    const [sewarCount, setSewarCount] = useState(21)
     const [search, setSearch] = useState('')
     const { t, i18n } = useTranslation()
 
