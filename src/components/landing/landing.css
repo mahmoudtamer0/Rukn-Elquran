@@ -114,15 +114,15 @@
     background-color: black;
     background-color: white;
     position: relative;
-    z-index: 1;
     padding: 15px;
     border: 1px solid;
     border-radius: 10px;
     top: -72px;
+    height: 200px;
 }
 
 .searchBox div {
-    max-height: 300px;
+    max-height: 100%;
     padding: 0 10px;
     width: 100%;
     overflow-x: hidden;
