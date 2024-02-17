@@ -89,7 +89,8 @@ function Landing() {
                             </div>
 
                         </div>
-                        <div style={{ borderColor: colors.borderColor }} className='searchBox text-end hide'>
+                        <div style={{ borderColor: colors.borderColor }}
+                            className={`searchBox text-end hide ${search == "" && "h00"}`}>
                             <div className='mb-3'>
                                 {
                                     sewar.filter((item) => {
