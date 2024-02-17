@@ -203,7 +203,7 @@ const SoraMain = () => {
                 }])
             }
         }
-    }, [reciters])
+    }, [scrollY])
     //end handle the function of sora history
 
     useEffect(() => {
