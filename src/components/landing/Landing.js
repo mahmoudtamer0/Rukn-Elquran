@@ -46,10 +46,6 @@ function Landing() {
         }
     }, [search])
 
-    const boxRef = useClickAway(() => {
-        handleClose()
-    })
-
     return (
         <div className='landing'>
             <div className='landing-img'>
@@ -93,7 +89,7 @@ function Landing() {
                             </div>
 
                         </div>
-                        <div ref={boxRef} style={{ borderColor: colors.borderColor }} className='searchBox text-end hide'>
+                        <div style={{ borderColor: colors.borderColor }} className='searchBox text-end hide'>
                             <div className='mb-3'>
                                 {
                                     sewar.filter((item) => {
@@ -119,7 +115,7 @@ function Landing() {
                                                 key={link.id}
                                                 to={`/Rukn-Elquran/reciters/${link.id}`}
                                                 className='searchMainLink'>
-                                                <span>القارئ {link.name}</span>
+                                                <span>{t("reciters.reciter")} {link.name}</span>
                                                 <i className="fa-solid fa-arrow-left"></i>
                                             </Link>
                                         )
