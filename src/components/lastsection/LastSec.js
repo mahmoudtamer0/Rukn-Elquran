@@ -9,8 +9,8 @@ export const LastSec = () => {
     const { t, i18n } = useTranslation()
 
     return (
-        <div>
-            <div className='container mainRec' style={{ position: "relative" }}>
+        <div className="mainLatSec">
+            <div className='container mainRec' style={{ position: "relative", zIndex: "-1" }}>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}
                 >{t("home.befor")}</h2>
                 {lastSoras.length > 0 ?
