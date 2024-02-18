@@ -41,6 +41,7 @@ const AppContext = ({ children }) => {
     const [fontSize, setFontSize] = useState("1.7rem")
     const [lang, setLang] = useState(JSON.parse(localStorage.getItem("lang")) ?
         JSON.parse(localStorage.getItem("lang")) : "ar")
+    const [azkarBool, setAzkarBool] = useState(false)
 
     const [lastSoras, setLastSoras] =
         useState(JSON.parse(localStorage.getItem("lastSoras")) ?
@@ -170,7 +171,8 @@ const AppContext = ({ children }) => {
                 handleEngLanguage, handleArLanguage, font,
                 play, setPlay, fontSize,
                 setLastSoras, lastSoras,
-                pageScrollTo, setPageScrollTo
+                pageScrollTo, setPageScrollTo,
+                setAzkarBool, azkarBool
             }}>
             {children}
         </DataContext.Provider>
