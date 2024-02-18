@@ -33,10 +33,6 @@ const DateToday = () => {
         }
     }
 
-    useEffect(() => {
-        getTimings()
-    }, [city])
-
 
     useEffect(() => {
         fetch("https://countriesnow.space/api/v0.1/countries")
@@ -122,6 +118,11 @@ const DateToday = () => {
     const box2Ref = useClickAway(() => {
         setSecondSelectShow(false)
     })
+
+
+    useEffect(() => {
+        getTimings()
+    }, [city, selectedDate])
 
     return (
         <div className='mainRec'>
