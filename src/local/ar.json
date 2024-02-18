@@ -65,7 +65,8 @@
         "ta48eel_ayah": "تشغيل الاية؟",
         "previous_surah": "السورة السابقة",
         "next_surah": "السورة القادمة",
-        "search_for_surah": "ابحث عن سورة"
+        "search_for_surah": "ابحث عن سورة",
+        "font_size": "حجم الخط"
     },
     "audio": {
         "download": "تحميل",
