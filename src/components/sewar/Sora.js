@@ -177,7 +177,6 @@ const SoraMain = () => {
     //end getting reciters tafseer and ayahs and the soraName
 
     useEffect(() => {
-        console.log(pageScrollTo)
         window.scrollTo(0, document.querySelector(`.page${pageScrollTo}`)?.offsetTop - 50)
     }, [pages])
 
