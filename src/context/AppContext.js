@@ -39,6 +39,9 @@ const AppContext = ({ children }) => {
     const [pageScrollTo, setPageScrollTo] = useState(0)
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
     const [fontSize, setFontSize] = useState("1.7rem")
+    const [fontAyahSize, setFontAyahSize] = useState(
+        localStorage.getItem('fontAyahSize') ? localStorage.getItem('fontAyahSize') : 1
+    )
     const [lang, setLang] = useState(JSON.parse(localStorage.getItem("lang")) ?
         JSON.parse(localStorage.getItem("lang")) : "ar")
     const [azkarBool, setAzkarBool] = useState(false)
@@ -63,6 +66,23 @@ const AppContext = ({ children }) => {
                 .then(data => setSewar(data.suwar))
         }
     }
+
+
+    const handlePlusFontSize = () => {
+        if (fontAyahSize < 3) {
+            setFontAyahSize(Number(fontAyahSize) + 1)
+        }
+    }
+
+    const handleMinusFontSize = () => {
+        if (fontAyahSize >= 2) {
+            setFontAyahSize(fontAyahSize - 1)
+        }
+    }
+
+    useEffect(() => {
+        localStorage.setItem("fontAyahSize", fontAyahSize)
+    }, [fontAyahSize])
 
     const getRadio = () => {
         fetch(`https://mp3quran.net/api/v3/radios?language=${lang}`)
@@ -172,7 +192,9 @@ const AppContext = ({ children }) => {
                 play, setPlay, fontSize,
                 setLastSoras, lastSoras,
                 pageScrollTo, setPageScrollTo,
-                setAzkarBool, azkarBool
+                setAzkarBool, azkarBool,
+                setFontAyahSize, fontAyahSize,
+                handlePlusFontSize, handleMinusFontSize
             }}>
             {children}
         </DataContext.Provider>
