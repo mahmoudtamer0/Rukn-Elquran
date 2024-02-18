@@ -30,17 +30,22 @@ export const LastSec = () => {
                                 </div>
                                 <div className='boxBody' style={{ backgroundColor: colors.navColor }}>
                                     <div style={{ fontFamily: font, fontSize: "2rem" }}>{sora.soraName.split("سُورَةُ")}</div>
-                                    {sora.PageNow != undefined ?
-                                        <div style={{ fontSize: "17px" }}>
-                                            <span style={{ fontFamily: font }}> {t("home.page")} </span>
-                                            <span> {sora.PageNow}</span>
+                                    {sora.firstPageNumber != 0 &&
+                                        <>
+                                            {
+                                                sora.PageNow != undefined ?
+                                                    <div style={{ fontSize: "17px" }}>
+                                                        <span style={{ fontFamily: font }}> {t("home.page")} </span>
+                                                        <span> {sora.PageNow}</span>
 
-                                        </div>
-                                        :
-                                        <div style={{ fontSize: "17px" }}>
-                                            <span style={{ fontFamily: font }}> {t("home.page")} </span>
-                                            <span> {sora.firstPageNumber}</span>
-                                        </div>
+                                                    </div>
+                                                    :
+                                                    <div style={{ fontSize: "17px" }}>
+                                                        <span style={{ fontFamily: font }}> {t("home.page")} </span>
+                                                        <span> {sora.firstPageNumber}</span>
+                                                    </div>
+                                            }
+                                        </>
                                     }
                                 </div>
                             </NavLink>
