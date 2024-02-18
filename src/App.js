@@ -14,6 +14,7 @@ import Footer from "./components/footer/Footer";
 import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
+import { Azkar } from "./components/azkar/Azkar";
 // import DateToday from "./components/DateToday";
 
 function App() {
@@ -40,6 +41,10 @@ function App() {
 
             <Route path="/Rukn-Elquran/reciters" element={<>
               <Reciters />
+            </>} />
+
+            <Route path="/Rukn-Elquran/azkar" element={<>
+              <Azkar />
             </>} />
 
             <Route path="/Rukn-Elquran/reciters/:recId" element={<> <Reciter /></>} />
