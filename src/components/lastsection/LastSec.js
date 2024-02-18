@@ -19,7 +19,9 @@ export const LastSec = () => {
                             <NavLink
                                 key={sora.soraName}
                                 onClick={() => setPageScrollTo(sora.PageNow)}
-                                to={`/Rukn-Elquran/sewar/${sora.soraId}`}
+                                to={`${sora.soraName != "اذكار" ?
+                                    `/Rukn-Elquran/sewar/${sora.soraId}`
+                                    : "/Rukn-Elquran/azkar"}`}
                                 className='mainBox'
                                 style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
                                 <div className='boxHead d-flex justify-content-between align-items-center'>
@@ -40,7 +42,6 @@ export const LastSec = () => {
                                             <span> {sora.firstPageNumber}</span>
                                         </div>
                                     }
-
                                 </div>
                             </NavLink>
                         ))}
