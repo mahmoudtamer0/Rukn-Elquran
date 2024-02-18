@@ -6,7 +6,8 @@
         "sewar": "Surahs",
         "reciters": "Reciters",
         "radio": "Qur'an Radio",
-        "about": "Prayer Times"
+        "about": "Prayer Times",
+        "azkar": "Azkar"
     },
     "landing": {
         "p1": "A website for reading, reciting and interpreting the Holy Quran",
@@ -39,7 +40,9 @@
         "aboutp5": "E-mail",
         "all_surahs": "Qur'an Surahs",
         "search_for_surah": "search for surah",
-        "no_surahs": "There are no previous surahs"
+        "no_surahs": "There are no previous surahs",
+        "play_azkar_btn": "Play audio",
+        "azkar": "Words of remembrance for morning and evening"
     },
     "reciters": {
         "quran_reciters": "Qur'an Reciters",
