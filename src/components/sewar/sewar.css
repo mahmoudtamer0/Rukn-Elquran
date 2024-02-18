@@ -670,3 +670,19 @@ button.light {
     transition: 0.2s;
     color: #0075ff !important;
 }
+
+.ayaheng {
+    font-family: 'Noto Sans Arabic',
+        sans-serif !important;
+
+    font-size: 25px !important;
+    text-align: center !important;
+    word-spacing: 0px !important;
+    line-height: 1.6 !important;
+}
+
+@media (max-width:600px) {
+    .h2Eng {
+        font-size: 25px !important;
+    }
+}
