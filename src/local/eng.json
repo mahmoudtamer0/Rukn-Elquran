@@ -65,7 +65,8 @@
         "ta48eel_ayah": "Play ayah?",
         "previous_surah": "Previous Surah",
         "next_surah": "next surah",
-        "search_for_surah": "search for surah"
+        "search_for_surah": "search for surah",
+        "font_size": "Font Size"
     },
     "audio": {
         "download": "Download",
