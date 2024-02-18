@@ -105,6 +105,17 @@ function Navbar() {
                             {t("navBar.about")}
                         </span>
                     </NavLink>
+                    <NavLink
+                        onClick={() => setSideNavBarShow(false)}
+                        to={`/Rukn-Elquran/azkar`}
+                        style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
+                        className="nav-link" href="#"
+                    >
+                        <i className="fa-solid fa-hands-praying"></i>
+                        <span>
+                            {t("navBar.azkar")}
+                        </span>
+                    </NavLink>
 
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
@@ -112,7 +123,7 @@ function Navbar() {
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
-                        <i className="fa-regular fa-clock"></i>
+                        <i className="fa-solid fa-exclamation"></i>
                         <span>
                             {t("home.about_us")}
                         </span>
@@ -130,7 +141,8 @@ function Navbar() {
                                 style={{ color: colors.blackColor }}
                                 className="fa-solid fa-bars"></i>
                         </div>
-                        <Link to={'/Rukn-Elquran'} style={{ fontFamily: font }} className="navLogo">
+                        <Link to={'/Rukn-Elquran'} style={{ fontFamily: font }}
+                            className={`navLogo ${lang == "eng" && "navLogoEng"}`}>
                             <i className="fa-solid fa-book-open"></i>
                             <span
                                 style={{ color: colors.blackColor }}
@@ -163,6 +175,12 @@ function Navbar() {
                                     to={`/Rukn-Elquran/prayer_times`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" href="#">{t("navBar.about")}</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink
+                                    to={`/Rukn-Elquran/azkar`}
+                                    style={{ color: colors.blackColor }}
+                                    className="nav-link" href="#">{t("navBar.azkar")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
