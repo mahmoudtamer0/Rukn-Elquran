@@ -150,18 +150,16 @@ const DateToday = () => {
                         {countrys.filter((item) => {
                             return search !== "" ? item.country.toLowerCase().includes(search) : countrys
                         }).map((country, index) => (
-                            country.country != "United States" ?
-                                <button
-                                    key={index}
-                                    onClick={() => handleSelectClick(country)}
-                                    className='btnnnnn'>
-                                    <span
-                                        style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
-                                        {country.country}
-                                    </span>
-                                </button>
-                                :
-                                null
+
+                            <button
+                                key={index}
+                                onClick={() => handleSelectClick(country)}
+                                className='btnnnnn'>
+                                <span
+                                    style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
+                                    {country.country}
+                                </span>
+                            </button>
                         ))}
                     </div>
 
