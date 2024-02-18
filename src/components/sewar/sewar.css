@@ -617,11 +617,16 @@ a {
 .btnOfSideBar {
     top: 58px;
     position: absolute;
-    left: -35px
+    left: -41px
 }
 
 .btnOfSideBar button {
     padding: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .loaderDivSora {
