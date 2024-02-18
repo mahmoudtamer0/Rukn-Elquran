@@ -75,7 +75,7 @@
     color: #0075ff !important;
 }
 
-@media(max-width:990px) {
+@media(max-width:1200px) {
     .navNav {
         display: none;
     }
@@ -143,8 +143,8 @@
         padding: 10px 0;
     }
 
-    .navLogo {
-        font-size: 21px !important;
+    .navLogoEng {
+        font-size: 18px !important;
         display: flex;
         /* justify-content: center; */
         align-items: center;
