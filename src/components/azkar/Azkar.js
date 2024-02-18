@@ -19,7 +19,10 @@ export const Azkar = () => {
         server,
         lastSoras,
         setLastSoras,
-        pageScrollTo
+        pageScrollTo,
+        handlePlusFontSize,
+        handleMinusFontSize,
+        fontAyahSize,
     } = useData()
     const { t, i18n } = useTranslation()
     const [azkar, setAzkar] = useState([])
@@ -102,19 +105,44 @@ export const Azkar = () => {
                                 style={{ borderBottom: `1px solid ${colors.borderColor}` }}
                                 className={`soraPage zekr${index + 1}`}
                                 key={zekr.ID}>
-                                <div className='audioButton'>
-                                    {server !== zekr.AUDIO ?
-                                        <button onClick={() => handlePlayClick(zekr.AUDIO)}>
-                                            <i className="fa-solid fa-play"></i>  {t("home.play_azkar_btn")}
-                                        </button>
-                                        :
-                                        <button className='audioStop' onClick={() => setServer("")}>
-                                            <i className="fa-solid fa-stop"></i>   {t("sora.pause_btn")}
-                                        </button>
-                                    }
+                                <div className='d-flex justify-content-between align-items-center divSettingsSora'>
+                                    <div className='audioButton'>
+                                        {server !== zekr.AUDIO ?
+                                            <button onClick={() => handlePlayClick(zekr.AUDIO)}>
+                                                <i className="fa-solid fa-play"></i>  {t("home.play_azkar_btn")}
+                                            </button>
+                                            :
+                                            <button className='audioStop' onClick={() => setServer("")}>
+                                                <i className="fa-solid fa-stop"></i>   {t("sora.pause_btn")}
+                                            </button>
+                                        }
+                                    </div>
 
+                                    {index == 0 ?
+                                        <div className='d-flex justify-content-between align-items-center plusFontSizeDiv'>
+                                            <h5 style={{ color: colors.greyColor, fontSize: "15px", margin: "0" }}>{t("sora.font_size")}</h5>
+                                            <button
+                                                className={`${fontAyahSize == 1 && "btnDisable"}`}
+                                                onClick={() => handleMinusFontSize()}
+                                            ><i class="fa-solid fa-minus"></i></button>
+                                            <span style={{ color: colors.blackColor }}>{fontAyahSize}</span>
+                                            <button
+                                                className={`${fontAyahSize == 3 && "btnDisable"}`}
+                                                onClick={() => handlePlusFontSize()}
+                                            ><i class="fa-solid fa-plus"></i></button>
+                                        </div>
+                                        :
+                                        null
+                                    }
                                 </div>
-                                <p style={{ color: colors.blackColor }} className={`pAyah ${lang == "eng" && "ayaheng"}`}>
+                                <p style={{ color: colors.blackColor }}
+                                    className=
+                                    {`pAyah 
+                                        ${lang == "eng" && "ayaheng"} 
+                                        ${fontAyahSize == 1 && "f30px"}
+                                        ${fontAyahSize == 2 && "f35px"} 
+                                        ${fontAyahSize == 3 && "f40px"}`
+                                    }>
                                     <span>
                                         <span
 
