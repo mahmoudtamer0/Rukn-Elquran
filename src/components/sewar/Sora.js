@@ -39,6 +39,7 @@ const SoraMain = () => {
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
     const pags = [...document.querySelectorAll('.soraPage')];
+    const [firstPageNumber, setFirstPageNumber] = useState(0)
     const { t, i18n } = useTranslation()
 
 
@@ -138,13 +139,11 @@ const SoraMain = () => {
 
     // start handling the sora play
     const handlePlayClick = () => {
-        setAudioBool(true)
         setServer(`${reciters[0]?.moshaf[0]?.server}${soraNum.padStart(3, 0)}.mp3`)
         setPlay(true)
     }
 
     const handlePauseClick = () => {
-        setAudioBool(false)
         setServer("")
     }
     // start handling the sora play
@@ -178,10 +177,14 @@ const SoraMain = () => {
 
     useEffect(() => {
         window.scrollTo(0, document.querySelector(`.page${pageScrollTo}`)?.offsetTop - 50)
-    }, [pages])
+    }, [ayahs])
 
 
     //start handle the function of sora history
+    useEffect(() => {
+        setFirstPageNumber(pags[0]?.className.split("soraPage page")[1])
+    }, [pages])
+
     useEffect(() => {
         const index = lastSoras.findIndex(sora => sora.soraId == soraNum);
         if (soraName != "") {
@@ -189,20 +192,22 @@ const SoraMain = () => {
                 const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                     soraName: soraName,
                     soraId: soraNum,
-                    firstPageNumber: pags[0]?.className.split("soraPage page")[1],
+                    firstPageNumber: firstPageNumber || 0,
                     PageNow: pageNow
                 }];
                 setLastSoras(updatedProducts)
             } else {
                 setLastSoras([...lastSoras, {
+                    firstPageNumber: firstPageNumber,
                     soraName: soraName,
                     soraId: soraNum,
-                    firstPageNumber: pags[0]?.className.split("soraPage page")[1],
                     PageNow: pageNow
                 }])
             }
         }
-    }, [scrollY])
+    }, [reciters, scrollY])
+
+
     //end handle the function of sora history
 
     useEffect(() => {
@@ -222,7 +227,7 @@ const SoraMain = () => {
     }, [tafseerBoxBool])
 
     useEffect(() => {
-        if (server == "") {
+        if (server.includes(`${soraNum.padStart(3, 0)}.mp3`)) {
             setAudioBool(false)
         } else {
             setAudioBool(true)
@@ -312,12 +317,11 @@ const SoraMain = () => {
                                     className='boxTafseer'>{theTafseer}</div>
                             </div>
                         </div>
-
                         <div>
                             <div className='audioButton'>
                                 {reciters.length > 0 ?
                                     <>
-                                        {!audioBool ?
+                                        {audioBool ?
                                             <>
                                                 <button onClick={() => handlePlayClick()}>
                                                     <i className="fa-solid fa-play"></i>  {t("sora.play_btn")}
@@ -340,7 +344,7 @@ const SoraMain = () => {
                                 }
                                 <h5 style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>{t("sora.p1")}</h5>
                             </div>
-                            {Object.keys(pages).map(pageNumber => (
+                            {Object.keys(pages).map((pageNumber, index) => (
                                 < div
                                     style={{ borderBottom: `1px solid ${colors.borderColor}` }}
                                     className={`soraPage page${pageNumber}`}
@@ -383,7 +387,13 @@ const SoraMain = () => {
                                             </span>
                                         ))}
                                     </p>
-                                    <div style={{ color: colors.blackColor }} className='text-center mt-3'> <span>{pageNumber.toLocaleString('ar-EG')}</span> </div>
+                                    <div style={{ color: colors.blackColor }} className='text-center mt-3'> <span>
+                                        {lang == "ar" ?
+                                            (pageNumber.toString()).toLocaleString('ar-EG')
+                                            :
+                                            pageNumber
+                                        }
+                                    </span> </div>
                                 </div>
                             ))}
                         </div>
