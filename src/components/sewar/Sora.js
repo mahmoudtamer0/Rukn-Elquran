@@ -41,7 +41,7 @@ const SoraMain = () => {
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
     const pags = [...document.querySelectorAll('.soraPage')];
-    const [firstPageNumber, setFirstPageNumber] = useState(0)
+    const [firstPageNumber, setFirstPageNumber] = useState("")
     const { t, i18n } = useTranslation()
 
 
@@ -179,7 +179,7 @@ const SoraMain = () => {
 
     useEffect(() => {
         window.scrollTo(0, document.querySelector(`.page${pageScrollTo}`)?.offsetTop - 50)
-    }, [ayahs])
+    }, [pages])
 
 
     //start handle the function of sora history
@@ -189,12 +189,12 @@ const SoraMain = () => {
 
     useEffect(() => {
         const index = lastSoras.findIndex(sora => sora.soraId == soraNum);
-        if (soraName != "") {
+        if (soraName != "" && firstPageNumber != "") {
             if (index !== -1) {
                 const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                     soraName: soraName,
                     soraId: soraNum,
-                    firstPageNumber: firstPageNumber || 0,
+                    firstPageNumber: firstPageNumber || "",
                     PageNow: pageNow
                 }];
                 setLastSoras(updatedProducts)

@@ -30,7 +30,7 @@ export const LastSec = () => {
                                 </div>
                                 <div className='boxBody' style={{ backgroundColor: colors.navColor }}>
                                     <div style={{ fontFamily: font, fontSize: "2rem" }}>{sora.soraName.split("سُورَةُ")}</div>
-                                    {sora.firstPageNumber != 0 &&
+                                    {sora.firstPageNumber != "" &&
                                         <>
                                             {
                                                 sora.PageNow != undefined ?
