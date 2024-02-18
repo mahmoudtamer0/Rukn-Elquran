@@ -7,13 +7,15 @@ import { MoonLoader } from 'react-spinners'
 import { useTranslation } from 'react-i18next'
 
 function Button({ play, isPlaying }) {
-    const { colors, setServer, reciters, getReciters, soraId, server, setSoraId, lang } = useData()
+    const { colors, setServer, reciters, getReciters,
+        soraId, server, setSoraId, lang } = useData()
     const [select, setSelect] = useState(false)
     const [selectReciters, setSelectReciters] = useState(false)
     const [elliBool, setElliBool] = useState(false)
     const [search, setSearch] = useState('')
     const [downLoaded, setDownLoaded] = useState(<i style={{ color: colors.greyColor }} className="fa-solid fa-download"></i>)
     const [loading, setLoading] = useState(false)
+    const [azkarBool, setAzkarBool] = useState(false)
     const { t, i18n } = useTranslation()
     useEffect(() => {
         getReciters()
@@ -27,6 +29,10 @@ function Button({ play, isPlaying }) {
         } else {
             setElliBool(true)
         }
+
+        if (server.includes("http://www.hisnmuslim.com/audio")) {
+            setAzkarBool(true)
+        } else setAzkarBool(false)
 
         setDownLoaded(<i style={{ color: colors.greyColor }} className="fa-solid fa-download"></i>)
     }, [server])
@@ -108,11 +114,10 @@ function Button({ play, isPlaying }) {
                     </button>
                 ))}
             </div>
-
             <div
                 style={{
                     background: colors.sidBarColor,
-                    width: "200px", height: "130px"
+                    width: "200px", height: "fit-content"
                 }}
                 ref={boxRef}
                 className={`selectDiv ${select ? "d-block" : "noo"}`}
@@ -141,17 +146,20 @@ function Button({ play, isPlaying }) {
                         />
                     }
                 </button>
-                <button
-                    onClick={() => {
-                        setSelectReciters(true)
-                        setSelect(false)
-                    }}
-                    className={`btnnnnn ${lang == "ar" ? "justify-content-end" : "justify-content-start"}`}>
-                    <span
-                        style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
-                        {t("audio.rec_change")}
-                    </span>
-                </button>
+
+                {!azkarBool &&
+                    <button
+                        onClick={() => {
+                            setSelectReciters(true)
+                            setSelect(false)
+                        }}
+                        className={`btnnnnn ${lang == "ar" ? "justify-content-end" : "justify-content-start"}`}>
+                        <span
+                            style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
+                            {t("audio.rec_change")}
+                        </span>
+                    </button>
+                }
             </div>
 
 
