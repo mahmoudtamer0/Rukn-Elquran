@@ -16,14 +16,14 @@ import { Azkar } from "./components/azkar/Azkar";
 import HashLoader from "react-spinners/HashLoader"
 import './components/preloader.css'
 import { useState, useEffect } from "react";
+import PreLoader from "./components/PreLoader";
 function App() {
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
-
-      setLoading(false)
+      setLoading(true)
     }, 1800)
   }, [])
 
@@ -31,13 +31,7 @@ function App() {
     <div className="App" >
       {loading ?
         // preloader
-        <div className="preloader">
-          <div className="preloaderText">
-            <span className="ruknSpan"> رُكْنُ </span>
-            <span className="quranSpan"> اَلْقُرْآنِ</span>
-          </div>
-          <div className="bySpan">by Mahmoud Tamer</div>
-        </div>
+        <PreLoader />
         :
         <Router>
           <AppContext>
