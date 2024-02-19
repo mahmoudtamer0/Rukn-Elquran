@@ -9,7 +9,6 @@ import SideBar from './SideBar'
 import MoonLoader from "react-spinners/MoonLoader";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useTranslation } from 'react-i18next'
-import ReactGA from 'react-ga';
 
 const SoraMain = () => {
 
@@ -151,13 +150,6 @@ const SoraMain = () => {
     }
     // start handling the sora play
 
-    useEffect(() => {
-        ReactGA.pageview({
-            soraName: soraName,
-            soraId: soraNum
-        });
-    }, []);
-
     // start style for single ayah on hover
     const handleMouseOver = (e) => {
         if (JSON.parse(localStorage.getItem("mode")) == "light") {
@@ -192,32 +184,86 @@ const SoraMain = () => {
 
     //start handle the function of sora history
     useEffect(() => {
-        setFirstPageNumber(pags[0]?.className.split("soraPage page")[1])
-    }, [pages])
+        setPageNow()
+    }, [ayahs])
 
     useEffect(() => {
         const index = lastSoras.findIndex(sora => sora.soraId == soraNum);
-        if (soraName != "" && firstPageNumber != "") {
-            if (index !== -1) {
+
+
+
+        if (index !== -1) {
+            if (pags.length != 0) {
+                setPageNow()
+
                 const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                     soraName: soraName,
                     soraId: soraNum,
-                    firstPageNumber: firstPageNumber || "",
-                    PageNow: pageNow
+                    PageNow: pageNow == undefined ? "" : pageNow
                 }];
                 setLastSoras(updatedProducts)
-            } else {
+
+            }
+        } else {
+            if (pags.length != 0) {
+                setPageNow()
+
                 setLastSoras([...lastSoras, {
-                    firstPageNumber: firstPageNumber,
                     soraName: soraName,
                     soraId: soraNum,
-                    PageNow: pageNow
+                    PageNow: pageNow == undefined ? "" : pageNow
                 }])
+
             }
         }
-    }, [reciters, scrollY])
+        // if (scrollY > 400) {
+        //     if (index !== -1 && scrollY > 350) {
+        //         const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
+        //             soraName: soraName,
+        //             soraId: soraNum,
+        //             PageNow: pageNow == undefined ? "yy" : pageNow
+        //         }];
+        //         setLastSoras(updatedProducts)
+        //     } else if (index == -1 && scrollY > 350) {
+        //         setLastSoras([...lastSoras, {
+        //             soraName: soraName,
+        //             soraId: soraNum,
+        //             PageNow: pageNow == undefined ? "yy" : pageNow
+        //         }])
+        //     }
+        //     console.log("yes")
+        // }
+    }, [scrollY])
 
 
+    useEffect(() => {
+        const handleScroll = () => {
+
+            setScrollY(window.scrollY)
+            if (pags[0]?.offsetTop < scrollY) {
+                if (pags.length == 0) {
+                    return
+                } else {
+                    pags.map(page =>
+                    (
+                        page.offsetTop - 50 <= scrollY &&
+                        setPageNow(page?.className.split("soraPage page")[1])
+                    )
+                    )
+                }
+            } else {
+                setPageNow(pags[0]?.className.split("soraPage page")[1])
+            }
+
+        }
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [scrollY])
+
+    console.log(pageNow, pags.length)
     //end handle the function of sora history
 
     useEffect(() => {
@@ -262,25 +308,6 @@ const SoraMain = () => {
         setSoraNow(soraName)
     }, [ayahs]);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY)
-            if (pags.length == 0) {
-                return
-            } else {
-                pags.map(page =>
-                (
-                    page.offsetTop - 50 <= scrollY &&
-                    setPageNow(page?.className.split("soraPage page")[1])
-                )
-                )
-            }
-        }
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [scrollY])
 
     return (
         <div
