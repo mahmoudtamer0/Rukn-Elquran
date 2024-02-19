@@ -46,7 +46,7 @@ function Button({ play, isPlaying }) {
     }
 
     const handleBtnClick = (rec) => {
-        setSelect(false)
+        setSelectReciters(false)
         setServer(`${rec.moshaf[0].server}${soraId}`)
     }
 
@@ -105,9 +105,9 @@ function Button({ play, isPlaying }) {
                         key={rec.id}
                         onClick={() => handleBtnClick(rec)}
                         className='btnnnnn'>
-                        <button
+                        <span
                             style={{ borderColor: colors.borderColor, color: colors.blackColor }}>{rec.name}
-                        </button>
+                        </span>
                         {server == `${rec.moshaf[0].server}${soraId}` ?
                             <i className="fa-solid fa-check"></i> : null
                         }
