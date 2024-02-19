@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import { useLocation } from 'react-router-dom';
 
-ReactGA.initialize('G-SBPS95SGVY');
+ReactGA.initialize('G-ST0D4BK1E5');
 
 const DataContext = createContext();
 const AppContext = ({ children }) => {
