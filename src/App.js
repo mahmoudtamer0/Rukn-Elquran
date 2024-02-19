@@ -16,7 +16,7 @@ import { Azkar } from "./components/azkar/Azkar";
 import { useEffect } from "react";
 import ReactGA from 'react-ga';
 
-ReactGA.initialize('G-SBPS95SGVY');
+ReactGA.initialize('G-ST0D4BK1E5');
 function App() {
 
   useEffect(() => {
