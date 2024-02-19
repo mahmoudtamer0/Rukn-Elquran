@@ -24,7 +24,7 @@ function App() {
     setTimeout(() => {
 
       setLoading(false)
-    }, 1500)
+    }, 1800)
   }, [])
 
   return (
@@ -33,9 +33,10 @@ function App() {
         // preloader
         <div className="preloader">
           <div className="preloaderText">
-            <span className="ruknSpan">رُكْنُ</span>
+            <span className="ruknSpan"> رُكْنُ </span>
             <span className="quranSpan"> اَلْقُرْآنِ</span>
           </div>
+          <div className="bySpan">by Mahmoud Tamer</div>
         </div>
         :
         <Router>
