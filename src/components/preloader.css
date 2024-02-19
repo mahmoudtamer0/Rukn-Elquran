@@ -37,7 +37,7 @@
     transform: translateY(1700%);
     margin-top: 10px;
     color: #6e7681;
-    animation: madeBy 1s 1 alternate forwards;
+    animation: madeBy 1s 0.5s 1 alternate forwards;
 }
 
 @keyframes preloaderQuran {
