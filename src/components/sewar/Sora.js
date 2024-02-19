@@ -290,8 +290,6 @@ const SoraMain = () => {
         setSoraNow(soraName)
     }, [ayahs]);
 
-    console.log(ayahs.length)
-
     return (
         <div
             className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
@@ -368,12 +366,12 @@ const SoraMain = () => {
                                     <button
                                         className={`${fontAyahSize == 1 && "btnDisable"}`}
                                         onClick={() => handleMinusFontSize()}
-                                    ><i class="fa-solid fa-minus"></i></button>
+                                    ><i className="fa-solid fa-minus"></i></button>
                                     <span style={{ color: colors.blackColor }}>{fontAyahSize}</span>
                                     <button
                                         className={`${fontAyahSize == 3 && "btnDisable"}`}
                                         onClick={() => handlePlusFontSize()}
-                                    ><i class="fa-solid fa-plus"></i></button>
+                                    ><i className="fa-solid fa-plus"></i></button>
                                 </div>
                             </div>
                             <h5 className='divSettingsH' style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>{t("sora.p1")}</h5>
