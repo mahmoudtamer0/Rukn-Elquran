@@ -24,7 +24,8 @@ const SoraMain = () => {
         getReciters, reciters,
         pageScrollTo, font,
         fontAyahSize,
-        handlePlusFontSize, handleMinusFontSize
+        handlePlusFontSize, handleMinusFontSize,
+        pageNow, setPageNow
     } = useData()
 
     const spanref = useRef(null)
@@ -36,7 +37,6 @@ const SoraMain = () => {
     const [ayahInTafseer, setAyahInTafseer] = useState('')
     const [theTafseer, setTheTafseer] = useState('')
     const history = useLocation();
-    const [pageNow, setPageNow] = useState()
     const [scrollY, setScrollY] = useState(0)
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
@@ -168,8 +168,9 @@ const SoraMain = () => {
     useEffect(() => {
         getReciters()
         getTafseer()
+        getAyahs(soraNum)
         setTimeout(() => {
-            getAyahs(soraNum)
+
         }, 1000)
         fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
             .then(res => res.json())
@@ -199,7 +200,7 @@ const SoraMain = () => {
                 const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                     soraName: soraName,
                     soraId: soraNum,
-                    PageNow: pageNow == undefined ? "" : pageNow
+                    PageNow: pageNow == undefined ? pags[0]?.className.split("soraPage page")[1] : pageNow
                 }];
                 setLastSoras(updatedProducts)
 
@@ -211,28 +212,11 @@ const SoraMain = () => {
                 setLastSoras([...lastSoras, {
                     soraName: soraName,
                     soraId: soraNum,
-                    PageNow: pageNow == undefined ? "" : pageNow
+                    PageNow: pageNow == undefined ? pags[0]?.className.split("soraPage page")[1] : pageNow
                 }])
 
             }
         }
-        // if (scrollY > 400) {
-        //     if (index !== -1 && scrollY > 350) {
-        //         const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
-        //             soraName: soraName,
-        //             soraId: soraNum,
-        //             PageNow: pageNow == undefined ? "yy" : pageNow
-        //         }];
-        //         setLastSoras(updatedProducts)
-        //     } else if (index == -1 && scrollY > 350) {
-        //         setLastSoras([...lastSoras, {
-        //             soraName: soraName,
-        //             soraId: soraNum,
-        //             PageNow: pageNow == undefined ? "yy" : pageNow
-        //         }])
-        //     }
-        //     console.log("yes")
-        // }
     }, [scrollY])
 
 
@@ -262,8 +246,6 @@ const SoraMain = () => {
             window.removeEventListener('scroll', handleScroll);
         }
     }, [scrollY])
-
-    console.log(pageNow, pags.length)
     //end handle the function of sora history
 
     useEffect(() => {
@@ -308,6 +290,7 @@ const SoraMain = () => {
         setSoraNow(soraName)
     }, [ayahs]);
 
+    console.log(ayahs.length)
 
     return (
         <div
