@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(37 42 46);
+    flex-direction: column;
 }
 
 .preloaderText {
@@ -20,7 +21,6 @@
 }
 
 .ruknSpan {
-    transform: translateY(-600%);
     display: inline-block;
     animation: preloaderRukn 1s 1 alternate forwards;
 }
@@ -29,6 +29,15 @@
     display: inline-block;
     transform: translateX(-620%);
     animation: preloaderQuran 1s 1 alternate forwards;
+}
+
+.bySpan {
+    display: inline-block;
+    position: relative;
+    transform: translateY(1700%);
+    margin-top: 10px;
+    color: #6e7681;
+    animation: madeBy 1s 1 alternate forwards;
 }
 
 @keyframes preloaderQuran {
@@ -46,7 +55,18 @@
 @keyframes preloaderRukn {
 
     from {
-        transform: translateY(610%);
+        transform: translateY(-600%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes madeBy {
+
+    from {
+        transform: translateY(1700%);
     }
 
     to {
