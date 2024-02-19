@@ -83,6 +83,7 @@ const SideBar = ({ soraNum }) => {
                     <button
                         onClick={() => setSideBarOpen(false)}
                         className={`btnSora`}
+                        style={{ color: colors.blackColor }}
                     >
                         <i className="fa-solid fa-xmark"></i>
                     </button>
@@ -90,6 +91,7 @@ const SideBar = ({ soraNum }) => {
                     <button
                         onClick={() => setSideBarOpen(true)}
                         className="btnSora Btnclose"
+                        style={{ color: colors.blackColor }}
                     >
                         <i className="fa-solid fa-bars"></i>
                     </button>
