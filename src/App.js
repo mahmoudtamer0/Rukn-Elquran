@@ -13,15 +13,8 @@ import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
-import { useEffect } from "react";
-import ReactGA from 'react-ga';
 
-ReactGA.initialize('G-ST0D4BK1E5');
 function App() {
-
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
-  }, []);
 
   return (
     <div className="App" >
