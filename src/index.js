@@ -7,16 +7,11 @@ import App from './App';
 import './i18n';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/js/bootstrap.min.js'
-import ReactGA from 'react-ga';
-import { BrowserRouter } from 'react-router-dom';
-ReactGA.initialize('G-103R217TMH');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );
 
