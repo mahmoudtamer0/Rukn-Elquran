@@ -40,6 +40,7 @@ const AppContext = ({ children }) => {
     const { t, i18n } = useTranslation()
     const { pathname } = useLocation()
     const [pageScrollTo, setPageScrollTo] = useState(0)
+    const [pageNow, setPageNow] = useState("")
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
     const [fontSize, setFontSize] = useState("1.7rem")
     const [fontAyahSize, setFontAyahSize] = useState(
@@ -184,6 +185,10 @@ const AppContext = ({ children }) => {
             .then(res => res.json())
             .then(data => setAyahs(data.data.ayahs))
     }
+
+    useEffect(() => {
+        setPageNow('')
+    }, [pathname])
     return (
         <DataContext.Provider value=
             {{
@@ -205,7 +210,8 @@ const AppContext = ({ children }) => {
                 pageScrollTo, setPageScrollTo,
                 setAzkarBool, azkarBool,
                 setFontAyahSize, fontAyahSize,
-                handlePlusFontSize, handleMinusFontSize
+                handlePlusFontSize, handleMinusFontSize,
+                pageNow, setPageNow
             }}>
             {children}
         </DataContext.Provider>
