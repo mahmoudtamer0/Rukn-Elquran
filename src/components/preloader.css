@@ -1,0 +1,55 @@
+.preloader {
+    height: 100vh;
+    /* height: calc(var(--vh, 1vh) * 100); */
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(37 42 46);
+}
+
+.preloaderText {
+    font-size: 60px;
+    color: #0075ff;
+    font-family: 'alfont_com_AlFont_com_pdms-saleem-quranfont';
+}
+
+.ruknSpan {
+    transform: translateY(-600%);
+    display: inline-block;
+    animation: preloaderRukn 1s 1 alternate forwards;
+}
+
+.quranSpan {
+    display: inline-block;
+    transform: translateX(-620%);
+    animation: preloaderQuran 1s 1 alternate forwards;
+}
+
+@keyframes preloaderQuran {
+
+    from {
+        transform: translateX(-620%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes preloaderRukn {
+
+    from {
+        transform: translateY(610%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
