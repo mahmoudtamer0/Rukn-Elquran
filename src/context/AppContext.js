@@ -1,6 +1,8 @@
 import React, { Children } from 'react'
 import { createContext, useContext, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
+import ReactGA from 'react-ga';
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -36,6 +38,7 @@ const AppContext = ({ children }) => {
     const [element, setElement] = useState()
     const [play, setPlay] = useState(false)
     const { t, i18n } = useTranslation()
+    const { pathname } = useLocation()
     const [pageScrollTo, setPageScrollTo] = useState(0)
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
     const [fontSize, setFontSize] = useState("1.7rem")
@@ -54,6 +57,10 @@ const AppContext = ({ children }) => {
     useEffect(() => {
         localStorage.setItem("lastSoras", JSON.stringify(lastSoras))
     }, [lastSoras])
+
+    useEffect(() => {
+        ReactGA.pageview(pathname);
+    }, [pathname]);
 
     const getSewar = () => {
         if (lang == "ar") {

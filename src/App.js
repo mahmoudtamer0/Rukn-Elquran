@@ -13,6 +13,9 @@ import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('G-103R217TMH');
 
 function App() {
 

@@ -9,6 +9,7 @@ import SideBar from './SideBar'
 import MoonLoader from "react-spinners/MoonLoader";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useTranslation } from 'react-i18next'
+import ReactGA from 'react-ga';
 
 const SoraMain = () => {
 
@@ -149,6 +150,13 @@ const SoraMain = () => {
         setServer("")
     }
     // start handling the sora play
+
+    useEffect(() => {
+        ReactGA.pageview({
+            soraName: soraName,
+            soraId: soraNum
+        });
+    }, []);
 
     // start style for single ayah on hover
     const handleMouseOver = (e) => {
