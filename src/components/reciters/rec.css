@@ -43,7 +43,7 @@
 
 
 .recDivSearch input {
-    width: 60%;
+    width: 60% !important;
 }
 
 @media(max-width:550px) {
