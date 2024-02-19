@@ -7,6 +7,7 @@ import { useData } from '../context/AppContext'
 import "./sewar/sewar.css"
 import DateToday from './date/DateToday';
 import { useTranslation } from 'react-i18next';
+import ReactGA from 'react-ga';
 
 const Home = () => {
     const { t, i18n } = useTranslation()
@@ -20,9 +21,12 @@ const Home = () => {
         getSewar()
     }, [])
 
-    const handleClick = () => {
+    const handleClick = (soraName) => {
         setSideBarOpen(true)
         setPageScrollTo(0)
+        ReactGA.event({
+            soraName: soraName,
+        });
     }
 
     return (
@@ -49,7 +53,7 @@ const Home = () => {
                             return (
                                 <NavLink
                                     key={sora.number}
-                                    onClick={() => handleClick()}
+                                    onClick={() => handleClick(sora.name)}
                                     to={`/Rukn-Elquran/sewar/${sora.number || sora.id}`}
                                     style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                     className='soraBox d-flex justify-content-between align-items-center'>
