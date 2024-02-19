@@ -122,12 +122,12 @@ export const Azkar = () => {
                                             <button
                                                 className={`${fontAyahSize == 1 && "btnDisable"}`}
                                                 onClick={() => handleMinusFontSize()}
-                                            ><i class="fa-solid fa-minus"></i></button>
+                                            ><i className="fa-solid fa-minus"></i></button>
                                             <span style={{ color: colors.blackColor }}>{fontAyahSize}</span>
                                             <button
                                                 className={`${fontAyahSize == 3 && "btnDisable"}`}
                                                 onClick={() => handlePlusFontSize()}
-                                            ><i class="fa-solid fa-plus"></i></button>
+                                            ><i className="fa-solid fa-plus"></i></button>
                                         </div>
                                         :
                                         null
