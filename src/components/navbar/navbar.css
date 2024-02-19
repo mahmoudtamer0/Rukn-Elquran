@@ -76,8 +76,12 @@
 }
 
 @media(max-width:1200px) {
-    .navNav {
-        display: none;
+    .ulMainLinks {
+        gap: 20px !important;
+    }
+
+    .ulMainLinks li {
+        font-size: 14px;
     }
 }
 
@@ -91,6 +95,10 @@
 }
 
 @media(max-width:990px) {
+    .navNav {
+        display: none !important;
+    }
+
     .barsDiv {
         display: block;
     }
