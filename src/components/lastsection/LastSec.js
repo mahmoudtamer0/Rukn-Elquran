@@ -30,23 +30,19 @@ export const LastSec = () => {
                                 </div>
                                 <div className='boxBody' style={{ backgroundColor: colors.navColor }}>
                                     <div style={{ fontFamily: font, fontSize: "2rem" }}>{sora.soraName.split("سُورَةُ")}</div>
-                                    {sora.firstPageNumber != "" &&
-                                        <>
-                                            {
-                                                sora.PageNow != undefined ?
-                                                    <div style={{ fontSize: "17px" }}>
-                                                        <span style={{ fontFamily: font }}> {t("home.page")} </span>
-                                                        <span> {sora.PageNow}</span>
 
-                                                    </div>
-                                                    :
-                                                    <div style={{ fontSize: "17px" }}>
-                                                        <span style={{ fontFamily: font }}> {t("home.page")} </span>
-                                                        <span> {sora.firstPageNumber}</span>
-                                                    </div>
-                                            }
-                                        </>
-                                    }
+                                    <>
+                                        {
+                                            sora.PageNow != "" ?
+                                                <div style={{ fontSize: "17px" }}>
+                                                    <span style={{ fontFamily: font }}> {t("home.page")} </span>
+                                                    <span> {sora.PageNow}</span>
+
+                                                </div>
+                                                :
+                                                null
+                                        }
+                                    </>
                                 </div>
                             </NavLink>
                         ))}
