@@ -5,7 +5,6 @@ import { useData } from '../../context/AppContext'
 import "./sewar.css"
 import landingImg from '../../images/quran-book.jpg'
 import { useTranslation } from 'react-i18next'
-import ReactGA from 'react-ga';
 
 const Sewar = () => {
     const { sewar, getSewar, colors, setSideBarOpen, font, fontSize, setPageScrollTo, lang } = useData()
@@ -16,12 +15,9 @@ const Sewar = () => {
         getSewar()
     }, [])
 
-    const handleClick = (soraName) => {
+    const handleClick = () => {
         setSideBarOpen(true)
         setPageScrollTo(0)
-        ReactGA.event({
-            soraName: soraName,
-        });
     }
 
     return (
@@ -56,7 +52,7 @@ const Sewar = () => {
                             return (
                                 <NavLink
                                     key={sora.number}
-                                    onClick={() => handleClick(sora.name)}
+                                    onClick={() => handleClick()}
                                     to={`/Rukn-Elquran/sewar/${sora.number || sora.id}`}
                                     style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                     className='soraBox d-flex justify-content-between align-items-center'>
