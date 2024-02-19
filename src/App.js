@@ -15,9 +15,12 @@ import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
 import ReactGA from 'react-ga';
 
-ReactGA.initialize('G-103R217TMH');
-
+ReactGA.initialize('G-SBPS95SGVY');
 function App() {
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, []);
 
   return (
     <div className="App" >
