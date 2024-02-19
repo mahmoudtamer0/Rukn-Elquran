@@ -6,7 +6,7 @@ const AboutUs = () => {
     const { colors } = useData()
     const { t, i18n } = useTranslation()
     return (
-        <div className='mainRec' style={{ height: "49vh" }}>
+        <div className='mainRec' style={{ height: "65vh" }}>
             <div className='container mainRec' style={{ paddingBottom: "0" }}>
                 <h2 style={{
                     color: colors.blackColor,
