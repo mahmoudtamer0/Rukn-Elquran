@@ -13,50 +13,71 @@ import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
-
+import HashLoader from "react-spinners/HashLoader"
+import './components/preloader.css'
+import { useState, useEffect } from "react";
 function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+
+      setLoading(false)
+    }, 1500)
+  }, [])
 
   return (
     <div className="App" >
-      <Router>
-        <AppContext>
-          <NavBool />
-          <Navbar />
-          <Routes>
-            <Route path="/Rukn-Elquran" element={<>
-              <Home />
-            </>} />
-            <Route path="/Rukn-Elquran/sewar" element={<>
-              <Sewar />
-            </>} />
+      {loading ?
+        // preloader
+        <div className="preloader">
+          <div className="preloaderText">
+            <span className="ruknSpan">رُكْنُ</span>
+            <span className="quranSpan"> اَلْقُرْآنِ</span>
+          </div>
+        </div>
+        :
+        <Router>
+          <AppContext>
+            <NavBool />
+            <Navbar />
+            <Routes>
+              <Route path="/Rukn-Elquran" element={<>
+                <Home />
+              </>} />
+              <Route path="/Rukn-Elquran/sewar" element={<>
+                <Sewar />
+              </>} />
 
-            <Route path="/Rukn-Elquran/prayer_times" element={<>
-              <DateToday />
-            </>} />
-            <Route path="/Rukn-Elquran/sewar/:soraNum" element={<> <Sora /></>} />
+              <Route path="/Rukn-Elquran/prayer_times" element={<>
+                <DateToday />
+              </>} />
+              <Route path="/Rukn-Elquran/sewar/:soraNum" element={<> <Sora /></>} />
 
-            <Route path="/Rukn-Elquran/reciters" element={<>
-              <Reciters />
-            </>} />
+              <Route path="/Rukn-Elquran/reciters" element={<>
+                <Reciters />
+              </>} />
 
-            <Route path="/Rukn-Elquran/azkar" element={<>
-              <Azkar />
-            </>} />
+              <Route path="/Rukn-Elquran/azkar" element={<>
+                <Azkar />
+              </>} />
 
-            <Route path="/Rukn-Elquran/reciters/:recId" element={<> <Reciter /></>} />
+              <Route path="/Rukn-Elquran/reciters/:recId" element={<> <Reciter /></>} />
 
-            <Route path="/Rukn-Elquran/radio" element={<>
-              <Radio />
-            </>} />
+              <Route path="/Rukn-Elquran/radio" element={<>
+                <Radio />
+              </>} />
 
-            <Route path="/Rukn-Elquran/about_us" element={<>
-              <AboutUs />
-            </>} />
-          </Routes>
-          <MainAudio />
-          <Footer />
-        </AppContext>
-      </Router>
+              <Route path="/Rukn-Elquran/about_us" element={<>
+                <AboutUs />
+              </>} />
+            </Routes>
+            <MainAudio />
+            <Footer />
+          </AppContext>
+        </Router>
+      }
     </div >
   );
 }
