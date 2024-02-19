@@ -13,6 +13,7 @@ import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
+import { useEffect } from "react";
 import ReactGA from 'react-ga';
 
 ReactGA.initialize('G-SBPS95SGVY');
