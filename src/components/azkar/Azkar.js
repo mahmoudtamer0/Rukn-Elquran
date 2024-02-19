@@ -49,17 +49,15 @@ export const Azkar = () => {
         if (index !== -1) {
             const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                 soraName: soraName,
-                soraId: pageNow,
-                firstPageNumber: 1,
-                PageNow: pageNow
+                soraId: pageNow == undefined ? "1" : pageNow,
+                PageNow: pageNow == undefined ? "" : pageNow
             }];
             setLastSoras(updatedProducts)
         } else {
             setLastSoras([...lastSoras, {
-                firstPageNumber: 0,
                 soraName: soraName,
                 soraId: pageNow,
-                PageNow: pageNow
+                PageNow: pageNow == undefined ? "" : pageNow
             }])
         }
     }, [scrollY])
