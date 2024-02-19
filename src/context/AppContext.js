@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import { useLocation } from 'react-router-dom';
 
-
+ReactGA.initialize('G-SBPS95SGVY');
 
 const DataContext = createContext();
 const AppContext = ({ children }) => {
@@ -61,6 +61,10 @@ const AppContext = ({ children }) => {
     useEffect(() => {
         ReactGA.pageview(pathname);
     }, [pathname]);
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname);
+    }, []);
 
     const getSewar = () => {
         if (lang == "ar") {
