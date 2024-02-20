@@ -10,14 +10,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(37 42 46);
     flex-direction: column;
 }
 
 .preloaderText {
     font-size: 60px;
     color: #0075ff;
-    font-family: 'alfont_com_AlFont_com_pdms-saleem-quranfont';
+    display: flex;
+    gap: 10px;
 }
 
 .ruknSpan {
