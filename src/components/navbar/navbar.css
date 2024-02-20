@@ -5,7 +5,7 @@
     width: 100%;
     padding: 10px;
     transition: transform 0.3s ease-in-out;
-    z-index: 10000;
+    z-index: 100;
 }
 
 .visible {
