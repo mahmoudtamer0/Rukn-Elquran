@@ -21,7 +21,8 @@ const AppContext = ({ children }) => {
         iconBackGround: "#0075ff4a",
         appColor: "white",
         progress: "#ddd",
-        sidBarColor: "white"
+        sidBarColor: "white",
+        preLoader: "rgb(237 237 237)"
     })
     const [sewar, setSewar] = useState([])
     const [mode, setMode] = useState(
@@ -152,7 +153,8 @@ const AppContext = ({ children }) => {
                 iconBackGround: " rgb(37 48 59/1)",
                 appColor: "#1e2329",
                 progress: "#4c4c4c",
-                sidBarColor: "#343a40"
+                sidBarColor: "#343a40",
+                preLoader: "rgb(37 42 46)"
             })
         } else {
             document.querySelector("body").classList.remove("darkApp")
@@ -168,7 +170,8 @@ const AppContext = ({ children }) => {
                 iconBackGround: "#0075ff4a",
                 appColor: "white",
                 progress: "#ddd",
-                sidBarColor: "white"
+                sidBarColor: "white",
+                preLoader: "rgb(237 237 237)"
             })
         }
     }, [mode])
