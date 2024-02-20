@@ -29,50 +29,49 @@ function App() {
 
   return (
     <div className="App" >
-      {loading ?
-        // preloader
-        <PreLoader />
-        :
-        <Router>
-          <AppContext>
-            <NavBool />
-            <Navbar />
-            <Routes>
-              <Route path="/Rukn-Elquran" element={<>
-                <Home />
-              </>} />
-              <Route path="/Rukn-Elquran/sewar" element={<>
-                <Sewar />
-              </>} />
 
-              <Route path="/Rukn-Elquran/prayer_times" element={<>
-                <DateToday />
-              </>} />
-              <Route path="/Rukn-Elquran/sewar/:soraNum" element={<> <Sora /></>} />
 
-              <Route path="/Rukn-Elquran/reciters" element={<>
-                <Reciters />
-              </>} />
+      <Router>
+        <AppContext>
+          <PreLoader />
+          <NavBool />
+          <Navbar />
+          <Routes>
+            <Route path="/Rukn-Elquran" element={<>
+              <Home />
+            </>} />
+            <Route path="/Rukn-Elquran/sewar" element={<>
+              <Sewar />
+            </>} />
 
-              <Route path="/Rukn-Elquran/azkar" element={<>
-                <Azkar />
-              </>} />
+            <Route path="/Rukn-Elquran/prayer_times" element={<>
+              <DateToday />
+            </>} />
+            <Route path="/Rukn-Elquran/sewar/:soraNum" element={<> <Sora /></>} />
 
-              <Route path="/Rukn-Elquran/reciters/:recId" element={<> <Reciter /></>} />
+            <Route path="/Rukn-Elquran/reciters" element={<>
+              <Reciters />
+            </>} />
 
-              <Route path="/Rukn-Elquran/radio" element={<>
-                <Radio />
-              </>} />
+            <Route path="/Rukn-Elquran/azkar" element={<>
+              <Azkar />
+            </>} />
 
-              <Route path="/Rukn-Elquran/about_us" element={<>
-                <AboutUs />
-              </>} />
-            </Routes>
-            <MainAudio />
-            <Footer />
-          </AppContext>
-        </Router>
-      }
+            <Route path="/Rukn-Elquran/reciters/:recId" element={<> <Reciter /></>} />
+
+            <Route path="/Rukn-Elquran/radio" element={<>
+              <Radio />
+            </>} />
+
+            <Route path="/Rukn-Elquran/about_us" element={<>
+              <AboutUs />
+            </>} />
+          </Routes>
+          <MainAudio />
+          <Footer />
+        </AppContext>
+      </Router>
+
     </div >
   );
 }
