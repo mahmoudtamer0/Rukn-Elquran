@@ -4,7 +4,6 @@ import { useData } from '../../context/AppContext'
 import './sewar.css'
 import './sewar.css'
 import { useLocation } from 'react-router-dom'
-import { useClickAway } from "@uidotdev/usehooks";
 import { useTranslation } from 'react-i18next'
 
 const SideBar = ({ soraNum }) => {
