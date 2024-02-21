@@ -91,8 +91,8 @@ const MainAudio = () => {
     }, [server])
 
     return (
-        < div >
-            <div style={{ backgroundColor: colors.navColor }} className={` app-container ${audioBool ? "cancelAudio" : "audioFalse"}`}>
+        < div>
+            <div style={{ backgroundColor: colors.navColor, zIndex: "100" }} className={` app-container ${audioBool ? "cancelAudio" : "audioFalse"}`}>
                 <Slider percentage={percentage} onChange={onChange} />
                 <audio
                     ref={audioRef}
