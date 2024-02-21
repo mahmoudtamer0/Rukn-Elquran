@@ -327,18 +327,18 @@ const SoraMain = () => {
             progress: undefined,
             theme: "dark",
         });
+        bts.map(bt => {
+            bt.classList.remove("visible")
+            bt.classList.add("hide")
+        })
         setTimeout(() => {
-            bts.map(bt => {
-                bt.classList.remove("visible")
-                bt.classList.add("hide")
-            })
             ays.map(bt => {
                 bt.classList.remove("ayahClickedDark")
             })
             ays.map(bt => {
                 bt.classList.remove("ayahClickedDark")
             })
-        }, 1000);
+        }, 4000);
     }
     return (
         <div
