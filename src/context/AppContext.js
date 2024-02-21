@@ -44,6 +44,7 @@ const AppContext = ({ children }) => {
     const [pageNow, setPageNow] = useState("")
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
     const [fontSize, setFontSize] = useState("1.7rem")
+    const [loading, setLoading] = useState(false)
     const [fontAyahSize, setFontAyahSize] = useState(
         localStorage.getItem('fontAyahSize') ? localStorage.getItem('fontAyahSize') : 1
     )
@@ -183,10 +184,14 @@ const AppContext = ({ children }) => {
             .then(data => setReciters(data.reciters))
     }
 
-    const getAyahs = (soraNum) => {
-        fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
-            .then(res => res.json())
-            .then(data => setAyahs(data.data.ayahs))
+    const getAyahs = async (soraNum) => {
+        try {
+            setLoading(true)
+            await fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
+                .then(res => res.json())
+                .then(data => setAyahs(data.data.ayahs))
+        } catch { }
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -214,7 +219,7 @@ const AppContext = ({ children }) => {
                 setAzkarBool, azkarBool,
                 setFontAyahSize, fontAyahSize,
                 handlePlusFontSize, handleMinusFontSize,
-                pageNow, setPageNow
+                pageNow, setPageNow, loading
             }}>
             {children}
         </DataContext.Provider>
