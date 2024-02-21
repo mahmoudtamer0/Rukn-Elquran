@@ -30,16 +30,6 @@ const MainAudio = () => {
 
     }
 
-    useEffect(() => {
-        if (server == "") {
-            setAudioBool(false)
-        } else {
-            audioRef.current?.play()
-            setIsPlaying(true)
-            setAudioBool(true)
-        }
-    }, [server])
-
 
     useEffect(() => {
         if (server == "") {
@@ -89,6 +79,16 @@ const MainAudio = () => {
         setPercentage(+percent)
         setCurrentTime(time.toFixed(2))
     }
+
+    useEffect(() => {
+        if (server == "") {
+            setAudioBool(false)
+        } else {
+            audioRef.current?.play()
+            setIsPlaying(true)
+            setAudioBool(true)
+        }
+    }, [server])
 
     return (
         < div >
