@@ -82,8 +82,8 @@ function Landing() {
                         </div>
                         <div className='fastLinksDiv text-end mt-3 '>
                             <div className='fastLinks'>
-                                <Link to={`/Rukn-Elquran/sewar/1`}>{t("landing.link1")}</Link>
-                                <Link to={`/Rukn-Elquran/sewar/2`}>{t("landing.link2")}</Link>
+                                <Link to={`/Rukn-Elquran/quran/surah/1`}>{t("landing.link1")}</Link>
+                                <Link to={`/Rukn-Elquran/quran/surah/2`}>{t("landing.link2")}</Link>
                                 <Link to={`/Rukn-Elquran/reciters/107`}>{t("landing.link3")}</Link>
                                 <Link to={`/Rukn-Elquran/reciters/105`}>{t("landing.link4")}</Link>
                             </div>
@@ -99,7 +99,7 @@ function Landing() {
                                         return (
                                             <Link
                                                 key={link.id}
-                                                to={`/Rukn-Elquran/sewar/${link.id}`}
+                                                to={`/Rukn-Elquran/quran/surah/${link.id}`}
                                                 className='searchMainLink'>
                                                 <span>{link.name}</span>
                                                 <i className="fa-solid fa-arrow-left"></i>
