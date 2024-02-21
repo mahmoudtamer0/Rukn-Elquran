@@ -9,14 +9,10 @@ const PreLoader = () => {
     const { font, colors } = useData()
 
     useEffect(() => {
-        if (pathname.includes("/Rukn-Elquran/quran/surah/")) {
+        setLoading(true)
+        setTimeout(() => {
             setLoading(false)
-        } else {
-            setLoading(true)
-            setTimeout(() => {
-                setLoading(false)
-            }, 1800)
-        }
+        }, 1800)
     }, [])
     return (
         <div className={`preloader ${!loading && "d-none"}`} style={{ backgroundColor: colors.preLoader }}>
