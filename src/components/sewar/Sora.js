@@ -209,7 +209,7 @@ const SoraMain = () => {
         fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
             .then(res => res.json())
             .then(data => setSoraName(data.data.name))
-    }, [])
+    }, [soraNum])
     //end getting reciters tafseer and ayahs and the soraName
 
     useEffect(() => {
