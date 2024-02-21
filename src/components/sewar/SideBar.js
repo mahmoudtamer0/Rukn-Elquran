@@ -53,11 +53,6 @@ const SideBar = ({ soraNum }) => {
     }, [sewar])
 
 
-    const handleLinkClick = (newNum, e) => {
-        e.preventDefault()
-        setSideBarOpen(false)
-    };
-
     useEffect(() => {
         setSoraId(`${soraNum.padStart(3, 0)}.mp3`)
     }, [soraId])
@@ -124,7 +119,7 @@ const SideBar = ({ soraNum }) => {
                                         id={`id${(soraNum)}`}
                                         className={'mainSoraLink'}
                                         to={`/Rukn-Elquran/quran/surah/${sora.id}`}
-                                        onClick={(e) => handleLinkClick(sora.id, e.target)}>
+                                        onClick={(e) => setSideBarOpen(false)}>
                                         {lang == "ar" ?
                                             <span>{sora.id.toLocaleString('ar-EG')}</span>
                                             :
