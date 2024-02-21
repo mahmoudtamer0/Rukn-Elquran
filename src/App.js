@@ -40,14 +40,15 @@ function App() {
             <Route path="/Rukn-Elquran" element={<>
               <Home />
             </>} />
-            <Route path="/Rukn-Elquran/sewar" element={<>
+            <Route path="/Rukn-Elquran/quran/sewar" element={<>
               <Sewar />
             </>} />
 
             <Route path="/Rukn-Elquran/prayer_times" element={<>
               <DateToday />
             </>} />
-            <Route path="/Rukn-Elquran/sewar/:soraNum" element={<> <Sora /></>} />
+            <Route path="/Rukn-Elquran/quran/surah/:soraNum" element={<> <Sora /></>} />
+            <Route path="/Rukn-Elquran/quran/surah/:soraNum/ayah/:ayahNum" element={<> <Sora /></>} />
 
             <Route path="/Rukn-Elquran/reciters" element={<>
               <Reciters />
