@@ -30,7 +30,8 @@ const SoraMain = () => {
         pageScrollTo, font,
         fontAyahSize,
         handlePlusFontSize, handleMinusFontSize,
-        pageNow, setPageNow
+        pageNow, setPageNow,
+        loading
     } = useData()
 
     const spanref = useRef(null)
@@ -46,7 +47,6 @@ const SoraMain = () => {
     const bts = [...document.querySelectorAll('.tafseerBtn')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
     const pags = [...document.querySelectorAll('.soraPage')];
-    const [firstPageNumber, setFirstPageNumber] = useState("")
     const { t, i18n } = useTranslation()
 
 
@@ -204,7 +204,6 @@ const SoraMain = () => {
         getTafseer()
         getAyahs(soraNum)
         setTimeout(() => {
-
         }, 1000)
         fetch(`https://api.alquran.cloud/v1/surah/${soraNum}/ar.alafasy`)
             .then(res => res.json())
@@ -353,7 +352,46 @@ const SoraMain = () => {
                         style={{ color: colors.blackColor }}
                         className='text-center'>بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h2>
                 </div>
-                {ayahs.length > 0 ?
+                <div className='d-flex justify-content-between align-items-center divSettingsSora'>
+                    <div className='audioButton'>
+                        {reciters.length > 0 ?
+                            <>
+                                {audioBool ?
+                                    <>
+                                        <button onClick={() => handlePlayClick()}>
+                                            <i className="fa-solid fa-play"></i>  {t("sora.play_btn")}
+                                        </button>
+                                    </>
+                                    : <>
+                                        <button className='audioStop' onClick={() => handlePauseClick()}>
+                                            <i className="fa-solid fa-stop"></i>   {t("sora.pause_btn")}
+                                        </button>
+                                    </>}
+                            </> : <div className='mb-5' style={{ padding: "0 10px" }}>
+                                <MoonLoader
+                                    color='#0075ff'
+                                    loading={true}
+                                    size={30}
+                                    aria-label="Loading Spinner"
+                                    data-testid="loader"
+                                />
+                            </div>
+                        }
+                    </div>
+                    <div className='d-flex justify-content-between align-items-center plusFontSizeDiv'>
+                        <h5 style={{ color: colors.greyColor, fontSize: "15px", margin: "0" }}>{t("sora.font_size")}</h5>
+                        <button
+                            className={`${fontAyahSize == 1 && "btnDisable"}`}
+                            onClick={() => handleMinusFontSize()}
+                        ><i className="fa-solid fa-minus"></i></button>
+                        <span style={{ color: colors.blackColor }}>{fontAyahSize}</span>
+                        <button
+                            className={`${fontAyahSize == 3 && "btnDisable"}`}
+                            onClick={() => handlePlusFontSize()}
+                        ><i className="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+                {!loading ?
                     <>
                         <div
                             style={{
@@ -385,45 +423,7 @@ const SoraMain = () => {
                             </div>
                         </div>
                         <div>
-                            <div className='d-flex justify-content-between align-items-center divSettingsSora'>
-                                <div className='audioButton'>
-                                    {reciters.length > 0 ?
-                                        <>
-                                            {audioBool ?
-                                                <>
-                                                    <button onClick={() => handlePlayClick()}>
-                                                        <i className="fa-solid fa-play"></i>  {t("sora.play_btn")}
-                                                    </button>
-                                                </>
-                                                : <>
-                                                    <button className='audioStop' onClick={() => handlePauseClick()}>
-                                                        <i className="fa-solid fa-stop"></i>   {t("sora.pause_btn")}
-                                                    </button>
-                                                </>}
-                                        </> : <div className='mb-5' style={{ padding: "0 10px" }}>
-                                            <MoonLoader
-                                                color='#0075ff'
-                                                loading={true}
-                                                size={30}
-                                                aria-label="Loading Spinner"
-                                                data-testid="loader"
-                                            />
-                                        </div>
-                                    }
-                                </div>
-                                <div className='d-flex justify-content-between align-items-center plusFontSizeDiv'>
-                                    <h5 style={{ color: colors.greyColor, fontSize: "15px", margin: "0" }}>{t("sora.font_size")}</h5>
-                                    <button
-                                        className={`${fontAyahSize == 1 && "btnDisable"}`}
-                                        onClick={() => handleMinusFontSize()}
-                                    ><i className="fa-solid fa-minus"></i></button>
-                                    <span style={{ color: colors.blackColor }}>{fontAyahSize}</span>
-                                    <button
-                                        className={`${fontAyahSize == 3 && "btnDisable"}`}
-                                        onClick={() => handlePlusFontSize()}
-                                    ><i className="fa-solid fa-plus"></i></button>
-                                </div>
-                            </div>
+
                             <h5 className='divSettingsH' style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>{t("sora.p1")}</h5>
                             {Object.keys(pages).map((pageNumber, index) => (
                                 < div
