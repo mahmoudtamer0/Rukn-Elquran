@@ -34,7 +34,7 @@ const Home = () => {
                 <div className='container'>
                     <NavLink
                         className={`linkHome`}
-                        to={`/Rukn-Elquran/sewar`}
+                        to={`/Rukn-Elquran/quran/sewar`}
                         style=
                         {{
                             color: colors.blackColor, fontSize: "1.7rem",
@@ -48,7 +48,7 @@ const Home = () => {
                                 <NavLink
                                     key={sora.number}
                                     onClick={() => handleClick()}
-                                    to={`/Rukn-Elquran/sewar/${sora.number || sora.id}`}
+                                    to={`/Rukn-Elquran/quran/surah/${sora.number || sora.id}`}
                                     style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                     className='soraBox d-flex justify-content-between align-items-center'>
                                     <div className='soraDet'>
@@ -70,7 +70,7 @@ const Home = () => {
                     </div>
                     <div className='mt-5 text-center linkForMore'>
                         <NavLink
-                            to={`/Rukn-Elquran/sewar`}
+                            to={`/Rukn-Elquran/quran/sewar`}
                             className={mode == "dark?" ? "dark" : "light"}
                             style={{ color: colors.mainColor }}
                         >{t("home.more_surahs")}
