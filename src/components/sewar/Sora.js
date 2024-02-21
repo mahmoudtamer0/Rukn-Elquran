@@ -9,10 +9,15 @@ import SideBar from './SideBar'
 import MoonLoader from "react-spinners/MoonLoader";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useTranslation } from 'react-i18next'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const SoraMain = () => {
 
     let { soraNum } = useParams()
+    let { ayahNum } = useParams()
     const {
         getAyahs, ayahs,
         setScrollBool, colors,
@@ -59,6 +64,35 @@ const SoraMain = () => {
         }
 
     }
+
+
+    useEffect(() => {
+        ays.map(aya => (
+            aya?.className.split("ayahSpan")[2] == ayahNum && (
+                setServer(aya.dataset.audio)
+            )
+        ))
+        ays.map(aya => (
+            aya?.className.split("ayahSpan")[2] == ayahNum && (
+                window.scrollTo(0, document.querySelector(`.ayahSpan${aya?.className.split("ayahSpan")[2]}`)?.offsetTop - 200)
+            )
+        ))
+
+        if (JSON.parse(localStorage.getItem("mode")) == "light") {
+            ays.map(aya => (
+                aya?.className.split("ayahSpan")[2] == ayahNum && (
+                    document.querySelector(`.ayahSpan${aya?.className.split("ayahSpan")[2]}`).classList.add("ayahClickedLight")
+                )
+            ))
+        } else {
+            ays.map(aya => (
+                aya?.className.split("ayahSpan")[2] == ayahNum && (
+                    document.querySelector(`.ayahSpan${aya?.className.split("ayahSpan")[2]}`).classList.add("ayahClickedDark")
+                )
+            ))
+        }
+    }, [reciters])
+
 
     const handleTafseer = (ayah) => {
         bts.map(bt => {
@@ -190,31 +224,24 @@ const SoraMain = () => {
 
     useEffect(() => {
         const index = lastSoras.findIndex(sora => sora.soraId == soraNum);
-
-
-
         if (index !== -1) {
             if (pags.length != 0) {
                 setPageNow()
-
                 const updatedProducts = [...lastSoras.slice(0, index), ...lastSoras.slice(index + 1), {
                     soraName: soraName,
                     soraId: soraNum,
                     PageNow: pageNow == undefined ? pags[0]?.className.split("soraPage page")[1] : pageNow
                 }];
                 setLastSoras(updatedProducts)
-
             }
         } else {
             if (pags.length != 0) {
                 setPageNow()
-
                 setLastSoras([...lastSoras, {
                     soraName: soraName,
                     soraId: soraNum,
                     PageNow: pageNow == undefined ? pags[0]?.className.split("soraPage page")[1] : pageNow
                 }])
-
             }
         }
     }, [scrollY])
@@ -222,7 +249,6 @@ const SoraMain = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-
             setScrollY(window.scrollY)
             if (pags[0]?.offsetTop < scrollY) {
                 if (pags.length == 0) {
@@ -290,6 +316,30 @@ const SoraMain = () => {
         setSoraNow(soraName)
     }, [ayahs]);
 
+    const handleCopied = () => {
+        toast.success('تم نسخ رابط الايه, يمكنك ارساله لمن تريد', {
+            position: "bottom-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
+        setTimeout(() => {
+            bts.map(bt => {
+                bt.classList.remove("visible")
+                bt.classList.add("hide")
+            })
+            ays.map(bt => {
+                bt.classList.remove("ayahClickedDark")
+            })
+            ays.map(bt => {
+                bt.classList.remove("ayahClickedDark")
+            })
+        }, 1000);
+    }
     return (
         <div
             className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
@@ -390,20 +440,43 @@ const SoraMain = () => {
                                         {pages[pageNumber].map((item) => (
                                             <span key={item.numberInSurah}>
                                                 <span
+                                                    style={{ backgroundColor: colors.navColor }}
                                                     className={`tafseerBtn hide tafseer${item.numberInSurah}`}>
                                                     <button
+                                                        style={{
+                                                            border: `1px solid ${colors.borderColor}`,
+                                                            backgroundColor: colors.navColor,
+                                                            color: colors.blackColor
+                                                        }}
                                                         className='btnTafseer'
                                                         onClick={() => handleDetailedTafseer(item)}
                                                     >
-                                                        <span style={{ fontSize: "15px", fontFamily: font }}>{t("sora.tafseer_ayah")}</span>
+                                                        <span style={{ fontSize: "15px" }}>{t("sora.tafseer_ayah")}</span>
                                                     </button>
                                                     <button
+                                                        style={{
+                                                            border: `1px solid ${colors.borderColor}`,
+                                                            backgroundColor: colors.navColor,
+                                                            color: colors.blackColor
+                                                        }}
                                                         className='btnTa48eel'
                                                         onClick={() => handleAyaPlay(item)}
                                                     >
                                                         <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
-                                                        <span style={{ fontSize: "13px", fontFamily: font }}>{t("sora.ta48eel_ayah")}</span>
                                                     </button>
+                                                    <CopyToClipboard text={`${window.location.origin}/Rukn-Elquran/quran/surah/${soraNum}/ayah/${item.numberInSurah}`}
+                                                        onCopy={() => handleCopied()}>
+                                                        <button
+                                                            style={{
+                                                                border: `1px solid ${colors.borderColor}`,
+                                                                backgroundColor: colors.navColor,
+                                                                color: colors.blackColor
+                                                            }}
+                                                            className='btnTa48eel'
+                                                        >
+                                                            <i style={{ fontSize: "20px" }} class="fa-solid fa-share-nodes"></i>
+                                                        </button>
+                                                    </CopyToClipboard>
                                                     <i
                                                         className="fa-solid fa-circle-xmark ii"
                                                         onClick={() => handleTafseerClose(item.numberInSurah)}
@@ -415,6 +488,7 @@ const SoraMain = () => {
                                                     onMouseOut={(e) => handleMouseOut(e)}
                                                     onMouseOver={(e) => handleMouseOver(e)}
                                                     onClick={() => handleTafseer(item)}
+                                                    data-audio={item.audio}
                                                     className={`ayahSpan ayahSpan${item.numberInSurah}`}>
                                                     {item.text.includes("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ") ?
                                                         item.text.split("بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ").toString()
@@ -436,7 +510,7 @@ const SoraMain = () => {
                         </div>
                         <div className='text-center nextButtons'>
                             {+soraNum > 1 && <Link
-                                to={`/Rukn-Elquran/sewar/${+soraNum - 1}`}
+                                to={`/Rukn-Elquran/quran/surah/${+soraNum - 1}`}
                                 onClick={() => history?.push(`${+soraNum - 1}`)}
                                 style={{ color: "white", backgroundColor: colors.mainColor }}>
                                 {lang == "ar" ?
@@ -450,7 +524,7 @@ const SoraMain = () => {
                             </Link>}
                             {+soraNum <= 113 &&
                                 < Link
-                                    to={`/Rukn-Elquran/sewar/${+soraNum + 1}`}
+                                    to={`/Rukn-Elquran/quran/surah/${+soraNum + 1}`}
                                     onClick={() => history?.push(`${+soraNum + 1}`)}
                                     style={{ color: "white", backgroundColor: colors.mainColor }}>
                                     <span style={{ marginLeft: "10px" }}>
@@ -477,8 +551,20 @@ const SoraMain = () => {
                         />
                     </div>
                 }
-
             </div>
+
+            <ToastContainer
+                position="bottom-left"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
         </div >
     )
 }
