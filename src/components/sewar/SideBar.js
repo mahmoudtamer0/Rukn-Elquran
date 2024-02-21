@@ -54,8 +54,8 @@ const SideBar = ({ soraNum }) => {
 
 
     const handleLinkClick = (newNum, e) => {
+        e.preventDefault()
         setSideBarOpen(false)
-        history?.push(`${newNum}`);
     };
 
     useEffect(() => {
@@ -123,7 +123,7 @@ const SideBar = ({ soraNum }) => {
                                         style={{ color: colors.blackColor }}
                                         id={`id${(soraNum)}`}
                                         className={'mainSoraLink'}
-                                        to={`/Rukn-Elquran/sewar/${sora.id}`}
+                                        to={`/Rukn-Elquran/quran/surah/${sora.id}`}
                                         onClick={(e) => handleLinkClick(sora.id, e.target)}>
                                         {lang == "ar" ?
                                             <span>{sora.id.toLocaleString('ar-EG')}</span>
