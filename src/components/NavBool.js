@@ -8,7 +8,7 @@ const NavBool = () => {
     const { pathname } = useLocation()
 
     useEffect(() => {
-        if (pathname.includes("/Rukn-Elquran/sewar/") || pathname.includes("/Rukn-Elquran/azkar")) {
+        if (pathname.includes("/Rukn-Elquran/quran/surah/") || pathname.includes("/Rukn-Elquran/azkar")) {
             setScrollBool(true)
         } else {
             setScrollBool(false)
