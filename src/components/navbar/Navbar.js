@@ -63,7 +63,7 @@ function Navbar() {
                         </span>
                     </NavLink>
                     <NavLink
-                        to={`/Rukn-Elquran/sewar`}
+                        to={`/Rukn-Elquran/quran/sewar`}
                         onClick={() => setSideNavBarShow(false)}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" aria-current="page" href="#">
@@ -154,7 +154,7 @@ function Navbar() {
                         <ul style={{ gap: "45px" }} className="navbar-nav me-auto mb-2 mb-lg-0 ulMainLinks">
                             <li className="nav-item">
                                 <NavLink
-                                    to={`/Rukn-Elquran/sewar`}
+                                    to={`/Rukn-Elquran/quran/sewar`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" aria-current="page" href="#">{t("navBar.sewar")}</NavLink>
                             </li>
