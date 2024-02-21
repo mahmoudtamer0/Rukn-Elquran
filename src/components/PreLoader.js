@@ -9,7 +9,7 @@ const PreLoader = () => {
     const { font, colors } = useData()
 
     useEffect(() => {
-        if (pathname.includes("/Rukn-Elquran/sewar/")) {
+        if (pathname.includes("/Rukn-Elquran/quran/surah/")) {
             setLoading(false)
         } else {
             setLoading(true)
