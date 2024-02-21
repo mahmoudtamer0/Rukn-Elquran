@@ -20,7 +20,7 @@ export const LastSec = () => {
                                 key={sora.soraName}
                                 onClick={() => setPageScrollTo(sora.PageNow)}
                                 to={`${sora.soraName != "اذكار" ?
-                                    `/Rukn-Elquran/sewar/${sora.soraId}`
+                                    `/Rukn-Elquran/quran/surah/${sora.soraId}`
                                     : "/Rukn-Elquran/azkar"}`}
                                 className='mainBox'
                                 style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
