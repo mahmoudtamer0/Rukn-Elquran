@@ -234,15 +234,15 @@ a {
     top: 0;
     transition: transform 0.2s ease-in-out;
     padding: 115px 10px;
-    z-index: 1000;
+    z-index: 10;
 }
 
 .sideBarIsVisible {
-    padding: 0px 10px;
+    padding: 80px 10px;
 }
 
 .sideBarIsNotVisible {
-    padding: 0px 10px;
+    padding: 30px 10px;
 }
 
 .sideHide {
@@ -251,7 +251,7 @@ a {
 
 .scrolll {
     height: 100vh;
-    padding-bottom: 35px;
+    padding-bottom: 100px;
 }
 
 .sideBarSoraNameDiv {
@@ -262,7 +262,7 @@ a {
 
 .sideBarSoraNameDiv::-webkit-scrollbar {
     width: 10px;
-    border-radius: 20px;
+
 }
 
 .sideBarSoraNameDiv::-webkit-scrollbar-track {
@@ -271,7 +271,7 @@ a {
 
 .sideBarSoraNameDiv::-webkit-scrollbar-thumb {
     background-color: #adb5bd;
-    border-radius: 1px;
+    border-radius: 15px;
 }
 
 .sideBarInput {
