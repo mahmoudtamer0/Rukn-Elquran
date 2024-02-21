@@ -22,16 +22,16 @@ function Footer() {
                                 <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran`}>{t("footer.col2_link1")}</NavLink> </li>
                                 <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/radio`}>{t("footer.col2_link2")}</NavLink> </li>
                                 <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/reciters`}>{t("footer.col2_link3")}</NavLink> </li>
-                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/sewar`}>{t("footer.col2_link4")}</NavLink> </li>
+                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/quran/sewar`}>{t("footer.col2_link4")}</NavLink> </li>
                             </ul>
                         </div>
                         <div className='secondlayer-thrdiv col-lg-2 col-md-4 col-sm-12 col-12'>
                             <h4 style={{ color: colors.blackColor }}>{t("footer.col3_title")}</h4>
                             <ul>
-                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/sewar/36`}>{t("footer.col3_link1")}</NavLink> </li>
-                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/sewar/67`}>{t("footer.col3_link2")}</NavLink> </li>
+                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/quran/surah/36`}>{t("footer.col3_link1")}</NavLink> </li>
+                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/quran/surah/67`}>{t("footer.col3_link2")}</NavLink> </li>
                                 <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/reciters/107`}>{t("footer.col3_link3")}</NavLink> </li>
-                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/sewar/2`}>{t("footer.col3_link4")}</NavLink> </li>
+                                <li><i className="fa-solid fa-angles-left"></i> <NavLink to={`/Rukn-Elquran/quran/surah/2`}>{t("footer.col3_link4")}</NavLink> </li>
                             </ul>
                         </div>
                     </div>
