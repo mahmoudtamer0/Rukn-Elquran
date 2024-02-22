@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './buttons.css'
 import { useData } from '../../context/AppContext'
 import { useClickAway } from '@uidotdev/usehooks'
-import { useLocation } from 'react-router-dom'
 import { MoonLoader } from 'react-spinners'
 import { useTranslation } from 'react-i18next'
 

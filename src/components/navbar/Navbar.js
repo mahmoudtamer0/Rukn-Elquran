@@ -8,8 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useClickAway } from "@uidotdev/usehooks";
 
 function Navbar() {
-    const { scrollBool, setSideBarOpen,
-        sideBarOpen, soraNow,
+    const { scrollBool,
         colors, handleLightMode,
         handleEngLanguage, handleArLanguage, font, lang } = useData()
     const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -53,7 +52,7 @@ function Navbar() {
                 > {t("navBar.list")}</p>
                 <div className="divLinks">
                     <NavLink
-                        to={`/`}
+                        to={`/Rukn-ELquran`}
                         onClick={() => setSideNavBarShow(false)}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" aria-current="page" href="#">
@@ -141,7 +140,7 @@ function Navbar() {
                                 style={{ color: colors.blackColor }}
                                 className="fa-solid fa-bars"></i>
                         </div>
-                        <Link to={'/'} style={{ fontFamily: font }}
+                        <Link to={'/Rukn-ELquran'} style={{ fontFamily: font }}
                             className={`navLogo ${lang == "eng" && "navLogoEng"}`}>
                             <i className="fa-solid fa-book-open"></i>
                             <span

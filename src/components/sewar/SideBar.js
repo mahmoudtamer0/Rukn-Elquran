@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, useParams, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useData } from '../../context/AppContext'
 import './sewar.css'
 import './sewar.css'

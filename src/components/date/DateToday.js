@@ -29,10 +29,8 @@ const DateToday = () => {
                 .then(res => res.json())
                 .then(data => setTimings(data.data))
         } catch {
-
         }
     }
-
 
     useEffect(() => {
         fetch("https://countriesnow.space/api/v0.1/countries")
@@ -51,7 +49,6 @@ const DateToday = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
-
     const handleSelectClick = async (country) => {
         setLoading(true)
         setCountry(country.country)
@@ -65,8 +62,6 @@ const DateToday = () => {
             setLoading(false)
         }, 500)
     }
-
-
     const handleSecondeSelectClick = async (city) => {
         setCity(city)
         setSecondSelectShow(false)
@@ -78,11 +73,8 @@ const DateToday = () => {
             setLoading(false)
         }, 500)
     }
-
-
     const today = new Date();
     const [selectedDate, setSelectedDate] = useState(today);
-
     const formatDate = (date) => {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
@@ -90,16 +82,12 @@ const DateToday = () => {
         return `${day}-${month}-${year}`;
     };
 
-
-
     const handleDateChange = (event) => {
         const [day, month, year] = event.target.value.split('-').map(Number);
         const selectedDate = new Date(year, month - 1, day); // Month is zero-based
         setSelectedDate(selectedDate);
         getTimings()
     };
-
-
 
     const next30DaysOptions = [];
     for (let i = 0; i < 30; i++) {
@@ -109,8 +97,6 @@ const DateToday = () => {
             <option key={i} value={formatDate(date)}>{formatDate(date)}</option>
         );
     }
-
-
     const boxRef = useClickAway(() => {
         setSelectShow(false)
     })

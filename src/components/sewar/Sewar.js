@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useData } from '../../context/AppContext'
 import "./sewar.css"
 import landingImg from '../../images/quran-book.jpg'

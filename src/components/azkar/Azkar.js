@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState, useTransition } from 'react'
-import { Link, useParams, NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import { useData } from '../../context/AppContext'
 import '../sewar/sewar.css'
 import { useTranslation } from 'react-i18next'
 
 export const Azkar = () => {
     const {
-        ayahs,
         colors,
         lang,
-        reciters,
         font,
         setServer,
         server,
@@ -28,17 +25,14 @@ export const Azkar = () => {
     const [soraName, setSoraName] = useState("اذكار")
 
     useEffect(() => {
-
         fetch(`https://www.hisnmuslim.com/api/en/27.json`)
             .then(res => res.json())
             .then(data => setAzkar(data[Object.keys(data)[0]]))
-
     }, [])
 
     const handlePlayClick = (audio) => {
         setServer(audio)
     }
-
 
     useEffect(() => {
         const index = lastSoras.findIndex((sora) => sora.soraName === soraName)

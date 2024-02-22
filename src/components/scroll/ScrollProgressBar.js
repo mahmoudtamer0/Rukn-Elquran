@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ProgressBar.css'; // Import your CSS file for styling
+import './ProgressBar.css';
 import { useData } from '../../context/AppContext';
 
 const ScrollProgressBar = () => {
@@ -20,7 +20,7 @@ const ScrollProgressBar = () => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []); // Empty dependency array ensures useEffect runs only once
+    }, []);
 
     return (
         <div style={{ backgroundColor: colors.progress }} className="progress-bar-container" >

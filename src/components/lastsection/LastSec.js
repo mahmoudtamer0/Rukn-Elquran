@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useData } from '../../context/AppContext'
 import "./last-sec.css"
 import { NavLink } from 'react-router-dom'

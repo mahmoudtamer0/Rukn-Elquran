@@ -4,7 +4,6 @@ import landingImg from '../../images/quran-book.jpg'
 import './landing.css'
 import { useData } from '../../context/AppContext';
 import { useEffect, useState } from 'react';
-import { useClickAway } from "@uidotdev/usehooks";
 import { useTranslation } from 'react-i18next';
 
 function Landing() {
