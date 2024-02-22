@@ -17,6 +17,7 @@ import HashLoader from "react-spinners/HashLoader"
 import './components/preloader.css'
 import { useState, useEffect } from "react";
 import PreLoader from "./components/PreLoader";
+import { Analytics } from "@vercel/analytics/react"
 function App() {
 
   const [loading, setLoading] = useState(true);
@@ -29,9 +30,9 @@ function App() {
 
   return (
     <div className="App" >
-
-
+      <Analytics />
       <Router>
+        <Analytics />
         <AppContext>
           <PreLoader />
           <NavBool />
