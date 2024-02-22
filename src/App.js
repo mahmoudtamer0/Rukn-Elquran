@@ -40,7 +40,7 @@ function App() {
           <NavBool />
           <Navbar />
           <Routes>
-            <Route path="/" element={<>
+            <Route path="/Rukn-Elquran" element={<>
               <Home />
             </>} />
             <Route path="/Rukn-Elquran/quran/sewar" element={<>
