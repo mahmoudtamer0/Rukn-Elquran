@@ -8,7 +8,6 @@ const Radio = () => {
 
     const { radio, getRadio, colors, setServer, server, font, fontSize, lang } = useData()
     const [search, setSearch] = useState([])
-    const [soraId, setSoraId] = useState()
     const { t, i18n } = useTranslation()
 
     useEffect(() => {
@@ -16,7 +15,6 @@ const Radio = () => {
     }, [])
 
     const handlePlay = (radio) => {
-        setSoraId(`${radio.id}`)
         setServer(`${radio.url}`)
     }
 
@@ -24,7 +22,7 @@ const Radio = () => {
         <div>
             <div className='landing' style={{ height: "350px" }}>
                 <div className='landing-img'>
-                    <img src={landingImg} />
+                    <img src={landingImg} alt='...' />
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
