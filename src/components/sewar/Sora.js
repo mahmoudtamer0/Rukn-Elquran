@@ -464,7 +464,7 @@ const SoraMain = () => {
                                                     >
                                                         <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
                                                     </button>
-                                                    <CopyToClipboard text={`${window.location.origin}/Rukn-Elquran/quran/surah/${soraNum}/ayah/${item.numberInSurah}`}
+                                                    <CopyToClipboard text={`${window.location.origin}/quran/surah/${soraNum}/ayah/${item.numberInSurah}`}
                                                         onCopy={() => handleCopied()}>
                                                         <button
                                                             style={{
@@ -510,7 +510,7 @@ const SoraMain = () => {
                         </div>
                         <div className='text-center nextButtons'>
                             {+soraNum > 1 && <Link
-                                to={`/Rukn-Elquran/quran/surah/${+soraNum - 1}`}
+                                to={`/quran/surah/${+soraNum - 1}`}
                                 onClick={() => history?.push(`${+soraNum - 1}`)}
                                 style={{ color: "white", backgroundColor: colors.mainColor }}>
                                 {lang == "ar" ?
@@ -524,7 +524,7 @@ const SoraMain = () => {
                             </Link>}
                             {+soraNum <= 113 &&
                                 < Link
-                                    to={`/Rukn-Elquran/quran/surah/${+soraNum + 1}`}
+                                    to={`/quran/surah/${+soraNum + 1}`}
                                     onClick={() => history?.push(`${+soraNum + 1}`)}
                                     style={{ color: "white", backgroundColor: colors.mainColor }}>
                                     <span style={{ marginLeft: "10px" }}>
