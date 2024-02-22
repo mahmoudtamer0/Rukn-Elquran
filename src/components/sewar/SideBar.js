@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, useParams, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useData } from '../../context/AppContext'
-import './sewar.css'
 import './sewar.css'
 import { useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -118,7 +117,7 @@ const SideBar = ({ soraNum }) => {
                                         style={{ color: colors.blackColor }}
                                         id={`id${(soraNum)}`}
                                         className={'mainSoraLink'}
-                                        to={`/Rukn-Elquran/quran/surah/${sora.id}`}
+                                        to={`/quran/surah/${sora.id}`}
                                         onClick={(e) => setSideBarOpen(false)}>
                                         {lang == "ar" ?
                                             <span>{sora.id.toLocaleString('ar-EG')}</span>
