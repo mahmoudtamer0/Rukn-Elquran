@@ -1,5 +1,4 @@
 import { NavLink, Link } from "react-router-dom";
-
 import './navbar.css'
 import { useEffect, useState } from "react";
 import ScrollProgressBar from "../scroll/ScrollProgressBar";
@@ -53,7 +52,7 @@ function Navbar() {
                 > {t("navBar.list")}</p>
                 <div className="divLinks">
                     <NavLink
-                        to={`/Rukn-Elquran`}
+                        to={`/`}
                         onClick={() => setSideNavBarShow(false)}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" aria-current="page" href="#">
@@ -63,7 +62,7 @@ function Navbar() {
                         </span>
                     </NavLink>
                     <NavLink
-                        to={`/Rukn-Elquran/quran/sewar`}
+                        to={`/quran/sewar`}
                         onClick={() => setSideNavBarShow(false)}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" aria-current="page" href="#">
@@ -74,7 +73,7 @@ function Navbar() {
                     </NavLink>
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
-                        to={`/Rukn-Elquran/reciters`}
+                        to={`/reciters`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
@@ -85,7 +84,7 @@ function Navbar() {
                     </NavLink>
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
-                        to={`/Rukn-Elquran/radio`}
+                        to={`/radio`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
@@ -96,7 +95,7 @@ function Navbar() {
                     </NavLink>
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
-                        to={`/Rukn-Elquran/prayer_times`}
+                        to={`/prayer_times`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
@@ -107,7 +106,7 @@ function Navbar() {
                     </NavLink>
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
-                        to={`/Rukn-Elquran/azkar`}
+                        to={`/azkar`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
@@ -119,7 +118,7 @@ function Navbar() {
 
                     <NavLink
                         onClick={() => setSideNavBarShow(false)}
-                        to={`/Rukn-Elquran/about_us`}
+                        to={`/about_us`}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" href="#"
                     >
@@ -141,7 +140,7 @@ function Navbar() {
                                 style={{ color: colors.blackColor }}
                                 className="fa-solid fa-bars"></i>
                         </div>
-                        <Link to={'/Rukn-Elquran'} style={{ fontFamily: font }}
+                        <Link to={'/'} style={{ fontFamily: font }}
                             className={`navLogo ${lang == "eng" && "navLogoEng"}`}>
                             <i className="fa-solid fa-book-open"></i>
                             <span
@@ -154,37 +153,37 @@ function Navbar() {
                         <ul style={{ gap: "45px" }} className="navbar-nav me-auto mb-2 mb-lg-0 ulMainLinks">
                             <li className="nav-item">
                                 <NavLink
-                                    to={`/Rukn-Elquran/quran/sewar`}
+                                    to={`/quran/sewar`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" aria-current="page" href="#">{t("navBar.sewar")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
-                                    to={`/Rukn-Elquran/reciters`}
+                                    to={`/reciters`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" href="#">{t("navBar.reciters")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
-                                    to={`/Rukn-Elquran/radio`}
+                                    to={`/radio`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" href="#">{t("navBar.radio")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
-                                    to={`/Rukn-Elquran/prayer_times`}
+                                    to={`/prayer_times`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" href="#">{t("navBar.about")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
-                                    to={`/Rukn-Elquran/azkar`}
+                                    to={`/azkar`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" href="#">{t("navBar.azkar")}</NavLink>
                             </li>
                             <li className="nav-item">
                                 <NavLink
-                                    to={`/Rukn-Elquran/about_us`}
+                                    to={`/about_us`}
                                     style={{ color: colors.blackColor }}
                                     className="nav-link" href="#">{t("home.about_us")}</NavLink>
                             </li>
