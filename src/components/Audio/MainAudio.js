@@ -4,18 +4,15 @@ import Slider from "./Slider"
 import ControlPanel from './ControlPanel'
 
 const MainAudio = () => {
-    const { server, setServer, sideBarOpen, colors, play } = useData()
+    const { server, setServer, colors } = useData()
     const audioRef = useRef(null)
     const [audioBool, setAudioBool] = useState(true)
-
     useEffect(() => {
         document.addEventListener('keydown', handleSpaceBarPress);
-
         return () => {
             document.removeEventListener('keydown', handleSpaceBarPress);
         };
     }, []);
-
     const handleSpaceBarPress = (event) => {
         if (event.key === ' ') {
             event.preventDefault();
@@ -27,10 +24,7 @@ const MainAudio = () => {
                 setIsPlaying(true)
             }
         }
-
     }
-
-
     useEffect(() => {
         if (server == "") {
             setAudioBool(false)
@@ -38,19 +32,14 @@ const MainAudio = () => {
             setAudioBool(true)
         }
     }, [server])
-
     const handleClick = () => {
         setServer()
     }
-
     //design
-
     const [percentage, setPercentage] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const [volume, setVolume] = useState(0.5)
-
     const onChange = (e) => {
         const audio = audioRef.current
         audio.currentTime = (audio.duration / 100) * e.target.value
