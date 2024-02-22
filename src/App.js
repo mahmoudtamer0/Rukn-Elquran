@@ -30,7 +30,7 @@ function App() {
     <div className="App" >
       <Analytics />
       <SpeedInsights />
-      <Router basename="/Rukn-Elquran">
+      <Router>
         <Analytics />
         <SpeedInsights />
         <AppContext>
@@ -38,7 +38,7 @@ function App() {
           <NavBool />
           <Navbar />
           <Routes>
-            <Route path="/Rukn-Elquran" element={<>
+            <Route path="/" element={<>
               <Home />
             </>} />
             <Route path="/quran/sewar" element={<>
