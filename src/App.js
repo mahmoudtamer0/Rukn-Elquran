@@ -14,19 +14,10 @@ import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
 import './components/preloader.css'
-import { useState, useEffect } from "react";
 import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 function App() {
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 1800)
-  }, [])
 
   return (
     <div className="App" >
@@ -40,7 +31,7 @@ function App() {
           <NavBool />
           <Navbar />
           <Routes>
-            <Route path="/Rukn-Elquran" element={<>
+            <Route path="/" element={<>
               <Home />
             </>} />
             <Route path="/Rukn-Elquran/quran/sewar" element={<>
