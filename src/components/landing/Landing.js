@@ -4,7 +4,6 @@ import landingImg from '../../images/quran-book.jpg'
 import './landing.css'
 import { useData } from '../../context/AppContext';
 import { useEffect, useState } from 'react';
-import { useClickAway } from "@uidotdev/usehooks";
 import { useTranslation } from 'react-i18next';
 
 function Landing() {
@@ -49,7 +48,7 @@ function Landing() {
     return (
         <div className='landing'>
             <div className='landing-img'>
-                <img src={landingImg} />
+                <img src={landingImg} alt='...' />
             </div>
             <div className='text-center landing-text '>
                 <div className='d-flex align-items-center justify-content-center'>
@@ -82,10 +81,10 @@ function Landing() {
                         </div>
                         <div className='fastLinksDiv text-end mt-3 '>
                             <div className='fastLinks'>
-                                <Link to={`/Rukn-Elquran/quran/surah/1`}>{t("landing.link1")}</Link>
-                                <Link to={`/Rukn-Elquran/quran/surah/2`}>{t("landing.link2")}</Link>
-                                <Link to={`/Rukn-Elquran/reciters/107`}>{t("landing.link3")}</Link>
-                                <Link to={`/Rukn-Elquran/reciters/105`}>{t("landing.link4")}</Link>
+                                <Link to={`/quran/surah/1`}>{t("landing.link1")}</Link>
+                                <Link to={`/quran/surah/2`}>{t("landing.link2")}</Link>
+                                <Link to={`/reciters/107`}>{t("landing.link3")}</Link>
+                                <Link to={`/reciters/105`}>{t("landing.link4")}</Link>
                             </div>
 
                         </div>
@@ -99,7 +98,7 @@ function Landing() {
                                         return (
                                             <Link
                                                 key={link.id}
-                                                to={`/Rukn-Elquran/quran/surah/${link.id}`}
+                                                to={`/quran/surah/${link.id}`}
                                                 className='searchMainLink'>
                                                 <span>{link.name}</span>
                                                 <i className="fa-solid fa-arrow-left"></i>
@@ -114,7 +113,7 @@ function Landing() {
                                         return (
                                             <Link
                                                 key={link.id}
-                                                to={`/Rukn-Elquran/reciters/${link.id}`}
+                                                to={`/reciters/${link.id}`}
                                                 className='searchMainLink'>
                                                 <span>{t("reciters.reciter")} {link.name}</span>
                                                 <i className="fa-solid fa-arrow-left"></i>
@@ -123,23 +122,6 @@ function Landing() {
                                     })
                                 }
                             </div>
-                            {/* <div>
-                                {
-                                    reciters.filter((item) => {
-                                        return item.name.includes(search) ? search : null
-                                    }).map(link => {
-                                        return (
-                                            <Link
-                                                key={link.id}
-                                                to={`/Rukn-Elquran/reciters/${link.id}`}
-                                                className='searchMainLink'>
-                                                <span>{link.name}</span>
-                                                <i className="fa-solid fa-arrow-left"></i>
-                                            </Link>
-                                        )
-                                    })
-                                }
-                            </div> */}
                         </div>
                     </div>
                 </div>
