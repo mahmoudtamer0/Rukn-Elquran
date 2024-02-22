@@ -1,8 +1,8 @@
 import React from 'react'
 import { LastSec } from "./lastsection/LastSec";
 import Landing from "./landing/Landing";
-import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useData } from '../context/AppContext'
 import "./sewar/sewar.css"
 import DateToday from './date/DateToday';
@@ -34,7 +34,7 @@ const Home = () => {
                 <div className='container'>
                     <NavLink
                         className={`linkHome`}
-                        to={`/Rukn-Elquran/quran/sewar`}
+                        to={`/quran/sewar`}
                         style=
                         {{
                             color: colors.blackColor, fontSize: "1.7rem",
@@ -48,7 +48,7 @@ const Home = () => {
                                 <NavLink
                                     key={sora.number}
                                     onClick={() => handleClick()}
-                                    to={`/Rukn-Elquran/quran/surah/${sora.number || sora.id}`}
+                                    to={`/quran/surah/${sora.number || sora.id}`}
                                     style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                     className='soraBox d-flex justify-content-between align-items-center'>
                                     <div className='soraDet'>
@@ -70,7 +70,7 @@ const Home = () => {
                     </div>
                     <div className='mt-5 text-center linkForMore'>
                         <NavLink
-                            to={`/Rukn-Elquran/quran/sewar`}
+                            to={`/quran/sewar`}
                             className={mode == "dark?" ? "dark" : "light"}
                             style={{ color: colors.mainColor }}
                         >{t("home.more_surahs")}
@@ -81,7 +81,7 @@ const Home = () => {
 
             <div className='container mainRec'>
                 <NavLink
-                    to={`/Rukn-Elquran/reciters`}
+                    to={`/reciters`}
                     className={`linkHome`}
                     style=
                     {{
@@ -96,7 +96,7 @@ const Home = () => {
                         return (
                             <NavLink
                                 key={index}
-                                to={`/Rukn-Elquran/reciters/${rec.id}`}
+                                to={`/reciters/${rec.id}`}
                                 style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                 className="soraBox d-flex justify-content-between align-items-center"
                             >
@@ -112,7 +112,7 @@ const Home = () => {
                 </div>
                 <div className='mt-5 text-center linkForMore'>
                     <NavLink
-                        to={`/Rukn-Elquran/reciters`}
+                        to={`/reciters`}
                         className={mode == "dark?" ? "dark" : "light"}
                         style={{ color: colors.mainColor }}
                     >{t("home.more_reciters")}
