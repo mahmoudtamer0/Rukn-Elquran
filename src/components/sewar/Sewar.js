@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useData } from '../../context/AppContext'
 import "./sewar.css"
 import landingImg from '../../images/quran-book.jpg'
@@ -24,7 +24,7 @@ const Sewar = () => {
         <div>
             <div className='landing' style={{ height: "350px" }}>
                 <div className='landing-img'>
-                    <img src={landingImg} />
+                    <img src={landingImg} alt='...' />
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
@@ -53,7 +53,7 @@ const Sewar = () => {
                                 <NavLink
                                     key={sora.number}
                                     onClick={() => handleClick()}
-                                    to={`/Rukn-Elquran/quran/surah/${sora.number || sora.id}`}
+                                    to={`/quran/surah/${sora.number || sora.id}`}
                                     style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                     className='soraBox d-flex justify-content-between align-items-center'>
                                     <div className='soraDet'>
