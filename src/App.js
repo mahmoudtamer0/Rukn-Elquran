@@ -30,7 +30,6 @@ function App() {
 
   return (
     <div className="App" >
-      <Analytics />
       <Router>
         <Analytics />
         <AppContext>
