@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import './buttons.css'
 import { useData } from '../../context/AppContext'
 import { useClickAway } from '@uidotdev/usehooks'
@@ -20,23 +20,17 @@ function Button({ play, isPlaying }) {
     useEffect(() => {
         getReciters()
     }, [])
-
-    const { pathname } = useLocation()
-
     useEffect(() => {
         if (server.includes("https://backup.qurango.net/")) {
             setElliBool(false)
         } else {
             setElliBool(true)
         }
-
         if (server.includes("http://www.hisnmuslim.com/audio")) {
             setAzkarBool(true)
         } else setAzkarBool(false)
-
         setDownLoaded(<i style={{ color: colors.greyColor }} className="fa-solid fa-download"></i>)
     }, [server])
-
     const handleElliClick = () => {
         if (select == false) {
             setSelect(true)
@@ -44,20 +38,16 @@ function Button({ play, isPlaying }) {
             setSelect(false)
         }
     }
-
     const handleBtnClick = (rec) => {
         setSelectReciters(false)
         setServer(`${rec.moshaf[0].server}${soraId}`)
     }
-
     const boxRef = useClickAway(() => {
         setSelect(false)
     })
-
     const box2Ref = useClickAway(() => {
         setSelectReciters(false)
     })
-
     const handleDownload = async () => {
         try {
             setLoading(true)
@@ -72,13 +62,10 @@ function Button({ play, isPlaying }) {
             link.click();
             document.body.removeChild(link);
         } catch {
-
         }
         setLoading(false)
         setDownLoaded(<i style={{ color: colors.mainColor }} className="fa-solid fa-check"></i>)
     }
-
-
     return (
         <div className='btn-container'>
             <div
@@ -128,7 +115,7 @@ function Button({ play, isPlaying }) {
                     className=
                     {`btnnnnn 
                     ${lang == "ar" ? "justify-content-end" : "justify-content-start"}
-                     ${loading ? "opaaa" : ""}`}>
+                    ${loading ? "opaaa" : ""}`}>
                     <span
                         style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
                         {t("audio.download")}
