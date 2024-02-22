@@ -13,11 +13,11 @@ import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
-import HashLoader from "react-spinners/HashLoader"
 import './components/preloader.css'
 import { useState, useEffect } from "react";
 import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 function App() {
 
   const [loading, setLoading] = useState(true);
@@ -31,8 +31,10 @@ function App() {
   return (
     <div className="App" >
       <Analytics />
+      <SpeedInsights />
       <Router>
         <Analytics />
+        <SpeedInsights />
         <AppContext>
           <PreLoader />
           <NavBool />
