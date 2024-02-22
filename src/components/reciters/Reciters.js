@@ -25,7 +25,7 @@ const Reciters = () => {
         <div>
             <div className='landing' style={{ height: "350px" }}>
                 <div className='landing-img'>
-                    <img src={landingImg} alt='...' />
+                    <img src={landingImg} />
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
@@ -53,7 +53,7 @@ const Reciters = () => {
                             return (
                                 <NavLink
                                     key={index}
-                                    to={`/reciters/${rec.id}`}
+                                    to={`/Rukn-Elquran/reciters/${rec.id}`}
                                     style={{ backgroundColor: colors.whitColor, border: `1px solid ${colors.borderColor}` }}
                                     className="soraBox d-flex justify-content-between align-items-center"
                                 >

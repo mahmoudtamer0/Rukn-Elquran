@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useData } from '../../context/AppContext'
 import "./last-sec.css"
 import { NavLink } from 'react-router-dom'
@@ -20,8 +20,8 @@ export const LastSec = () => {
                                 key={sora.soraName}
                                 onClick={() => setPageScrollTo(sora.PageNow)}
                                 to={`${sora.soraName != "اذكار" ?
-                                    `/quran/surah/${sora.soraId}`
-                                    : "/azkar"}`}
+                                    `/Rukn-Elquran/quran/surah/${sora.soraId}`
+                                    : "/Rukn-Elquran/azkar"}`}
                                 className='mainBox'
                                 style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
                                 <div className='boxHead d-flex justify-content-between align-items-center'>

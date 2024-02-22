@@ -13,15 +13,25 @@ import Home from "./components/Home"
 import DateToday from "./components/date/DateToday";
 import AboutUs from "./components/AboutUs";
 import { Azkar } from "./components/azkar/Azkar";
+import HashLoader from "react-spinners/HashLoader"
 import './components/preloader.css'
+import { useState, useEffect } from "react";
 import PreLoader from "./components/PreLoader";
 function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 1800)
+  }, [])
 
   return (
     <div className="App" >
 
 
-      <Router basename="/Rukn-Elquran">
+      <Router>
         <AppContext>
           <PreLoader />
           <NavBool />
@@ -30,31 +40,31 @@ function App() {
             <Route path="/Rukn-Elquran" element={<>
               <Home />
             </>} />
-            <Route path="/quran/sewar" element={<>
+            <Route path="/Rukn-Elquran/quran/sewar" element={<>
               <Sewar />
             </>} />
 
-            <Route path="/prayer_times" element={<>
+            <Route path="/Rukn-Elquran/prayer_times" element={<>
               <DateToday />
             </>} />
-            <Route path="/quran/surah/:soraNum" element={<> <Sora /></>} />
-            <Route path="/quran/surah/:soraNum/ayah/:ayahNum" element={<> <Sora /></>} />
+            <Route path="/Rukn-Elquran/quran/surah/:soraNum" element={<> <Sora /></>} />
+            <Route path="/Rukn-Elquran/quran/surah/:soraNum/ayah/:ayahNum" element={<> <Sora /></>} />
 
-            <Route path="/reciters" element={<>
+            <Route path="/Rukn-Elquran/reciters" element={<>
               <Reciters />
             </>} />
 
-            <Route path="/azkar" element={<>
+            <Route path="/Rukn-Elquran/azkar" element={<>
               <Azkar />
             </>} />
 
-            <Route path="/reciters/:recId" element={<> <Reciter /></>} />
+            <Route path="/Rukn-Elquran/reciters/:recId" element={<> <Reciter /></>} />
 
-            <Route path="/radio" element={<>
+            <Route path="/Rukn-Elquran/radio" element={<>
               <Radio />
             </>} />
 
-            <Route path="/about_us" element={<>
+            <Route path="/Rukn-Elquran/about_us" element={<>
               <AboutUs />
             </>} />
           </Routes>
