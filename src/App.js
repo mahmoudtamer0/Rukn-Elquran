@@ -17,13 +17,19 @@ import './components/preloader.css'
 import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-ST0D4BK1E5');
 function App() {
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, []);
 
   return (
     <div className="App" >
       <Analytics />
       <SpeedInsights />
-      <Router>
+      <Router basename="/Rukn-Elquran">
         <Analytics />
         <SpeedInsights />
         <AppContext>
@@ -31,7 +37,7 @@ function App() {
           <NavBool />
           <Navbar />
           <Routes>
-            <Route path="/" element={<>
+            <Route path="/Rukn-Elquran" element={<>
               <Home />
             </>} />
             <Route path="/quran/sewar" element={<>

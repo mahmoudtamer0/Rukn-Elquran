@@ -69,6 +69,7 @@ const AppContext = ({ children }) => {
         ReactGA.pageview(window.location.pathname);
     }, []);
 
+
     const getSewar = () => {
         if (lang == "ar") {
             fetch("https://api.alquran.cloud/v1/surah")
