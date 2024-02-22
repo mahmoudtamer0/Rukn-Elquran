@@ -20,8 +20,8 @@ export const LastSec = () => {
                                 key={sora.soraName}
                                 onClick={() => setPageScrollTo(sora.PageNow)}
                                 to={`${sora.soraName != "اذكار" ?
-                                    `/Rukn-Elquran/quran/surah/${sora.soraId}`
-                                    : "/Rukn-Elquran/azkar"}`}
+                                    `/quran/surah/${sora.soraId}`
+                                    : "/azkar"}`}
                                 className='mainBox'
                                 style={{ borderColor: colors.borderColor, color: colors.blackColor }}>
                                 <div className='boxHead d-flex justify-content-between align-items-center'>
