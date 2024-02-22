@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { useData } from '../context/AppContext'
 const PreLoader = () => {
     const [loading, setLoading] = useState(true)
+    const { pathname } = useLocation()
     const { t, i18n } = useTranslation()
     const { font, colors } = useData()
 
