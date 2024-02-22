@@ -22,17 +22,14 @@ const DateToday = () => {
     const [search2, setSearch2] = useState([])
     const { t, i18n } = useTranslation()
 
-
     const getTimings = async () => {
         try {
             await fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
                 .then(res => res.json())
                 .then(data => setTimings(data.data))
         } catch {
-
         }
     }
-
 
     useEffect(() => {
         fetch("https://countriesnow.space/api/v0.1/countries")
@@ -66,7 +63,6 @@ const DateToday = () => {
         }, 500)
     }
 
-
     const handleSecondeSelectClick = async (city) => {
         setCity(city)
         setSecondSelectShow(false)
@@ -90,16 +86,12 @@ const DateToday = () => {
         return `${day}-${month}-${year}`;
     };
 
-
-
     const handleDateChange = (event) => {
         const [day, month, year] = event.target.value.split('-').map(Number);
         const selectedDate = new Date(year, month - 1, day); // Month is zero-based
         setSelectedDate(selectedDate);
         getTimings()
     };
-
-
 
     const next30DaysOptions = [];
     for (let i = 0; i < 30; i++) {
@@ -110,7 +102,6 @@ const DateToday = () => {
         );
     }
 
-
     const boxRef = useClickAway(() => {
         setSelectShow(false)
     })
@@ -118,7 +109,6 @@ const DateToday = () => {
     const box2Ref = useClickAway(() => {
         setSecondSelectShow(false)
     })
-
 
     useEffect(() => {
         getTimings()
