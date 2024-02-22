@@ -45,6 +45,7 @@ const SoraMain = () => {
     const history = useLocation();
     const [scrollY, setScrollY] = useState(0)
     const bts = [...document.querySelectorAll('.tafseerBtn')];
+    const btsSocial = [...document.querySelectorAll('.tafseerBtnSocial')];
     const ays = [...document.querySelectorAll('.ayahSpan')];
     const pags = [...document.querySelectorAll('.soraPage')];
     const { t, i18n } = useTranslation()
@@ -99,6 +100,10 @@ const SoraMain = () => {
             bt.classList.remove("visible")
             bt.classList.add("hide")
         })
+        btsSocial.map(bt => {
+            bt.classList.remove("visible")
+            bt.classList.add("hide")
+        })
         ays.map(bt => {
             bt.classList.remove("ayahClickedDark")
         })
@@ -113,7 +118,6 @@ const SoraMain = () => {
             document.querySelector(`.ayahSpan${ayah.numberInSurah}`)?.classList.add("ayahClickedDark")
         }
 
-
         let filter = tafseer?.filter(item => item.aya == ayah.numberInSurah)
         setAyahInTafseer(filter[0].arabic_text)
         setTheTafseer(filter[0].translation)
@@ -121,9 +125,17 @@ const SoraMain = () => {
         document.querySelector(`.tafseer${ayah.numberInSurah}`)?.classList.add("visible")
     }
 
+    const handleTafseerBtnSocial = (ayah) => {
+        document.querySelector(`.tafseerSocial${ayah.numberInSurah}`)?.classList.remove("hide")
+        document.querySelector(`.tafseerSocial${ayah.numberInSurah}`)?.classList.add("visible")
+    }
+
+
     const handleTafseerClose = (ayahNum) => {
         document.querySelector(`.tafseer${ayahNum}`).classList.remove("visible")
         document.querySelector(`.tafseer${ayahNum}`).classList.add("hide")
+        document.querySelector(`.tafseerSocial${ayahNum}`).classList.remove("visible")
+        document.querySelector(`.tafseerSocial${ayahNum}`).classList.add("hide")
         document.querySelector(`.ayahSpan${ayahNum}`)?.classList.remove("ayahClicked")
         ays.map(bt => {
             bt.classList.remove("ayahClickedDark")
@@ -148,6 +160,10 @@ const SoraMain = () => {
             bt.classList.remove("visible")
             bt.classList.add("hide")
         })
+        btsSocial.map(bt => {
+            bt.classList.remove("visible")
+            bt.classList.add("hide")
+        })
         ays.map(bt => {
             bt.classList.remove("ayahClickedDark")
         })
@@ -166,6 +182,10 @@ const SoraMain = () => {
     // start handling single ayah play
     const handleAyaPlay = (ayah) => {
         bts.map(bt => {
+            bt.classList.remove("visible")
+            bt.classList.add("hide")
+        })
+        btsSocial.map(bt => {
             bt.classList.remove("visible")
             bt.classList.add("hide")
         })
@@ -339,6 +359,21 @@ const SoraMain = () => {
             })
         }, 4000);
     }
+
+    const shareViaWhatsApp = (url, num) => {
+        const message = `${soraName} اية ${num.toLocaleString("ar-EG")}`
+        const encodingURl = encodeURIComponent(url)
+        const linkUrl = `whatsapp://send?text=${message}%0A${encodingURl}`;
+        window.location.href = linkUrl;
+    };
+
+    const shareViaTeleGram = (link, num) => {
+        const message = `${soraName} اية ${num.toLocaleString("ar-EG")} \n\n` + link;
+        const encodedMessage = encodeURIComponent(message);
+        const url = `https://t.me/share/url?url=${link}&text=${encodedMessage}`;
+        window.open(url, '_blank');
+    };
+
     return (
         <div
             className={`Sora ${!sideBarOpen ? "soraMargin0" : null}`}>
@@ -439,49 +474,91 @@ const SoraMain = () => {
                                         `}>
                                         {pages[pageNumber].map((item) => (
                                             <span key={item.numberInSurah}>
-                                                <span
-                                                    style={{ backgroundColor: colors.navColor }}
-                                                    className={`tafseerBtn hide tafseer${item.numberInSurah}`}>
-                                                    <button
-                                                        style={{
-                                                            border: `1px solid ${colors.borderColor}`,
-                                                            backgroundColor: colors.navColor,
-                                                            color: colors.blackColor
-                                                        }}
-                                                        className='btnTafseer'
-                                                        onClick={() => handleDetailedTafseer(item)}
-                                                    >
-                                                        <span style={{ fontSize: "15px" }}>{t("sora.tafseer_ayah")}</span>
-                                                    </button>
-                                                    <button
-                                                        style={{
-                                                            border: `1px solid ${colors.borderColor}`,
-                                                            backgroundColor: colors.navColor,
-                                                            color: colors.blackColor
-                                                        }}
-                                                        className='btnTa48eel'
-                                                        onClick={() => handleAyaPlay(item)}
-                                                    >
-                                                        <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
-                                                    </button>
-                                                    <CopyToClipboard text={`${window.location.origin}/quran/surah/${soraNum}/ayah/${item.numberInSurah}`}
-                                                        onCopy={() => handleCopied()}>
-                                                        <button
-                                                            style={{
-                                                                border: `1px solid ${colors.borderColor}`,
-                                                                backgroundColor: colors.navColor,
-                                                                color: colors.blackColor
-                                                            }}
-                                                            className='btnTa48eel'
-                                                        >
-                                                            <i style={{ fontSize: "20px" }} class="fa-solid fa-share-nodes"></i>
-                                                        </button>
-                                                    </CopyToClipboard>
-                                                    <i
-                                                        className="fa-solid fa-circle-xmark ii"
-                                                        onClick={() => handleTafseerClose(item.numberInSurah)}
-                                                    >
-                                                    </i>
+                                                <span>
+                                                    <span
+                                                        style={{ backgroundColor: colors.navColor }}
+                                                        className={`tafseerBtn hide tafseer${item.numberInSurah}`}>
+                                                        <span className='mainBtnsSpans'>
+                                                            <button
+                                                                style={{
+                                                                    border: `1px solid ${colors.borderColor}`,
+                                                                    backgroundColor: colors.navColor,
+                                                                    color: colors.blackColor
+                                                                }}
+                                                                className='btnTafseer'
+                                                                onClick={() => handleDetailedTafseer(item)}
+                                                            >
+                                                                <span style={{ fontSize: "15px" }}>{t("sora.tafseer_ayah")}</span>
+                                                            </button>
+                                                            <button
+                                                                style={{
+                                                                    border: `1px solid ${colors.borderColor}`,
+                                                                    backgroundColor: colors.navColor,
+                                                                    color: colors.blackColor
+                                                                }}
+                                                                className='btnTa48eel'
+                                                                onClick={() => handleAyaPlay(item)}
+                                                            >
+                                                                <i style={{ fontSize: "20px" }} className="fa-solid fa-play"></i>
+                                                            </button>
+                                                            <button
+                                                                style={{
+                                                                    border: `1px solid ${colors.borderColor}`,
+                                                                    backgroundColor: colors.navColor,
+                                                                    color: colors.blackColor
+                                                                }}
+                                                                className='btnTa48eel'
+                                                                onClick={() => handleTafseerBtnSocial(item)}
+                                                            >
+                                                                <i style={{ fontSize: "20px" }} className="fa-solid fa-share-nodes"></i>
+                                                            </button>
+                                                            <i
+                                                                className="fa-solid fa-circle-xmark ii"
+                                                                onClick={() => handleTafseerClose(item.numberInSurah)}
+                                                            >
+                                                            </i>
+                                                        </span>
+                                                        <span
+                                                            style={{ backgroundColor: colors.navColor }}
+                                                            className={`tafseerBtnSocial hide tafseerSocial${item.numberInSurah}`}>
+                                                            <button
+                                                                style={{
+                                                                    border: `1px solid ${colors.borderColor}`,
+                                                                    backgroundColor: colors.navColor,
+                                                                    color: colors.blackColor
+                                                                }}
+                                                                className='btnTa48eel whatsapp'
+                                                                onClick={() => shareViaWhatsApp(`${window.location.origin}/quran/surah/${soraNum}/ayah/${item.numberInSurah}`, item.numberInSurah, item.name)}
+                                                            >
+                                                                <i style={{ fontSize: "20px" }} className="fa-brands fa-whatsapp"></i>
+                                                            </button>
+                                                            <button
+                                                                style={{
+                                                                    border: `1px solid ${colors.borderColor}`,
+                                                                    backgroundColor: colors.navColor,
+                                                                    color: colors.blackColor
+                                                                }}
+                                                                className='btnTa48eel telegram'
+                                                                onClick={() => shareViaTeleGram(`${window.location.origin}/quran/surah/${soraNum}/ayah/${item.numberInSurah}`, item.numberInSurah, item.name)}
+                                                            >
+                                                                <i style={{ fontSize: "20px" }} className="fa-brands fa-telegram"></i>
+                                                            </button>
+                                                            <CopyToClipboard text={`${window.location.origin}/quran/surah/${soraNum}/ayah/${item.numberInSurah}`}
+                                                                onCopy={() => handleCopied()}>
+                                                                <button
+                                                                    style={{
+                                                                        border: `1px solid ${colors.borderColor}`,
+                                                                        backgroundColor: colors.navColor,
+                                                                        color: colors.blackColor
+                                                                    }}
+                                                                    className='btnTa48eel telegram'
+                                                                >
+                                                                    <i style={{ fontSize: "20px" }} className="fa-solid fa-link"></i>
+                                                                </button>
+                                                            </CopyToClipboard>
+                                                        </span>
+                                                    </span>
+
                                                 </span>
                                                 <span
                                                     ref={spanref}

@@ -321,7 +321,6 @@ a {
 
 
 .tafseerBtn {
-    width: 200px;
     height: 45px;
     background-color: white;
     box-shadow: 0px 0px 19px -9px;
@@ -329,7 +328,40 @@ a {
     border-radius: 10px;
     position: absolute;
     z-index: 100;
-    right: 28%;
+    right: 30%;
+}
+
+.tafseerBtn .mainBtnsSpans {
+    display: flex;
+    width: 200px;
+}
+
+.tafseerBtnSocial {
+    width: 200px;
+    height: 45px;
+    background-color: white;
+    font-size: 20px;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 100;
+    right: 0%;
+    top: 100%;
+}
+
+.tafseerBtnSocial button {
+    background-color: white;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    font-size: 23px;
+    font-weight: 600;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
 }
 
 .tafseerBtn button {
@@ -356,6 +388,14 @@ a {
 }
 
 .tafseerBtn .ii {
+    position: absolute;
+    right: -13px;
+    top: -10px;
+    color: red;
+    cursor: pointer;
+}
+
+.tafseerBtnSocial .ii {
     position: absolute;
     right: -13px;
     top: -10px;
@@ -746,4 +786,16 @@ button.light {
 
 .plusFontSizeDiv {
     gap: 10px;
+}
+
+.whatsapp:hover {
+    background-color: #00a400 !important;
+}
+
+.facebook:hover {
+    background-color: #006ac9 !important;
+}
+
+.telegram:hover {
+    background-color: #048abc !important;
 }
