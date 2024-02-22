@@ -21,7 +21,7 @@ function App() {
     <div className="App" >
 
 
-      <Router basename="/">
+      <Router basename="/Rukn-Elquran">
         <AppContext>
           <PreLoader />
           <NavBool />
