@@ -17,6 +17,7 @@ import './components/preloader.css'
 import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import { useEffect } from "react";
 import ReactGA from 'react-ga';
 ReactGA.initialize('G-ST0D4BK1E5');
 function App() {
