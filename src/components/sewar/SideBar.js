@@ -118,7 +118,7 @@ const SideBar = ({ soraNum }) => {
                                         style={{ color: colors.blackColor }}
                                         id={`id${(soraNum)}`}
                                         className={'mainSoraLink'}
-                                        to={`/Rukn-Elquran/quran/surah/${sora.id}`}
+                                        to={`/quran/surah/${sora.id}`}
                                         onClick={(e) => setSideBarOpen(false)}>
                                         {lang == "ar" ?
                                             <span>{sora.id.toLocaleString('ar-EG')}</span>
