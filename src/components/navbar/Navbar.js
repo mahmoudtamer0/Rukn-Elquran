@@ -52,7 +52,7 @@ function Navbar() {
                 > {t("navBar.list")}</p>
                 <div className="divLinks">
                     <NavLink
-                        to={`/Rukn-ELquran`}
+                        to={`/`}
                         onClick={() => setSideNavBarShow(false)}
                         style={{ color: colors.blackColor, borderBlockColor: colors.borderColor }}
                         className="nav-link" aria-current="page" href="#">
@@ -140,7 +140,7 @@ function Navbar() {
                                 style={{ color: colors.blackColor }}
                                 className="fa-solid fa-bars"></i>
                         </div>
-                        <Link to={'/Rukn-ELquran'} style={{ fontFamily: font }}
+                        <Link to={'/'} style={{ fontFamily: font }}
                             className={`navLogo ${lang == "eng" && "navLogoEng"}`}>
                             <i className="fa-solid fa-book-open"></i>
                             <span
