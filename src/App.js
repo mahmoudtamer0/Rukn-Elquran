@@ -38,7 +38,7 @@ function App() {
           <NavBool />
           <Navbar />
           <Routes>
-            <Route path="/Rukn-ELquran" element={<>
+            <Route path="/" element={<>
               <Home />
             </>} />
             <Route path="/quran/sewar" element={<>
