@@ -18,12 +18,13 @@ import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 function App() {
+  // "homepage": "https://mahmoudtamer0.github.io/Rukn-Elquran/",
 
   return (
     <div className="App" >
       <Analytics />
       <SpeedInsights />
-      <Router basename="/Rukn-Elquran">
+      <Router basename="/">
         <Analytics />
         <SpeedInsights />
         <AppContext>
