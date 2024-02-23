@@ -3,21 +3,21 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useData } from '../context/AppContext'
 import "./sewar/sewar.css"
+import './landing/landing.css'
+
 import { useTranslation } from 'react-i18next'
 import PulseLoader from "react-spinners/PulseLoader";
 const SearchResult = () => {
     const { colors, font, fontSize, setPageScrollTo, lang, searchResults, getReciters, reciters } = useData()
     const { t, i18n } = useTranslation()
     const [sewar, setSewar] = useState([])
-    const [loading, setLoading] = useState(false)
-
-
+    const [search, setSearch] = useState("")
 
     const handleClick = () => {
         setPageScrollTo(0)
     }
 
-    const { radio, getRadio, setServer, server, loadingForSearch, setLoadingForSearch } = useData()
+    const { radio, getRadio, setServer, server, setSearchResults, setLoadingForSearch } = useData()
 
     const handlePlay = (radio) => {
         setServer(`${radio.url}`)
@@ -39,10 +39,27 @@ const SearchResult = () => {
         getData()
     }, [searchResults])
 
+    const handlesubmit = (e) => {
+        e.preventDefault()
+        if (search != '') {
+            setSearchResults(search)
+        }
+    }
     return (
         <div className='mainRec' style={{ minHeight: "65vh", paddingTop: "100px" }}>
             <div className='container'>
-                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "20px" }}>
+                <div className='searchInputDiv' style={{ position: "relative" }}>
+                    <form onSubmit={handlesubmit}>
+                        <input
+                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
+                            style={{ backgroundColor: colors.searchColor, color: colors.black }}
+                            type='text'
+                            className='inpForSearch'
+                            placeholder={t("landing.search")} />
+                        <i onClick={handlesubmit} className={`${lang == "eng" ? "rightI" : "leftI"} fa-solid fa-magnifying-glass`}></i>
+                    </form>
+                </div>
+                <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", margin: "50px 0" }}>
                     {t("sora.searchResults")} "{searchResults}"
                 </h2>
                 {sewar.length > 0 ?
