@@ -48,7 +48,7 @@ function Landing() {
     return (
         <div className='landing'>
             <div className='landing-img'>
-                <img src={landingImg} />
+                <img src={landingImg} alt='...' />
             </div>
             <div className='text-center landing-text '>
                 <div className='d-flex align-items-center justify-content-center'>
