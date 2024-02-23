@@ -297,7 +297,12 @@ a {
 
 .mainSoraLink.active,
 .mainSoraLink:hover {
-    background-color: #0075ff;
+    background-color: #0075ff !important;
+    color: white !important;
+}
+
+.mainBtnsSpans button:hover {
+    background-color: #0075ff !important;
     color: white !important;
 }
 
@@ -346,6 +351,7 @@ a {
     z-index: 100;
     right: 0%;
     top: 100%;
+    box-shadow: 0px 6px 19px -9px;
 }
 
 .tafseerBtnSocial button {
@@ -784,18 +790,23 @@ button.light {
     color: white;
 }
 
+
+
 .plusFontSizeDiv {
     gap: 10px;
 }
 
 .whatsapp:hover {
     background-color: #00a400 !important;
+    color: white !important;
 }
 
 .facebook:hover {
-    background-color: #006ac9 !important;
+    background-color: rgb(71 59 88) !important;
+    color: white !important;
 }
 
 .telegram:hover {
     background-color: #048abc !important;
+    color: white !important;
 }
