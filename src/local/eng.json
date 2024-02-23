@@ -44,7 +44,8 @@
         "search_for_surah": "search for surah",
         "no_surahs": "There are no previous surahs",
         "play_azkar_btn": "Play audio",
-        "azkar": "Words of remembrance for morning and evening"
+        "azkar": "Words of remembrance for morning and evening",
+        "surah": "Surah"
     },
     "reciters": {
         "quran_reciters": "Qur'an Reciters",
@@ -68,7 +69,8 @@
         "previous_surah": "Previous Surah",
         "next_surah": "next surah",
         "search_for_surah": "search for surah",
-        "font_size": "Font Size"
+        "font_size": "Font Size",
+        "searchResults": "Search Results For"
     },
     "audio": {
         "download": "Download",

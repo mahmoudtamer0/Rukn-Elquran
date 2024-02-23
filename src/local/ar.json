@@ -44,7 +44,8 @@
         "search_for_surah": "ابحث عن سورة",
         "no_surahs": "لا يوجد سور سابقة",
         "play_azkar_btn": "تشغيل صوتي",
-        "azkar": "أذكار الصباح والمساء"
+        "azkar": "أذكار الصباح والمساء",
+        "surah": "سورة"
     },
     "reciters": {
         "quran_reciters": "قراء القرأن",
@@ -68,7 +69,8 @@
         "previous_surah": "السورة السابقة",
         "next_surah": "السورة القادمة",
         "search_for_surah": "ابحث عن سورة",
-        "font_size": "حجم الخط"
+        "font_size": "حجم الخط",
+        "searchResults": "نتائج البحث عن"
     },
     "audio": {
         "download": "تحميل",
