@@ -17,6 +17,7 @@ import './components/preloader.css'
 import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
+import SearchResult from "./components/SearchResult";
 function App() {
   // "homepage": "https://mahmoudtamer0.github.io/Rukn-Elquran/",
 
@@ -55,7 +56,9 @@ function App() {
             <Route path="/radio" element={<>
               <Radio />
             </>} />
-
+            <Route path="/search_results" element={<>
+              <SearchResult />
+            </>} />
             <Route path="/about_us" element={<>
               <AboutUs />
             </>} />
