@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import landingLogo from '../../images/quran-mazid-hero-calio.png'
 import landingImg from '../../images/quran-book.jpg'
 import './landing.css'
@@ -8,11 +8,12 @@ import { useTranslation } from 'react-i18next';
 
 function Landing() {
 
-    const { colors, reciters, getReciters, lang, font, fontSize } = useData()
+    const { colors, reciters, getReciters, lang, font, setSearchResults } = useData()
     const [search, setSearch] = useState("")
     const [sewar, setSewar] = useState([])
     const [focused, setFocused] = useState(false)
     const { t, i18n } = useTranslation()
+    const navigate = useNavigate()
 
     useEffect(() => {
         getReciters()
@@ -45,6 +46,14 @@ function Landing() {
         }
     }, [search])
 
+    const handlesubmit = (e) => {
+        e.preventDefault()
+        if (search != '') {
+            setSearchResults(search)
+            navigate("/search_results")
+        }
+    }
+
     return (
         <div className='landing'>
             <div className='landing-img'>
@@ -66,18 +75,21 @@ function Landing() {
                 <div className='inpDiv'>
                     <div className='inpMainDiv'>
                         <div className='searchInputDiv' style={{ position: "relative" }}>
-                            <input
-                                onBlur={() => {
-                                    setTimeout(() => {
-                                        setFocused(false)
-                                    }, 300);
-                                }}
-                                onFocus={() => setFocused(true)}
-                                onChange={(e) => setSearch(e.target.value.toLowerCase())}
-                                style={{ backgroundColor: colors.searchColor, color: colors.black }}
-                                type='text'
-                                placeholder={t("landing.search")} />
-                            <i className={`${lang == "eng" ? "rightI" : "leftI"} fa-solid fa-magnifying-glass`}></i>
+                            <form onSubmit={handlesubmit}>
+                                <input
+                                    onBlur={() => {
+                                        setTimeout(() => {
+                                            setFocused(false)
+                                        }, 300);
+                                    }}
+                                    onFocus={() => setFocused(true)}
+                                    onChange={(e) => setSearch(e.target.value.toLowerCase())}
+                                    style={{ backgroundColor: colors.searchColor, color: colors.black }}
+                                    type='text'
+                                    placeholder={t("landing.search")} />
+
+                                <i onClick={handlesubmit} className={`${lang == "eng" ? "rightI" : "leftI"} fa-solid fa-magnifying-glass`}></i>
+                            </form>
                         </div>
                         <div className='fastLinksDiv text-end mt-3 '>
                             <div className='fastLinks'>
