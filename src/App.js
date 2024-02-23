@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App" >
-      <Router basename="/">
+      <Router>
         <Analytics />
         <SpeedInsights />
         <AppContext>
