@@ -22,7 +22,6 @@ const DateToday = () => {
     const [search2, setSearch2] = useState([])
     const { t, i18n } = useTranslation()
 
-
     const getTimings = async () => {
         try {
             await fetch(`https://api.aladhan.com/v1/timingsByCity/${formatDate(selectedDate)}?city=${city}&country=${country}&method=8`)
