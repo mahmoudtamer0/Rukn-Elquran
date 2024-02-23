@@ -14,14 +14,16 @@ const MainAudio = () => {
         };
     }, []);
     const handleSpaceBarPress = (event) => {
-        if (event.key === ' ') {
-            event.preventDefault();
-            if (!audioRef.current.paused) {
-                audioRef.current.pause();
-                setIsPlaying(false)
-            } else {
-                audioRef.current.play();
-                setIsPlaying(true)
+        if (server !== '') {
+            if (event.key === ' ') {
+                event.preventDefault();
+                if (!audioRef.current.paused) {
+                    audioRef.current.pause();
+                    setIsPlaying(false)
+                } else {
+                    audioRef.current.play();
+                    setIsPlaying(true)
+                }
             }
         }
     }
