@@ -23,7 +23,7 @@ function App() {
     <div className="App" >
       <Analytics />
       <SpeedInsights />
-      <Router basename="/Rukn-Elquran">
+      <Router basename="/">
         <Analytics />
         <SpeedInsights />
         <AppContext>
