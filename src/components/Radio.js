@@ -16,7 +16,6 @@ const Radio = () => {
     }, [])
 
     const handlePlay = (radio) => {
-        setSoraId(`${radio.id}`)
         setServer(`${radio.url}`)
     }
 
@@ -24,7 +23,7 @@ const Radio = () => {
         <div>
             <div className='landing' style={{ height: "350px" }}>
                 <div className='landing-img'>
-                    <img src={landingImg} />
+                    <img src={landingImg} alt='..' />
                 </div>
                 <div className='text-center landing-text '>
                     <div className='d-flex align-items-center justify-content-center'>
