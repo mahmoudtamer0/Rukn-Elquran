@@ -327,7 +327,7 @@ a {
     font-size: 20px;
     border-radius: 10px;
     position: absolute;
-    z-index: 100;
+    z-index: 1;
     right: 30%;
 }
 
@@ -346,6 +346,7 @@ a {
     z-index: 100;
     right: 0%;
     top: 100%;
+    box-shadow: 0px 11px 25px -19px;
 }
 
 .tafseerBtnSocial button {
@@ -790,12 +791,15 @@ button.light {
 
 .whatsapp:hover {
     background-color: #00a400 !important;
+    color: white !important;
 }
 
 .facebook:hover {
-    background-color: #006ac9 !important;
+    background-color: rgb(231, 233, 234) !important;
+    color: white !important;
 }
 
 .telegram:hover {
     background-color: #048abc !important;
+    color: white !important;
 }
