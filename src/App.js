@@ -30,7 +30,7 @@ function App() {
     <div className="App" >
       <Analytics />
       <SpeedInsights />
-      <Router basename="/Rukn-Elquran">
+      <Router>
         <Analytics />
         <SpeedInsights />
         <AppContext>
