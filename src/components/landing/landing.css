@@ -64,7 +64,7 @@
     }
 }
 
-.landing input {
+input.inpForSearch {
     border: none;
     width: 100%;
     border-radius: 9px;
