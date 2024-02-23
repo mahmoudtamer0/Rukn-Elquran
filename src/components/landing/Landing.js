@@ -82,6 +82,7 @@ function Landing() {
                                             setFocused(false)
                                         }, 300);
                                     }}
+                                    className='inpForSearch'
                                     onFocus={() => setFocused(true)}
                                     onChange={(e) => setSearch(e.target.value.toLowerCase())}
                                     style={{ backgroundColor: colors.searchColor, color: colors.black }}
