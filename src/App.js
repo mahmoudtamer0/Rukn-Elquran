@@ -16,13 +16,16 @@ import { Azkar } from "./components/azkar/Azkar";
 import './components/preloader.css'
 import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 function App() {
 
   return (
     <div className="App" >
       <Analytics />
-      <Router basename="/">
+      <SpeedInsights />
+      <Router basename="/Rukn-Elquran">
         <Analytics />
+        <SpeedInsights />
         <AppContext>
           <PreLoader />
           <NavBool />
