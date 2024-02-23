@@ -38,6 +38,10 @@
     pointer-events: none;
 }
 
+.progress-bar-live {
+    width: 100% !important;
+}
+
 /*  Hide Original */
 .range {
     -webkit-appearance: none;
