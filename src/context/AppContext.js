@@ -41,6 +41,9 @@ const AppContext = ({ children }) => {
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
     const [fontSize, setFontSize] = useState("1.7rem")
     const [loading, setLoading] = useState(false)
+    const [loadingForSearch, setLoadingForSearch] = useState(false)
+    const [searchResults, setSearchResults] = useState(sessionStorage.getItem("searchResults") ?
+        sessionStorage.getItem("searchResults") : [])
     const [fontAyahSize, setFontAyahSize] = useState(
         localStorage.getItem('fontAyahSize') ? localStorage.getItem('fontAyahSize') : 1
     )
@@ -56,6 +59,10 @@ const AppContext = ({ children }) => {
     useEffect(() => {
         localStorage.setItem("lastSoras", JSON.stringify(lastSoras))
     }, [lastSoras])
+
+    useEffect(() => {
+        sessionStorage.setItem("searchResults", searchResults)
+    }, [searchResults])
 
     const getSewar = () => {
         if (lang == "ar") {
@@ -86,10 +93,15 @@ const AppContext = ({ children }) => {
         localStorage.setItem("fontAyahSize", fontAyahSize)
     }, [fontAyahSize])
 
-    const getRadio = () => {
-        fetch(`https://mp3quran.net/api/v3/radios?language=${lang}`)
-            .then(res => res.json())
-            .then(data => setRadio(data.radios))
+    const getRadio = async () => {
+        try {
+            setLoadingForSearch(true)
+            fetch(`https://mp3quran.net/api/v3/radios?language=${lang}`)
+                .then(res => res.json())
+                .then(data => setRadio(data.radios))
+        } catch { }
+
+        setLoadingForSearch(false)
     }
 
     const handleLightMode = () => {
@@ -166,10 +178,14 @@ const AppContext = ({ children }) => {
     }, [mode])
 
 
-    const getReciters = () => {
-        fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}`)
-            .then(res => res.json())
-            .then(data => setReciters(data.reciters))
+    const getReciters = async () => {
+        try {
+            setLoadingForSearch(true)
+            fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}`)
+                .then(res => res.json())
+                .then(data => setReciters(data.reciters))
+        } catch { }
+        setLoadingForSearch(false)
     }
 
     const getAyahs = async (soraNum) => {
@@ -207,7 +223,8 @@ const AppContext = ({ children }) => {
                 setAzkarBool, azkarBool,
                 setFontAyahSize, fontAyahSize,
                 handlePlusFontSize, handleMinusFontSize,
-                pageNow, setPageNow, loading
+                pageNow, setPageNow, loading, setSearchResults, searchResults,
+                loadingForSearch, setLoadingForSearch
             }}>
             {children}
         </DataContext.Provider>
