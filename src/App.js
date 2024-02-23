@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App" >
       <Analytics />
-      <Router basename="/Rukn-Elquran">
+      <Router basename="/">
         <Analytics />
         <AppContext>
           <PreLoader />
