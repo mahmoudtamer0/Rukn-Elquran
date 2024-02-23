@@ -551,7 +551,7 @@ const SoraMain = () => {
                                                                         backgroundColor: colors.navColor,
                                                                         color: colors.blackColor
                                                                     }}
-                                                                    className='btnTa48eel telegram'
+                                                                    className='btnTa48eel facebook'
                                                                 >
                                                                     <i style={{ fontSize: "20px" }} className="fa-solid fa-link"></i>
                                                                 </button>
