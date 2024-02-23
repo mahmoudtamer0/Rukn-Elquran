@@ -37,6 +37,7 @@ const Sewar = () => {
                         <input
                             onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
+                            className='inpForSearch'
                             placeholder={t("home.search_for_surah")} />
                     </div>
                 </div>

@@ -33,6 +33,7 @@ const Radio = () => {
                     </div>
                     <div className='recDivSearch'>
                         <input
+                            className='inpForSearch'
                             onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
                             placeholder={t("radio.search_for_quran_radios")} />

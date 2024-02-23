@@ -93,6 +93,7 @@ const Reciter = () => {
                         <input
                             onChange={(e) => setSearch(e.target.value.toLowerCase())}
                             type='text'
+                            className='inpForSearch'
                             placeholder={t("reciters.search_surah_for_reciter")} />
                     </div>
                 </div>
