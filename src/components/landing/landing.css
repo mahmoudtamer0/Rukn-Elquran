@@ -252,16 +252,26 @@
 .searchInputDiv i {
     position: absolute;
     top: 20px;
-    color: #0075ff;
+    color: white;
     font-size: 20px;
+    background-color: #0075ff;
+    height: 100%;
+    width: 12%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .leftI {
-    left: 20px;
+    left: 0;
+    border-radius: 40px 0px 0px 40px;
 }
 
 .rightI {
-    right: 20px;
+    right: 0;
+    border-radius: 0px 40px 40px 0;
 }
 
 .font2 {
