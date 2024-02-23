@@ -16,23 +16,13 @@ import { Azkar } from "./components/azkar/Azkar";
 import './components/preloader.css'
 import PreLoader from "./components/PreLoader";
 import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/react"
-import { useEffect } from "react";
-import ReactGA from 'react-ga';
-ReactGA.initialize('G-ST0D4BK1E5');
 function App() {
-
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
-  }, []);
 
   return (
     <div className="App" >
       <Analytics />
-      <SpeedInsights />
       <Router>
         <Analytics />
-        <SpeedInsights />
         <AppContext>
           <PreLoader />
           <NavBool />

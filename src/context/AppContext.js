@@ -1,11 +1,7 @@
 import React, { Children } from 'react'
 import { createContext, useContext, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
-import ReactGA from 'react-ga';
 import { useLocation } from 'react-router-dom';
-
-ReactGA.initialize('G-ST0D4BK1E5');
-
 const DataContext = createContext();
 const AppContext = ({ children }) => {
 
@@ -60,15 +56,6 @@ const AppContext = ({ children }) => {
     useEffect(() => {
         localStorage.setItem("lastSoras", JSON.stringify(lastSoras))
     }, [lastSoras])
-
-    useEffect(() => {
-        ReactGA.pageview(pathname);
-    }, [pathname]);
-
-    useEffect(() => {
-        ReactGA.pageview(window.location.pathname);
-    }, []);
-
 
     const getSewar = () => {
         if (lang == "ar") {
