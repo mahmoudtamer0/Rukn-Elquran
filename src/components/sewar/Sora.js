@@ -588,7 +588,6 @@ const SoraMain = () => {
                         <div className='text-center nextButtons'>
                             {+soraNum > 1 && <Link
                                 to={`/quran/surah/${+soraNum - 1}`}
-                                onClick={() => history?.push(`${+soraNum - 1}`)}
                                 style={{ color: "white", backgroundColor: colors.mainColor }}>
                                 {lang == "ar" ?
                                     <i className="fa-solid fa-chevron-right"></i>
@@ -602,7 +601,6 @@ const SoraMain = () => {
                             {+soraNum <= 113 &&
                                 < Link
                                     to={`/quran/surah/${+soraNum + 1}`}
-                                    onClick={() => history?.push(`${+soraNum + 1}`)}
                                     style={{ color: "white", backgroundColor: colors.mainColor }}>
                                     <span style={{ marginLeft: "10px" }}>
                                         {t("sora.next_surah")}
