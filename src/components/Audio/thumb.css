@@ -25,7 +25,9 @@
     top: 50%;
     transform: translate(0%, -50%);
     pointer-events: none;
-    /* Remove pointer events on thumb so user can click on the actual thumb beaneath it!  */
     user-select: none;
-    /*  Prevent Accidentally highlighting the number while sliding the cursor  */
+}
+
+.thumbLive {
+    left: 98.8% !important;
 }

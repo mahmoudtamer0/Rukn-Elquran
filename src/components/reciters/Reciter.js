@@ -27,15 +27,18 @@ const Reciter = () => {
         fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}&reciter=${recId}`)
             .then(res => res.json())
             .then(data => setReciter(data.reciters[0]))
-    }, [])
+        fetch(`https://www.mp3quran.net/api/v3/reciters?language=${lang}&reciter=${recId}`)
+            .then(res => res.json())
+            .then(data => setSewarList(data.reciters[0].moshaf[0].surah_list.split(',')))
+    }, [recId])
 
 
 
-    useEffect(() => {
-        if (reciter != "") {
-            setSewarList(reciter.moshaf[0].surah_list.split(','))
-        }
-    }, [reciter])
+    // useEffect(() => {
+    //     if (reciter != "") {
+    //         setSewarList(reciter.moshaf[0].surah_list.split(','))
+    //     }
+    // }, [reciter])
 
     useEffect(() => {
         const newarr = []
@@ -50,6 +53,9 @@ const Reciter = () => {
             })
         }
     }, [sewarList])
+
+    console.log(sewarList)
+
 
     const handlePlay = (sora) => {
         setSoraId(`${(sora.id.toString().padStart(3, 0))}.mp3`)
