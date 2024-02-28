@@ -7,6 +7,7 @@ import { useData } from '../context/AppContext'
 import "./sewar/sewar.css"
 import DateToday from './date/DateToday';
 import { useTranslation } from 'react-i18next';
+import Sewar from './sewar/Sewar';
 const Home = () => {
     const { t, i18n } = useTranslation()
     const { sewar, getSewar,
@@ -27,9 +28,7 @@ const Home = () => {
         <div>
             <Landing />
             <LastSec />
-
             <DateToday />
-
             <div className='Sewar' style={{ paddingTop: "65px" }}>
                 <div className='container'>
                     <NavLink
