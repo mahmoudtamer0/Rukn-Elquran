@@ -387,7 +387,7 @@ const SoraMain = () => {
                         style={{ color: colors.blackColor }}
                         className='text-center'>بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</h2>
                 </div>
-                <div className='d-flex justify-content-between align-items-center divSettingsSora'>
+                <div style={{ margin: "0 auto", maxWidth: "650px" }} className='d-flex justify-content-between align-items-center divSettingsSora'>
                     <div className='audioButton'>
                         {reciters.length > 0 ?
                             <>
@@ -459,7 +459,7 @@ const SoraMain = () => {
                         </div>
                         <div>
 
-                            <h5 className='divSettingsH' style={{ color: colors.greyColor, fontSize: "15px", marginBottom: "25px" }}>{t("sora.p1")}</h5>
+                            <h5 className='divSettingsH' style={{ color: colors.greyColor, fontSize: "15px", margin: "0 auto 25px", maxWidth: "650px" }}>{t("sora.p1")}</h5>
                             {Object.keys(pages).map((pageNumber, index) => (
                                 < div
                                     style={{ borderBottom: `1px solid ${colors.borderColor}` }}
@@ -468,9 +468,7 @@ const SoraMain = () => {
                                     <p style={{ color: colors.blackColor }}
                                         className={`
                                         pAyah 
-                                        ${fontAyahSize == 1 && "f30px"}
-                                        ${fontAyahSize == 2 && "f35px"} 
-                                        ${fontAyahSize == 3 && "f40px"}
+                                        fontTo${fontAyahSize}
                                         `}>
                                         {pages[pageNumber].map((item) => (
                                             <span key={item.numberInSurah}>
