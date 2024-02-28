@@ -112,18 +112,6 @@ a {
     text-decoration: none;
 }
 
-/* .divShow button {
-    color: rgb(121, 85, 72);
-    border: none;
-    padding: 10px 25px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: rgb(255 240 235);
-    transition: 0.2s;
-
-    border-radius: 10px;
-} */
-
 .divShow button:hover {
     background-color: rgb(121, 85, 72);
     color: rgb(255 240 235) !important;
@@ -518,7 +506,7 @@ a {
 
 @media(max-width:555px) {
     .soraContent {
-        width: 500px;
+        width: 500px !important;
     }
 
     .Sora p {
@@ -534,7 +522,7 @@ a {
     }
 
     .soraContent {
-        width: 90%;
+        width: 90% !important;
         margin: auto;
     }
 
@@ -722,15 +710,15 @@ button.light {
     }
 }
 
-.f30px {
+.fontTo1 {
     font-size: 30px !important;
 }
 
-.f35px {
+.fontTo2 {
     font-size: 40px !important;
 }
 
-.f40px {
+.fontTo3 {
     font-size: 45px !important;
 }
 
@@ -740,20 +728,20 @@ button.light {
 }
 
 @media (max-width:555px) {
-    .f30px {
+    .fontTo1 {
         font-size: 25px !important;
     }
 
-    .f35px {
+    .fontTo2 {
         font-size: 30px !important;
     }
 
-    .f40px {
+    .fontTo3 {
         font-size: 33px !important;
     }
 
     .soraContent {
-        width: 100%;
+        width: 100% !important;
     }
 
     .divSettingsSora {
@@ -802,4 +790,8 @@ button.light {
 .telegram:hover {
     background-color: #048abc !important;
     color: white !important;
+}
+
+.soraContentW700 {
+    width: 950px;
 }
