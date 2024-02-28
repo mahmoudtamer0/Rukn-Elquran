@@ -6,6 +6,7 @@ import "../sewar/sewar.css"
 import { NavLink } from 'react-router-dom';
 import PulseLoader from "react-spinners/PulseLoader";
 import { useTranslation } from 'react-i18next';
+import LandingSection from '../LandingSection';
 const Reciters = () => {
 
     const {
@@ -23,27 +24,7 @@ const Reciters = () => {
 
     return (
         <div>
-            <div className='landing' style={{ height: "350px" }}>
-                <div className='landing-img'>
-                    <img src={landingImg} alt='..' />
-                </div>
-                <div className='text-center landing-text '>
-                    <div className='d-flex align-items-center justify-content-center'>
-                        <h2 style={{ fontFamily: font, }}
-                            className={`landingTitle ${lang == "eng" ? "font2" : null}`}>
-                            {t("reciters.quran_reciters")}
-                        </h2>
-                    </div>
-                    <div className='recDivSearch'>
-                        <input
-                            className='inpForSearch'
-                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
-                            type='text'
-                            placeholder={t("reciters.search_for_reciter")} />
-                    </div>
-                </div>
-            </div>
-
+            <LandingSection setSearch={setSearch} name={t("reciters.all_reciters")} searchFor={t("reciters.search_for_reciter")} />
             <div className='container mainRec'>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("reciters.all_reciters")}</h2>
                 {reciters.length > 0 ?
