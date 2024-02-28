@@ -91,6 +91,7 @@ const MainAudio = () => {
                     onLoadedData={(e) => {
                         setDuration(e.currentTarget.duration.toFixed(2))
                     }}
+                    loop
                     src={`${server}`}
                 ></audio>
                 <ControlPanel
