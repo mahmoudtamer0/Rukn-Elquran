@@ -7,6 +7,7 @@ import { useData } from '../../context/AppContext'
 import PulseLoader from "react-spinners/PulseLoader";
 import MoonLoader from "react-spinners/MoonLoader";
 import { useTranslation } from 'react-i18next'
+import LandingSection from '../LandingSection'
 
 const Reciter = () => {
     const { colors, setServer, lang, soraId, setSoraId, font, setPlay, fontSize } = useData()
@@ -33,13 +34,6 @@ const Reciter = () => {
     }, [recId])
 
 
-
-    // useEffect(() => {
-    //     if (reciter != "") {
-    //         setSewarList(reciter.moshaf[0].surah_list.split(','))
-    //     }
-    // }, [reciter])
-
     useEffect(() => {
         const newarr = []
         if (sewarList != '') {
@@ -53,9 +47,6 @@ const Reciter = () => {
             })
         }
     }, [sewarList])
-
-    console.log(sewarList)
-
 
     const handlePlay = (sora) => {
         setSoraId(`${(sora.id.toString().padStart(3, 0))}.mp3`)
@@ -86,25 +77,7 @@ const Reciter = () => {
 
     return (
         <div className=''>
-            <div className='landing' style={{ height: "350px" }}>
-                <div className='landing-img'>
-                    <img src={landingImg} alt='...' />
-                </div>
-                <div className='text-center landing-text '>
-                    <div className='d-flex align-items-center justify-content-center'>
-                        <h2 className={`landingTitle ${lang == "eng" ? "font2" : null}`}
-                            style={{ fontFamily: font }}> {reciter.name}</h2>
-                    </div>
-                    <div className='recDivSearch'>
-                        <input
-                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
-                            type='text'
-                            className='inpForSearch'
-                            placeholder={t("reciters.search_surah_for_reciter")} />
-                    </div>
-                </div>
-            </div>
-
+            <LandingSection setSearch={setSearch} name={reciter.name} searchFor={t("reciters.search_surah_for_reciter")} />
             <div className='container mainRec'>
                 <h2 style={{ color: colors.blackColor, fontSize: "1.7rem", marginBottom: "40px" }}>{t("reciters.all_surahs_reciter")}</h2>
                 {newSewar.length > 0 ?
