@@ -127,10 +127,8 @@ export const Azkar = () => {
                                     className=
                                     {`pAyah 
                                         ${lang == "eng" && "ayaheng"} 
-                                        ${fontAyahSize == 1 && "f30px"}
-                                        ${fontAyahSize == 2 && "f35px"} 
-                                        ${fontAyahSize == 3 && "f40px"}`
-                                    }>
+                                        fontTo${fontAyahSize}
+                                    `}>
                                     <span>
                                         <span
 
