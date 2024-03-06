@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 const DateToday = () => {
     const {
         colors,
-        font, fontSize, lang } = useData();
+        font, fontSize, lang, setIsFocuse } = useData();
 
     const [timings, setTimings] = useState([])
     const [country, setCountry] = useState()
@@ -126,6 +126,8 @@ const DateToday = () => {
                         </div>
                         <div className='sideBarInput mb-4'>
                             <input
+                                onFocus={() => setIsFocuse(true)}
+                                onBlur={() => setIsFocuse(false)}
                                 autoFocus
                                 placeholder={t("home.search_for_country")}
                                 style={{ backgroundColor: colors.searchColor }}
@@ -175,6 +177,8 @@ const DateToday = () => {
                         </div>
                         <div className='sideBarInput mb-4'>
                             <input
+                                onFocus={() => setIsFocuse(true)}
+                                onBlur={() => setIsFocuse(false)}
                                 placeholder={t("home.search_for_city")}
                                 onChange={(e) => setSearch2(e.target.value.toLowerCase())}
                                 style={{ backgroundColor: colors.searchColor }}
