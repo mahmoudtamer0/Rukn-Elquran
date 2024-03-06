@@ -108,7 +108,6 @@ const SideBar = ({ soraNum }) => {
                 </div>
                 <div className='scrolll'>
                     <div ref={linkRef} id='sideBar' className='sideBarSoraNameDiv'>
-
                         {sewar?.filter((item) => {
                             return search !== "" ? item.name.toLowerCase().includes(search) : sewar
                         }).map(sora => {
