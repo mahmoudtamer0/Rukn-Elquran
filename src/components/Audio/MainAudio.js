@@ -4,26 +4,27 @@ import Slider from "./Slider"
 import ControlPanel from './ControlPanel'
 
 const MainAudio = () => {
-    const { server, setServer, colors } = useData()
+    const { server, isFocuse, colors } = useData()
     const audioRef = useRef(null)
     const [audioBool, setAudioBool] = useState(true)
     useEffect(() => {
-        document.addEventListener('keydown', handleSpaceBarPress);
+        if (isFocuse === false) {
+            document.addEventListener('keydown', handleSpaceBarPress);
+        }
         return () => {
             document.removeEventListener('keydown', handleSpaceBarPress);
         };
-    }, []);
+    }, [isFocuse]);
     const handleSpaceBarPress = (event) => {
-        if (server !== '') {
-            if (event.key === ' ') {
-                event.preventDefault();
-                if (!audioRef.current.paused) {
-                    audioRef.current.pause();
-                    setIsPlaying(false)
-                } else {
-                    audioRef.current.play();
-                    setIsPlaying(true)
-                }
+
+        if (event.key === " ") {
+            event.preventDefault();
+            if (!audioRef.current.paused) {
+                audioRef.current.pause();
+                setIsPlaying(false)
+            } else {
+                audioRef.current.play();
+                setIsPlaying(true)
             }
         }
     }
@@ -34,9 +35,6 @@ const MainAudio = () => {
             setAudioBool(true)
         }
     }, [server])
-    const handleClick = () => {
-        setServer()
-    }
     //design
     const [percentage, setPercentage] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
