@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 
 function Button({ play, isPlaying }) {
     const { colors, setServer, reciters, getReciters,
+        setIsFocuse,
         soraId, server, setSoraId, lang } = useData()
     const [select, setSelect] = useState(false)
     const [selectReciters, setSelectReciters] = useState(false)
@@ -79,6 +80,8 @@ function Button({ play, isPlaying }) {
                 </div>
                 <div className='sideBarInput mb-4'>
                     <input
+                        onFocus={() => setIsFocuse(true)}
+                        onBlur={() => setIsFocuse(false)}
                         onChange={(e) => setSearch(e.target.value.toLowerCase())}
                         placeholder='ابحث عن قارئ'
                         style={{ backgroundColor: colors.searchColor }}
