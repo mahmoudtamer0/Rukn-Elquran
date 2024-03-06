@@ -3,7 +3,7 @@ import { useData } from '../context/AppContext'
 import landingImg from '../images/quran-book.jpg'
 
 const LandingSection = ({ setSearch, name, searchFor }) => {
-    const { font, lang } = useData()
+    const { font, lang, setIsFocuse } = useData()
 
     return (
         <div className='landing' style={{ height: "350px" }}>
@@ -19,6 +19,8 @@ const LandingSection = ({ setSearch, name, searchFor }) => {
                 </div>
                 <div className='recDivSearch'>
                     <input
+                        onFocus={() => setIsFocuse(true)}
+                        onBlur={() => setIsFocuse(false)}
                         onChange={(e) => setSearch(e.target.value.toLowerCase())}
                         type='text'
                         className='inpForSearch'
