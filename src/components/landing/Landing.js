@@ -8,10 +8,9 @@ import { useTranslation } from 'react-i18next';
 
 function Landing() {
 
-    const { colors, reciters, getReciters, lang, font, setSearchResults } = useData()
+    const { colors, reciters, getReciters, lang, font, setSearchResults, setIsFocuse, isFocuse } = useData()
     const [search, setSearch] = useState("")
     const [sewar, setSewar] = useState([])
-    const [focused, setFocused] = useState(false)
     const { t, i18n } = useTranslation()
     const navigate = useNavigate()
 
@@ -28,14 +27,14 @@ function Landing() {
     }
 
     useEffect(() => {
-        if (focused) {
+        if (isFocuse) {
             document.querySelector(".searchBox").classList.remove("hide")
             document.querySelector(".searchBox").classList.add("visibleSearchBox")
         } else {
             document.querySelector(".searchBox").classList.add("hide")
             document.querySelector(".searchBox").classList.remove("visibleSearchBox")
         }
-    }, [focused])
+    }, [isFocuse])
 
     useEffect(() => {
         if (search == "") {
@@ -79,11 +78,11 @@ function Landing() {
                                 <input
                                     onBlur={() => {
                                         setTimeout(() => {
-                                            setFocused(false)
+                                            setIsFocuse(false)
                                         }, 300);
                                     }}
                                     className='inpForSearch'
-                                    onFocus={() => setFocused(true)}
+                                    onFocus={() => setIsFocuse(true)}
                                     onChange={(e) => setSearch(e.target.value.toLowerCase())}
                                     style={{ backgroundColor: colors.searchColor, color: colors.black }}
                                     type='text'
