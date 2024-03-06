@@ -41,6 +41,7 @@ const AppContext = ({ children }) => {
     const [font, seFont] = useState(`'Noto Sans Arabic', sans - serif`)
     const [fontSize, setFontSize] = useState("1.7rem")
     const [loading, setLoading] = useState(false)
+    const [isFocuse, setIsFocuse] = useState(false)
     const [loadingForSearch, setLoadingForSearch] = useState(false)
     const [searchResults, setSearchResults] = useState(sessionStorage.getItem("searchResults") ?
         sessionStorage.getItem("searchResults") : [])
@@ -224,7 +225,8 @@ const AppContext = ({ children }) => {
                 setFontAyahSize, fontAyahSize,
                 handlePlusFontSize, handleMinusFontSize,
                 pageNow, setPageNow, loading, setSearchResults, searchResults,
-                loadingForSearch, setLoadingForSearch
+                loadingForSearch, setLoadingForSearch,
+                setIsFocuse, isFocuse
             }}>
             {children}
         </DataContext.Provider>
